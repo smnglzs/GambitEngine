@@ -1,3 +1,6 @@
 [submodule "External/glfw"]
 	path = External/glfw
 	url = https://github.com/Gambit-Dev/glfw
+[submodule "External/glew"]
+	path = External/glew
+	url = https://github.com/Gambit-Dev/glew
