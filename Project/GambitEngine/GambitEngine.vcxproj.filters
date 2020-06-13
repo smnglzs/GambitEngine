@@ -11,7 +11,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="../../Source/GambitEngine/GambitEngine.cpp">
+    <ClCompile Include="Source\GambitMain.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

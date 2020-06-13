@@ -84,10 +84,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="../../Source/GambitBase/GambitBase.cpp" />
+    <ClCompile Include="Source\GambitBase.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\GambitBase\GambitBase.h" />
+    <ClInclude Include="Source\GambitBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

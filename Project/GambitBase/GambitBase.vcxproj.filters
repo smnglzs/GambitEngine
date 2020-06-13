@@ -11,12 +11,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="../../Source/GambitBase/GambitBase.cpp">
+    <ClCompile Include="Source\GambitBase.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\GambitBase\GambitBase.h">
+    <ClInclude Include="Source\GambitBase.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>
