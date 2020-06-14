@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/GambitBaseTest.h"
+#include "GambitBaseTest.h"
 
 namespace Gambit
 {
