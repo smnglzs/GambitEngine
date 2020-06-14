@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Common.h" />
+    <ClInclude Include="Common\Export.h" />
     <ClInclude Include="GambitBaseTest.h" />
     <ClInclude Include="LoggerManager\LoggerManager.h" />
     <ClInclude Include="Singleton\Singleton.h" />

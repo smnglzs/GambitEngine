@@ -28,5 +28,8 @@
     <ClInclude Include="Common\Common.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="Common\Export.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
