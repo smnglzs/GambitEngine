@@ -1,5 +1,5 @@
 #include <iostream>
-#include "GambitBase.h"
+#include "GambitBaseTest.h"
 
 int main()
 {

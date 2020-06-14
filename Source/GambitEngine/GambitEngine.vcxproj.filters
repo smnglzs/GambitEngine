@@ -11,13 +11,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\GambitBase.cpp">
+    <ClCompile Include="src\GambitEngineMain.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\GambitBase.h">
-      <Filter>Include</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
