@@ -1,7 +1,7 @@
 #include <iostream>
 #include "GambitBaseTest.h"
 
-namespace Gambit
+namespace gb
 {
     void CallExample()
     {

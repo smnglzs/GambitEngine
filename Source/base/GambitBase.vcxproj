@@ -11,10 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GambitBaseTest.h" />
+    <ClCompile Include="GambitBaseTest.cpp" />
+    <ClCompile Include="LoggerManager\LoggerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GambitBaseTest.cpp" />
+    <ClInclude Include="Common\Common.h" />
+    <ClInclude Include="GambitBaseTest.h" />
+    <ClInclude Include="LoggerManager\LoggerManager.h" />
+    <ClInclude Include="Singleton\Singleton.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

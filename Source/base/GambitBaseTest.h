@@ -1,12 +1,7 @@
 #pragma once
+#include "Base/Common/Common.h"
 
-#ifdef GAMBIT_EXPORTS
-	#define GAMBIT_API extern "C" __declspec(dllexport)
-#else
-	#define GAMBIT_API extern "C" __declspec(dllimport)
-#endif
-
-namespace Gambit
+namespace gb
 {
 	GAMBIT_API void CallExample();
 }
