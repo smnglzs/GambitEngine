@@ -18,6 +18,7 @@
   <ItemGroup>
     <ClInclude Include="Common\Common.h" />
     <ClInclude Include="Common\Export.h" />
+    <ClInclude Include="Common\NonCopyable.h" />
     <ClInclude Include="GambitBaseTest.h" />
     <ClInclude Include="LoggerManager\LogChannel.h" />
     <ClInclude Include="LoggerManager\LoggerManager.h" />
