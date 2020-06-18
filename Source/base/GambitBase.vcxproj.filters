@@ -45,6 +45,7 @@
     </ClInclude>
     <ClInclude Include="Utils\EnumUtils.h">
       <Filter>Utils</Filter>
+    </ClInclude>
     <ClInclude Include="Common\NonCopyable.h">
       <Filter>Common</Filter>
     </ClInclude>
