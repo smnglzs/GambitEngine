@@ -1,9 +1,13 @@
 #pragma once
 #include <iostream>
+#include <mutex>
+#include <optional>
 #include <string>
 #include <string_view>
 #include <type_traits>
+#include <unordered_map>
 
+#include "Base/LoggerManager/LogChannel.h"
 #include "Base/Singleton/Singleton.h"
 
 namespace gb
@@ -11,74 +15,34 @@ namespace gb
 	class GAMBIT_API LoggerManager : public ISingleton
 	{
 	public:
-		LoggerManager() = default;
-		~LoggerManager() = default;
+		LoggerManager();
+		~LoggerManager();
 
-		/// <summary>
-		/// Log information in a predefined channel.
-		/// Use the delimiters{} to insert a value into the string.
-		/// </summary>
-		/// <typeparam name="...Args">The information you want to add to the string. Must be a type that fits the std::to_string requirements.</typeparam>
-		/// <param name="sv">The string you want to parse.</param>
-		/// <param name="...args">Data that will be replaced into the string.</param>
-		/// <returns>Boolean - Returns if the log operation was successful.</returns>
 		template <typename ... Args>
-		bool Log(std::string_view sv, Args ... args);
+		void Log(const std::string& channelName, const std::string_view& sv, Args ... args);
 
-	//private:
+		void AddChannel(const std::string& name, const LogChannel& channel);
+
+		std::optional<LogChannel> GetChannelFromName(const std::string& name);
+
+	private:
+		std::string StringifyParameter(const char* const parameter);
 		template <typename T>
-		std::string  StringifyParameter(T parameter);
+		std::string  StringifyParameter(T&& parameter);
+
+		std::string AddHeader(const std::string& output, ELogLevel logLevel) const;
+
+		void Log_Internal(const std::string_view& sv, std::string& output, size_t& currentPosition);
+		template <typename T, typename ... Args>
+		void Log_Internal(const std::string_view&, std::string& output, size_t& currentPosition, T&& parameter, Args ... args);
+
+		constexpr static const size_t m_delimiterSize = 2u;
+		const char* const m_delimiter = "{}";
+		const char* DEFAULT_LOG_PATH = "Logs/";
+
+		std::mutex m_channelMutex;
+		std::unordered_map<std::string, LogChannel> m_channels;
 	};
-
-	template <typename T>
-	std::string	LoggerManager::StringifyParameter(T parameter)
-	{
-		return std::to_string(parameter);
-	}
-
-	template <typename ... Args>
-	bool LoggerManager::Log(std::string_view sv, Args ... args)
-	{
-		if (sv.empty())
-		{
-			// Add a log that explains what failed. (?)
-			return false;
-		}
-
-		constexpr const size_t delimiterSize = 2u;
-		size_t currentPosition = 0u;
-		size_t delimiterPosition = 0u;
-		std::string output;
-
-		while (currentPosition != std::string_view::npos)
-		{
-			delimiterPosition = sv.find_first_of("{}", currentPosition);
-
-			// Delimiter Found.
-			if (delimiterPosition != std::string_view::npos)
-			{
-				// Copy everything beforehand.
-				output += sv.substr(currentPosition, delimiterPosition - currentPosition);
-
-				// Add Parameter.
-				output += std::to_string(42);
-
-				// Update current position.
-				currentPosition = delimiterPosition + delimiterSize;
-			}
-			else
-			{
-				// Copy rest of the string.
-				output += sv.substr(currentPosition, delimiterPosition);
-
-				// Set current position to npos.
-				currentPosition = delimiterPosition;
-			}
-		}
-
-		std::cout << "String with delimiters: " << sv << std::endl;
-		std::cout << "String transformed: " << output << std::endl;
-
-		return true;
-	}
 }
+
+#include "LoggerManager_impl.h"
