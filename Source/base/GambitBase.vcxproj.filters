@@ -10,10 +10,16 @@
     <Filter Include="Common">
       <UniqueIdentifier>{439ccfc4-dc4f-478e-bfae-23ade78338de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{f87ae1d2-6654-436f-b28b-4f77d7d46b1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GambitBaseTest.cpp" />
     <ClCompile Include="LoggerManager\LoggerManager.cpp">
+      <Filter>LoggerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggerManager\LogChannel.cpp">
       <Filter>LoggerManager</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,6 +36,15 @@
     </ClInclude>
     <ClInclude Include="Common\Export.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerManager\LogChannel.h">
+      <Filter>LoggerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerManager\LoggerManager_impl.h">
+      <Filter>LoggerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\EnumUtils.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

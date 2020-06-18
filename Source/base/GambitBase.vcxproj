@@ -12,14 +12,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GambitBaseTest.cpp" />
+    <ClCompile Include="LoggerManager\LogChannel.cpp" />
     <ClCompile Include="LoggerManager\LoggerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Common.h" />
     <ClInclude Include="Common\Export.h" />
     <ClInclude Include="GambitBaseTest.h" />
+    <ClInclude Include="LoggerManager\LogChannel.h" />
     <ClInclude Include="LoggerManager\LoggerManager.h" />
+    <ClInclude Include="LoggerManager\LoggerManager_impl.h" />
     <ClInclude Include="Singleton\Singleton.h" />
+    <ClInclude Include="Utils\EnumUtils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -72,6 +76,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -88,6 +93,8 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;GAMBIT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
