@@ -15,12 +15,14 @@ namespace gb
 
 	}
 
-	void Device::StartUp()
+	bool Device::StartUp()
 	{
 		glfwSetErrorCallback(OnGLFWError);
 
 		m_glfwInitialized = glfwInit() == GLFW_TRUE;
 		assert(m_glfwInitialized);
+
+		return m_glfwInitialized;
 	}
 
 	void Device::ShutDown()

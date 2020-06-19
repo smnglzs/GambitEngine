@@ -12,7 +12,7 @@ namespace gb
 		Device();
 		~Device();
 
-		void StartUp();
+		bool StartUp();
 		void ShutDown();
 
 	private:
