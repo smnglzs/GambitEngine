@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Input">
+      <UniqueIdentifier>{26902712-549d-4c0e-8c9a-b7df57bc8e47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Display">
+      <UniqueIdentifier>{ac864f9d-6faa-4588-b84e-e2347d9225ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Mouse">
+      <UniqueIdentifier>{f2323738-656c-4890-8aa6-7d8f04c841a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Keyboard">
+      <UniqueIdentifier>{8d799b11-0eb8-4e61-901a-f51b7021215d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Joystick">
+      <UniqueIdentifier>{3e5da4af-0b56-49f2-a376-6769cf255bbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Display\Monitor">
+      <UniqueIdentifier>{486e5c8f-8f19-42cc-b849-d219a0ea9d74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Display\Window">
+      <UniqueIdentifier>{8bd1ce45-fa46-46ab-994f-ef1b41d69879}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Input\InputManager.cpp">
+      <Filter>Input</Filter>
+    </Text>
+    <Text Include="Display\DisplayManager.cpp">
+      <Filter>Display</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Input\Mouse\Mouse.cpp">
+      <Filter>Input\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Keyboard\Keyboard.cpp">
+      <Filter>Input\Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Joystick\Joystick.cpp">
+      <Filter>Input\Joystick</Filter>
+    </ClCompile>
+    <ClCompile Include="Display\Window\Window.cpp">
+      <Filter>Display\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Display\Monitor\Monitor.cpp">
+      <Filter>Display\Monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="Display\DisplayManager.h">
+      <Filter>Display</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Input\Mouse\Mouse.h">
+      <Filter>Input\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Keyboard\Keyboard.h">
+      <Filter>Input\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Joystick\Joystick.h">
+      <Filter>Input\Joystick</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\Window\Window.h">
+      <Filter>Display\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\Monitor\Monitor.h">
+      <Filter>Display\Monitor</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h" />
+    <ClInclude Include="Input\InputManager.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\Window\WindowSettings.h">
+      <Filter>Display\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\Window\VideoMode.h">
+      <Filter>Display\Window</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

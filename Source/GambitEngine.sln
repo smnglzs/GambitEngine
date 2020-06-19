@@ -6,11 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GambitEngine", "Engine\GambitEngine.vcxproj", "{D490082A-01F1-4811-B9B5-5A1D71E60240}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6440823E-F0EA-426F-A969-C385E8489509} = {6440823E-F0EA-426F-A969-C385E8489509}
+		{C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD} = {C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GambitBase", "Base\GambitBase.vcxproj", "{6440823E-F0EA-426F-A969-C385E8489509}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GambitWindowing", "Windowing\GambitWindowing.vcxproj", "{C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GambitDevice", "Device\GambitDevice.vcxproj", "{C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6440823E-F0EA-426F-A969-C385E8489509} = {6440823E-F0EA-426F-A969-C385E8489509}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

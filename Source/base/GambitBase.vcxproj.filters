@@ -49,5 +49,11 @@
     <ClInclude Include="Common\NonCopyable.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="Common\Math.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\AssertUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

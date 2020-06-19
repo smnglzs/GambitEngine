@@ -11,12 +11,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window\Window.h" />
-    <ClInclude Include="Window\WindowManager.h" />
+    <Text Include="Display\DisplayManager.cpp" />
+    <Text Include="Input\InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Window\Window.cpp" />
-    <ClCompile Include="Window\WindowManager.cpp" />
+    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="Display\DisplayManager.h" />
+    <ClCompile Include="Display\Monitor\Monitor.cpp" />
+    <ClCompile Include="Display\Window\Window.cpp" />
+    <ClCompile Include="Input\Joystick\Joystick.cpp" />
+    <ClCompile Include="Input\Keyboard\Keyboard.cpp" />
+    <ClCompile Include="Input\Mouse\Mouse.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Device.h" />
+    <ClInclude Include="Display\Monitor\Monitor.h" />
+    <ClInclude Include="Display\Window\VideoMode.h" />
+    <ClInclude Include="Display\Window\Window.h" />
+    <ClInclude Include="Display\Window\WindowSettings.h" />
+    <ClInclude Include="Input\InputManager.h" />
+    <ClInclude Include="Input\Joystick\Joystick.h" />
+    <ClInclude Include="Input\Keyboard\Keyboard.h" />
+    <ClInclude Include="Input\Mouse\Mouse.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -24,7 +40,7 @@
     <ProjectGuid>{c63db6a3-37ea-4f2b-9074-e8fd11caecad}</ProjectGuid>
     <RootNamespace>GambitWindowing</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>GambitWindowing</ProjectName>
+    <ProjectName>GambitDevice</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -54,9 +70,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Build\Output\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\Build\Output\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Build\Output\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\Build\Output\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -64,7 +84,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;GAMBIT_EXPORTS;_WINDOWS;GLFW_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\ThirdParty\glfw\include\;$(SolutionDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\ThirdParty\glfw\include\;$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -82,7 +103,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;GAMBIT_EXPORTS;_WINDOWS;GLFW_DLL%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\ThirdParty\glfw\include\;$(SolutionDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\ThirdParty\glfw\include\;$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
