@@ -11,22 +11,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GambitBaseTest.cpp" />
+    <ClCompile Include="GambitBaseModule.cpp" />
     <ClCompile Include="LoggerManager\LogChannel.cpp" />
     <ClCompile Include="LoggerManager\LoggerManager.cpp" />
+    <ClCompile Include="Module\Module.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Common.h" />
     <ClInclude Include="Common\Export.h" />
     <ClInclude Include="Common\Math.h" />
     <ClInclude Include="Common\NonCopyable.h" />
-    <ClInclude Include="GambitBaseTest.h" />
+    <ClInclude Include="GambitBaseModule.h" />
     <ClInclude Include="LoggerManager\LogChannel.h" />
     <ClInclude Include="LoggerManager\LoggerManager.h" />
     <ClInclude Include="LoggerManager\LoggerManager_impl.h" />
+    <ClInclude Include="Module\Module.h" />
     <ClInclude Include="Singleton\Singleton.h" />
     <ClInclude Include="Utils\AssertUtils.h" />
     <ClInclude Include="Utils\EnumUtils.h" />
+    <ClInclude Include="Utils\StringUtils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

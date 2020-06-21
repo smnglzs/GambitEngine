@@ -26,15 +26,7 @@ namespace gb
 		std::optional<LogChannel> GetChannelFromName(const std::string& name);
 
 	private:
-		std::string StringifyParameter(const char* const parameter);
-		template <typename T>
-		std::string  StringifyParameter(T&& parameter);
-
-		std::string AddHeader(const std::string& output, ELogLevel logLevel) const;
-
-		void Log_Internal(const std::string_view& sv, std::string& output, size_t& currentPosition);
-		template <typename T, typename ... Args>
-		void Log_Internal(const std::string_view&, std::string& output, size_t& currentPosition, T&& parameter, Args ... args);
+		std::string GetHeader(ELogLevel logLevel) const;
 
 		constexpr static const size_t m_delimiterSize = 2u;
 		const char* const m_delimiter = "{}";

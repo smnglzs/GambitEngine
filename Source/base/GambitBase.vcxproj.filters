@@ -13,15 +13,21 @@
     <Filter Include="Utils">
       <UniqueIdentifier>{f87ae1d2-6654-436f-b28b-4f77d7d46b1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Module">
+      <UniqueIdentifier>{f62c49d4-38ee-48d2-b56a-78aff76ebb05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GambitBaseTest.cpp" />
     <ClCompile Include="LoggerManager\LoggerManager.cpp">
       <Filter>LoggerManager</Filter>
     </ClCompile>
     <ClCompile Include="LoggerManager\LogChannel.cpp">
       <Filter>LoggerManager</Filter>
     </ClCompile>
+    <ClCompile Include="Module\Module.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="GambitBaseModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LoggerManager\LoggerManager.h">
@@ -30,7 +36,6 @@
     <ClInclude Include="Singleton\Singleton.h">
       <Filter>Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="GambitBaseTest.h" />
     <ClInclude Include="Common\Common.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -55,5 +60,12 @@
     <ClInclude Include="Utils\AssertUtils.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Utils\StringUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Module\Module.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="GambitBaseModule.h" />
   </ItemGroup>
 </Project>

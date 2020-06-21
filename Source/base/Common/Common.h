@@ -2,6 +2,7 @@
 #include "Base/Utils/AssertUtils.h"
 #include "Base/Utils/EnumUtils.h"
 #include "Base/Common/Export.h"
+#include "Base/Utils/EnumUtils.h"
 
 #include <memory>
 #include <string>
