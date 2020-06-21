@@ -74,7 +74,7 @@
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\ThirdParty\glfw\lib\glfw3.dll" "$(OutDir)"</Command>
+      <Command>xcopy "$(SolutionDir)..\ThirdParty\glfw\lib\glfw3.dll" "$(OutDir)" /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -98,7 +98,7 @@
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\ThirdParty\glfw\lib\glfw3.dll" "$(OutDir)"</Command>
+      <Command>xcopy "$(SolutionDir)..\ThirdParty\glfw\lib\glfw3.dll" "$(OutDir)" /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
