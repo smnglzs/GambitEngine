@@ -30,7 +30,7 @@ namespace gb
 				}
 			}
 
-			void Format_Internal(const std::string_view& sv, std::string& output, size_t& currentPosition)
+			inline void Format_Internal(const std::string_view& sv, std::string& output, size_t& currentPosition)
 			{
 				if (currentPosition == std::string::npos)
 				{

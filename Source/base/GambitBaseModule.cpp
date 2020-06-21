@@ -1,7 +1,11 @@
 #include "GambitBaseModule.h"
 
+#include "Base/LoggerManager/LoggerManager.h"
+
 namespace gb
 {
+	DEFINE_SINGLETON(LoggerManager, LoggerManager);
+
 	ModuleBase::ModuleBase()
 	{
 
@@ -25,5 +29,7 @@ namespace gb
 	void ModuleBase::RegisterSingletons()
 	{
 		Module::RegisterSingletons();
+
+		REGISTER_SINGLETON(LoggerManager, LoggerManager);
 	}
 }

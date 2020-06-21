@@ -10,6 +10,15 @@
 #include "Base/LoggerManager/LogChannel.h"
 #include "Base/Singleton/Singleton.h"
 
+#define CREATE_LOG_CHANNEL(varName, channelName, output, level, path) \
+static const gb::LogChannel g_##varName##Channel = { channelName, output, level, path };
+
+#define ADD_LOG_CHANNEL(varName, channelName) \
+gb::GetLoggerManager()->AddChannel(channelName, g_##varName##Channel);
+
+#define LOG(channelName, fmt, ...) \
+gb::GetLoggerManager()->Log(channelName, fmt, __VA_ARGS__);
+
 namespace gb
 {
 	class GAMBIT_API LoggerManager : public ISingleton
@@ -36,5 +45,7 @@ namespace gb
 		std::unordered_map<std::string, LogChannel> m_channels;
 	};
 }
+
+CREATE_SINGLETON_ACCESSOR(LoggerManager, LoggerManager);
 
 #include "LoggerManager_impl.h"

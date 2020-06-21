@@ -2,8 +2,8 @@
 #include "Base/Common/Common.h"
 #include "Base/Singleton/Singleton.h"
 
-#define DEFINE_SINGLETON(cls, name)							\
-alignas(cls) char g_p##name##Singleton[sizeof(cls)] = {0};	\
+#define DEFINE_SINGLETON(cls, name)										\
+alignas(cls) GAMBIT_API char g_p##name##Singleton[sizeof(cls)] = {0};	\
 
 #define REGISTER_SINGLETON(cls, name)				\
 new(g_p##name##Singleton) cls;						\
@@ -26,7 +26,7 @@ namespace gb
 		/// </summary>
 		virtual void RegisterSingletons();
 
-	private:
+	protected:
 		std::vector<ISingleton*> m_singletons;
 	};
 }
