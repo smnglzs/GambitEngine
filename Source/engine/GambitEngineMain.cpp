@@ -21,8 +21,6 @@ int main()
 
     gb::Device device;
     bool deviceReady = device.StartUp();
-    
-    lm.Log("Test", "GambitDevice ready status: {}", deviceReady);
 
     device.ShutDown();
 
