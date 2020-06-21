@@ -16,8 +16,8 @@ namespace gb
 		void ShutDown();
 
 	private:
-		static void OnGLFWError(int error, const char* description);
+		static void HandleGLFWError(int error, const char* description);
 
-		bool m_glfwInitialized;
+		bool m_ready;
 	};
 }

@@ -1,11 +1,11 @@
-#include <iostream>
 #include "Device.h"
+
 #include "GLFW/glfw3.h"
 
 namespace gb
 {
 	Device::Device() :
-		m_glfwInitialized(false)
+		m_ready(false)
 	{
 
 	}
@@ -17,12 +17,12 @@ namespace gb
 
 	bool Device::StartUp()
 	{
-		glfwSetErrorCallback(OnGLFWError);
+		m_ready = glfwInit() == GLFW_TRUE;
+		assert(m_ready && "glfwInit failed!");
 
-		m_glfwInitialized = glfwInit() == GLFW_TRUE;
-		assert(m_glfwInitialized);
+		glfwSetErrorCallback(HandleGLFWError);
 
-		return m_glfwInitialized;
+		return m_ready;
 	}
 
 	void Device::ShutDown()
@@ -30,8 +30,8 @@ namespace gb
 		glfwTerminate();
 	}
 
-	void Device::OnGLFWError(int error, const char* description)
+	void Device::HandleGLFWError(int error, const char* description)
 	{
-		printf("[GLFW ERROR]: %s\n", description); // TODO: use logger
+		
 	}
 }
