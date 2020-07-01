@@ -11,24 +11,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Display\DisplayManager.cpp" />
-    <Text Include="Input\InputManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Device.cpp" />
-    <ClCompile Include="Display\DisplayManager.h" />
+    <ClCompile Include="DeviceModule.cpp" />
+    <ClCompile Include="Display\DisplayManager.cpp" />
     <ClCompile Include="Display\Monitor\Monitor.cpp" />
     <ClCompile Include="Display\Window\Window.cpp" />
+    <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Input\Joystick\Joystick.cpp" />
     <ClCompile Include="Input\Keyboard\Keyboard.cpp" />
     <ClCompile Include="Input\Mouse\Mouse.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Device.h" />
+    <ClInclude Include="DeviceModule.h" />
+    <ClCompile Include="Display\DisplayManager.h" />
     <ClInclude Include="Display\Monitor\Monitor.h" />
     <ClInclude Include="Display\Window\VideoMode.h" />
     <ClInclude Include="Display\Window\Window.h" />
     <ClInclude Include="Display\Window\WindowSettings.h" />
+    <ClInclude Include="Export.h" />
     <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="Input\Joystick\Joystick.h" />
     <ClInclude Include="Input\Keyboard\Keyboard.h" />
@@ -71,18 +70,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)..\Build\Output\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\Build\Output\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)..\Build\Intermediate\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)..\Build\Output\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\Build\Output\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)..\Build\Intermediate\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;GAMBIT_EXPORTS;_WINDOWS;GLFW_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;GAMBIT_DEVICE_EXPORTS;_WINDOWS;GLFW_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\ThirdParty\glfw\include\;$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
@@ -92,8 +91,8 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\ThirdParty\glfw\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>GambitBase.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\ThirdParty\glfw\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -102,7 +101,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;GAMBIT_EXPORTS;_WINDOWS;GLFW_DLL%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;GAMBIT_DEVICE_EXPORTS;_WINDOWS;GLFW_DLL%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)..\ThirdParty\glfw\include\;$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
@@ -114,8 +113,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\ThirdParty\glfw\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>GambitBase.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\ThirdParty\glfw\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
