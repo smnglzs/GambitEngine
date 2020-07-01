@@ -5,7 +5,7 @@
 
 namespace gb
 {
-	enum class GAMBIT_API EOutputType : uint8_t
+	enum class GAMBIT_BASE_API EOutputType : uint8_t
 	{
 		File	= (1 << 0),
 		Console = (1 << 1),
@@ -13,7 +13,7 @@ namespace gb
 	};
 	ENABLE_BITMASK_OPERATORS(EOutputType);
 
-	enum class GAMBIT_API ELogLevel : uint8_t
+	enum class GAMBIT_BASE_API ELogLevel : uint8_t
 	{
 		Info	= (1 << 0),
 		Warning	= (1 << 1),
@@ -22,7 +22,7 @@ namespace gb
 	};
 	ENABLE_BITMASK_OPERATORS(ELogLevel);
 
-	struct GAMBIT_API LogChannel
+	struct GAMBIT_BASE_API LogChannel
 	{
 		LogChannel();
 		LogChannel(const char* const name, EOutputType output, ELogLevel level);

@@ -4,19 +4,19 @@
 #include "Base/Common/Export.h"
 #include "Base/Common/NonCopyable.h"
 
-#define CREATE_SINGLETON_ACCESSOR(iface, name)		\
+#define CREATE_SINGLETON_ACCESSOR(iface, name, API)	\
 namespace gb										\
 {													\
 inline iface* Get##name()							\
 {													\
-	GAMBIT_API extern char g_p##name##Singleton[];	\
+	API extern char g_p##name##Singleton[];			\
 	return (iface*)g_p##name##Singleton;			\
 }													\
 }													\
 
 namespace gb
 {
-	class GAMBIT_API ISingleton : public NonCopyable
+	class GAMBIT_BASE_API ISingleton : public NonCopyable
 	{
 	public:
 		ISingleton() = default;

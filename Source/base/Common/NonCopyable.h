@@ -4,7 +4,7 @@
 
 namespace gb
 {
-    class GAMBIT_API NonCopyable
+    class GAMBIT_BASE_API NonCopyable
     {
     public:
         NonCopyable(const NonCopyable&) = delete;

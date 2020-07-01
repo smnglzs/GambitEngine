@@ -1,7 +1,7 @@
 #pragma once
 
-#ifdef GAMBIT_EXPORTS
-#define GAMBIT_API __declspec(dllexport)
+#ifdef GAMBIT_BASE_EXPORTS
+#define GAMBIT_BASE_API __declspec(dllexport)
 #else
-#define GAMBIT_API __declspec(dllimport)
+#define GAMBIT_BASE_API __declspec(dllimport)
 #endif
