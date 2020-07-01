@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="LoggerManager">
+      <UniqueIdentifier>{cae094f9-5a67-49a7-a872-32ca80aa57d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Singleton">
+      <UniqueIdentifier>{2a8b716d-6eff-42f9-bd25-41b5843b53b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{439ccfc4-dc4f-478e-bfae-23ade78338de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{f87ae1d2-6654-436f-b28b-4f77d7d46b1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module">
+      <UniqueIdentifier>{f62c49d4-38ee-48d2-b56a-78aff76ebb05}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LoggerManager\LoggerManager.cpp">
+      <Filter>LoggerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="LoggerManager\LogChannel.cpp">
+      <Filter>LoggerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Module\Module.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="GambitBaseModule.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LoggerManager\LoggerManager.h">
+      <Filter>LoggerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton\Singleton.h">
+      <Filter>Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Common.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Export.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerManager\LogChannel.h">
+      <Filter>LoggerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerManager\LoggerManager_impl.h">
+      <Filter>LoggerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\EnumUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\NonCopyable.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Math.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\AssertUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\StringUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Module\Module.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="GambitBaseModule.h" />
+  </ItemGroup>
+</Project>
