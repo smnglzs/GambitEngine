@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Base/GambitBaseModule.h"
 #include "Base/LoggerManager/LoggerManager.h"
-#include "Device/Device.h"
+#include "Device/DeviceModule.h"
 
 CREATE_LOG_CHANNEL(EngineInfo, "EngineInfo", gb::EOutputType::Both, gb::ELogLevel::Info, "Engine.txt");
 
@@ -19,11 +19,12 @@ int main()
 
     gbMod.ShutDown();
 
-    gb::Device device;
-    bool deviceReady = device.StartUp();
+    std::cout << "Attempting to call GambitDevice API...\n";
+    gb::DeviceModule gbDevice;
 
-    device.ShutDown();
-
+    gbDevice.StartUp();
+    gbDevice.RegisterSingletons();
+    gbDevice.ShutDown();
 
     system("pause");
     return 0;
