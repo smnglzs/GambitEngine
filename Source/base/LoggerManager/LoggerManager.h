@@ -21,7 +21,7 @@ gb::GetLoggerManager()->Log(channelName, fmt, __VA_ARGS__);
 
 namespace gb
 {
-	class GAMBIT_API LoggerManager : public ISingleton
+	class GAMBIT_BASE_API LoggerManager : public ISingleton
 	{
 	public:
 		LoggerManager();
@@ -46,6 +46,6 @@ namespace gb
 	};
 }
 
-CREATE_SINGLETON_ACCESSOR(LoggerManager, LoggerManager);
+CREATE_SINGLETON_ACCESSOR(LoggerManager, LoggerManager, GAMBIT_BASE_API);
 
 #include "LoggerManager_impl.h"

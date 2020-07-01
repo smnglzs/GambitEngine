@@ -4,7 +4,7 @@
 
 namespace gb
 {
-	DEFINE_SINGLETON(LoggerManager, LoggerManager);
+	DEFINE_SINGLETON(LoggerManager, LoggerManager, GAMBIT_BASE_API);
 
 	ModuleBase::ModuleBase()
 	{
