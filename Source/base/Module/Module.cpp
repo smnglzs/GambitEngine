@@ -19,7 +19,7 @@ namespace gb
 	
 	void Module::ShutDown()
 	{
-
+		m_singletons.clear();
 	}
 
 	void Module::RegisterSingletons()
