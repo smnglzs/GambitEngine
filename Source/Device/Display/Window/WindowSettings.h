@@ -2,10 +2,11 @@
 
 #include "Base/Common/Common.h"
 #include "Base/Common/Math.h"
+#include "Device/Export.h"
 
 namespace gb
 {
-	enum class GAMBIT_API EWindowFlags : uint8_t
+	enum class GAMBIT_DEVICE_API EWindowFlags : uint8_t
 	{
 		Decorated  = (1 << 0),
 		Focused	   = (1 << 1),
@@ -18,11 +19,11 @@ namespace gb
 	};
 	ENABLE_BITMASK_OPERATORS(EWindowFlags);
 
-	struct GAMBIT_API WindowSettings final
+	struct GAMBIT_DEVICE_API WindowSettings final
 	{
 		std::string title;
-		glm::u16vec2 size;
+		glm::u16vec2 size = { 1280u, 720u };
 		EWindowFlags flags = EWindowFlags::Default;
-		bool fullscreen;
+		bool fullscreen = false;
 	};
 }

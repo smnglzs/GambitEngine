@@ -47,10 +47,10 @@
     <ClCompile Include="Display\Monitor\Monitor.cpp">
       <Filter>Display\Monitor</Filter>
     </ClCompile>
-    <ClCompile Include="Device.cpp" />
     <ClCompile Include="Display\DisplayManager.h">
       <Filter>Display</Filter>
     </ClCompile>
+    <ClCompile Include="DeviceModule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input\Mouse\Mouse.h">
@@ -68,7 +68,6 @@
     <ClInclude Include="Display\Monitor\Monitor.h">
       <Filter>Display\Monitor</Filter>
     </ClInclude>
-    <ClInclude Include="Device.h" />
     <ClInclude Include="Input\InputManager.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -78,5 +77,7 @@
     <ClInclude Include="Display\Window\VideoMode.h">
       <Filter>Display\Window</Filter>
     </ClInclude>
+    <ClInclude Include="DeviceModule.h" />
+    <ClInclude Include="Export.h" />
   </ItemGroup>
 </Project>
