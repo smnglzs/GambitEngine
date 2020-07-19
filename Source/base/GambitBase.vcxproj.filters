@@ -19,9 +19,6 @@
     <Filter Include="FileManager">
       <UniqueIdentifier>{0d0613a6-1463-4d8e-98af-0eb216be446f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Collection">
-      <UniqueIdentifier>{8c5d73a1-86b7-4fdb-9047-29c5f3e7a6bc}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LoggerManager\LoggerManager.cpp">
@@ -37,8 +34,8 @@
     <ClCompile Include="FileManager\FileManager.cpp">
       <Filter>FileManager</Filter>
     </ClCompile>
-    <ClCompile Include="Collection\Array.cpp">
-      <Filter>Collection</Filter>
+    <ClCompile Include="FileManager\FileConfig.cpp">
+      <Filter>FileManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,8 +79,8 @@
     <ClInclude Include="FileManager\FileManager.h">
       <Filter>FileManager</Filter>
     </ClInclude>
-    <ClInclude Include="Collection\Array.h">
-      <Filter>Collection</Filter>
+    <ClInclude Include="FileManager\FileConfig.h">
+      <Filter>FileManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

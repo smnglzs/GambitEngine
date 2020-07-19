@@ -1,6 +1,8 @@
 #include <iostream>
+
 #include "Base/GambitBaseModule.h"
 #include "Base/LoggerManager/LoggerManager.h"
+
 #include "Device/DeviceModule.h"
 
 CREATE_LOG_CHANNEL(EngineInfo, "EngineInfo", gb::EOutputType::Both, gb::ELogLevel::Info, "Engine.txt");

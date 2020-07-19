@@ -4,7 +4,7 @@
 
 namespace gb
 {
-	class GAMBIT_API ModuleBase final : public Module
+	class GAMBIT_BASE_API ModuleBase final : public Module
 	{
 	public:
 		ModuleBase();

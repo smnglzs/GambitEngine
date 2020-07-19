@@ -1,4 +1,5 @@
 #pragma once
+#include <any>
 #include <filesystem>
 #include <unordered_map>
 
@@ -7,13 +8,13 @@
 
 namespace gb
 {
-	class FileManager : public ISingleton
+	class GAMBIT_BASE_API FileManager : public ISingleton
 	{
 	public:
 		FileManager() = default;
 		virtual ~FileManager() override = default;
 
-		void LoadConfigFile(const std::filesystem::path& path, std::unordered_map<std::string, std::string>& configs);
+		void LoadConfigFile(const std::filesystem::path& path);
 		void SaveConfigFile(const std::filesystem::path& path);
 
 	private:
@@ -21,4 +22,4 @@ namespace gb
 	};
 }
 
-CREATE_SINGLETON_ACCESSOR(FileManager, FileManager);
+CREATE_SINGLETON_ACCESSOR(FileManager, FileManager, GAMBIT_BASE_API);

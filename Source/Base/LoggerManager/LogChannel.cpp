@@ -53,9 +53,3 @@ namespace gb
 
 	}
 }
-		, m_logLevel(level)
-		, m_path(path)
-	{
-
-	}
-}
