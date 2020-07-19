@@ -48,4 +48,6 @@ namespace gb
 
 CREATE_SINGLETON_ACCESSOR(LoggerManager, LoggerManager, GAMBIT_BASE_API);
 
+#include "LoggerManager_impl.h"MBIT_BASE_API);
+
 #include "LoggerManager_impl.h"

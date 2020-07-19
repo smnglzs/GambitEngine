@@ -29,4 +29,6 @@ namespace gb
 	protected:
 		std::vector<ISingleton*> m_singletons;
 	};
+}ngleton*> m_singletons;
+	};
 }

@@ -11,16 +11,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Collection\Array.cpp" />
+    <ClCompile Include="FileManager\FileManager.cpp" />
     <ClCompile Include="GambitBaseModule.cpp" />
     <ClCompile Include="LoggerManager\LogChannel.cpp" />
     <ClCompile Include="LoggerManager\LoggerManager.cpp" />
     <ClCompile Include="Module\Module.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Collection\Array.h" />
     <ClInclude Include="Common\Common.h" />
     <ClInclude Include="Common\Export.h" />
     <ClInclude Include="Common\Math.h" />
     <ClInclude Include="Common\NonCopyable.h" />
+    <ClInclude Include="FileManager\FileManager.h" />
     <ClInclude Include="GambitBaseModule.h" />
     <ClInclude Include="LoggerManager\LogChannel.h" />
     <ClInclude Include="LoggerManager\LoggerManager.h" />
