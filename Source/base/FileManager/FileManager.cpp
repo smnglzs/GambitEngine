@@ -9,9 +9,8 @@ namespace gb
 {
 	bool FileManager::SaveConfigFile(const std::filesystem::path& path, const BaseConfig& config)
 	{
-		if (!CreateDirectories(path.parent_path()))
+		if (path.empty())
 		{
-			LOG(gb::EChannelComponent::EngineError, "{} - Can't create directories for path: [{}]", __func__, path.string());
 			return false;
 		}
 
@@ -55,6 +54,12 @@ namespace gb
 	{
 		if(path.empty())
 		{
+			return false;
+		}
+
+		if (!CreateDirectories(path.parent_path()))
+		{
+			LOG(gb::EChannelComponent::EngineError, "{} - Can't create directories for path: [{}]", __func__, path.string());
 			return false;
 		}
 
