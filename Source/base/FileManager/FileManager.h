@@ -15,11 +15,11 @@ namespace gb
 
 		bool SaveConfigFile(const std::filesystem::path& path, const BaseConfig& config);
 		bool LoadConfigFile(const std::filesystem::path& path, BaseConfig& config);
+		bool WriteToFile(const std::filesystem::path& path, const std::string& str);
+		bool ReadFromFile(const std::filesystem::path& path, std::string& str);
 
 	private:
 		bool CreateDirectories(const std::filesystem::path& path);
-		bool WriteToFile(const std::filesystem::path& path, const std::string& str);
-		bool ReadFromFile(const std::filesystem::path& path, std::string& str);
 	};
 }
 
