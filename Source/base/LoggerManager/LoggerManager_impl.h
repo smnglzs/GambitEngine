@@ -7,7 +7,7 @@
 namespace gb
 {
 	template <typename ... Args>
-	void LoggerManager::Log(const std::string& channelName, const std::string_view& sv, Args ... args)
+	void LoggerManager::Log(EChannelComponent component, const std::string_view& sv, Args ... args)
 	{
 		if (sv.empty())
 		{
@@ -18,17 +18,17 @@ namespace gb
 
 		{
 			const std::lock_guard<std::mutex> lock(m_channelMutex);
-			if (!m_channels.contains(channelName))
+			if (!m_channels.contains(component))
 			{
 				return;
 			}
 
-			channel = m_channels.at(channelName);
+			channel = m_channels.at(component);
 		}
 
-		std::string output { "[{}] - {} - " };
+		std::string output { "[{}] - " };
 		output.append(sv);
-		output = utils::Format(output, GetHeader(channel.m_logLevel), channel.m_name, args...);
+		output = utils::Format(output, GetHeader(channel.m_logLevel), args...);
 
 		if (Bitmask::Contains(channel.m_outputType, EOutputType::File))
 		{
@@ -36,8 +36,6 @@ namespace gb
 
 			std::filesystem::create_directories(finalPath);
 			finalPath /= channel.m_path;
-
-			auto testPath = std::filesystem::current_path();
 
 			std::ofstream ofs(finalPath);
 			ofs << output;

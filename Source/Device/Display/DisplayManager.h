@@ -11,7 +11,7 @@ namespace gb
 	{
 	public:
 		DisplayManager();
-		virtual ~DisplayManager();
+		virtual ~DisplayManager() override;
 
 		bool CreatePrimaryWindow(const WindowSettings& winSettings);
 

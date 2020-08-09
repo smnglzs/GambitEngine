@@ -10,29 +10,29 @@
 #include "Base/LoggerManager/LogChannel.h"
 #include "Base/Singleton/Singleton.h"
 
-#define CREATE_LOG_CHANNEL(varName, channelName, output, level, path) \
-static const gb::LogChannel g_##varName##Channel = { channelName, output, level, path };
-
-#define ADD_LOG_CHANNEL(varName, channelName) \
-gb::GetLoggerManager()->AddChannel(channelName, g_##varName##Channel);
+#define CREATE_LOG_CHANNEL(channelComponent, output, level, path) \
+gb::GetLoggerManager()->AddChannel(channelComponent, output, level, path);
 
 #define LOG(channelName, fmt, ...) \
 gb::GetLoggerManager()->Log(channelName, fmt, __VA_ARGS__);
 
 namespace gb
 {
-	class GAMBIT_BASE_API LoggerManager : public ISingleton
+	class GAMBIT_BASE_API LoggerManager final : public ISingleton
 	{
 	public:
 		LoggerManager();
-		~LoggerManager();
+		virtual ~LoggerManager() override;
 
 		template <typename ... Args>
-		void Log(const std::string& channelName, const std::string_view& sv, Args ... args);
+		void Log(EChannelComponent component, const std::string_view& sv, Args ... args);
 
-		void AddChannel(const std::string& name, const LogChannel& channel);
+		void AddChannel(EChannelComponent component, const LogChannel& channel);
+		void AddChannel(EChannelComponent component, EOutputType output, ELogLevel level, const std::filesystem::path& path);
+		void AddChannel(EChannelComponent component, EOutputType output, ELogLevel level, const std::string& path);
+		void AddChannel(EChannelComponent component, EOutputType output, ELogLevel level, const char* path);
 
-		std::optional<LogChannel> GetChannelFromName(const std::string& name);
+		std::optional<LogChannel> GetChannel(EChannelComponent component);
 
 	private:
 		std::string GetHeader(ELogLevel logLevel) const;
@@ -42,7 +42,7 @@ namespace gb
 		const char* DEFAULT_LOG_PATH = "Logs/";
 
 		std::mutex m_channelMutex;
-		std::unordered_map<std::string, LogChannel> m_channels;
+		std::unordered_map<EChannelComponent, LogChannel, EnumClassHash> m_channels;
 	};
 }
 

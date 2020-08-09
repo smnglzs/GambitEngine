@@ -2,25 +2,37 @@
 
 #include "Base/GambitBaseModule.h"
 #include "Base/LoggerManager/LoggerManager.h"
+#include "Base/FileManager/FileManager.h"
+#include "Base/FileManager/BaseConfig.h"
 
 #include "Device/DeviceModule.h"
 
-CREATE_LOG_CHANNEL(EngineInfo, "EngineInfo", gb::EOutputType::Both, gb::ELogLevel::Info, "Engine.txt");
-
 int main()
 {
+    // ========================================================= //
+    //                          Base Module                      //
+    // ========================================================= //
     std::cout << "Attempting to call GambitBase API...\n";
     gb::ModuleBase gbMod;
 
+    std::cout << "Attempting to StartUp GambitBase API...\n";
     gbMod.StartUp();
+
+    std::cout << "Attempting to RegisterSingletons of GambitBase API...\n";
     gbMod.RegisterSingletons();
 
-    ADD_LOG_CHANNEL(EngineInfo, "EngineInfo");
+    std::cout << "Adding Log Channel EngineInfo to Engine...\n";
+    CREATE_LOG_CHANNEL(gb::EChannelComponent::EngineInfo, gb::EOutputType::Both, gb::ELogLevel::Info, "Engine.txt");
 
-    LOG("EngineInfo", "This is the engine main.\n");
+    std::cout << "Attempting to log in EngineInfo channel...\n";
+    LOG(gb::EChannelComponent::EngineInfo, "Test EngineInfo channel.");
 
+    LOG(gb::EChannelComponent::EngineInfo, "Attempting to Shutdown GambitBase API...");
     gbMod.ShutDown();
 
+    // ========================================================= //
+    //                          Device Module                    //
+    // ========================================================= //
     std::cout << "Attempting to call GambitDevice API...\n";
     gb::DeviceModule gbDevice;
 

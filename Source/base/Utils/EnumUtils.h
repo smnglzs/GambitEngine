@@ -1,6 +1,9 @@
 #pragma once
 #include <type_traits>
 
+// ===================================================================
+//							Bitmask Operators
+// ===================================================================
 template <typename E>
 constexpr std::underlying_type_t<E> ToUnderlyingType(E e) noexcept
 {
@@ -88,3 +91,15 @@ namespace Bitmask
 		return lhs == E();
 	}
 }
+
+// ===================================================================
+//							Enum Class Hash
+// ===================================================================
+struct EnumClassHash
+{
+	template <typename T>
+	std::size_t operator()(T t) const
+	{
+		return static_cast<std::size_t>(t);
+	}
+};
