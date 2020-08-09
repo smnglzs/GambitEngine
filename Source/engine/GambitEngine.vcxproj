@@ -62,9 +62,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\json\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;6011</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -85,8 +85,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\json\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4251;6011</DisableSpecificWarnings>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>

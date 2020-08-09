@@ -34,7 +34,7 @@
     <ClCompile Include="FileManager\FileManager.cpp">
       <Filter>FileManager</Filter>
     </ClCompile>
-    <ClCompile Include="FileManager\FileConfig.cpp">
+    <ClCompile Include="FileManager\BaseConfig.cpp">
       <Filter>FileManager</Filter>
     </ClCompile>
   </ItemGroup>
@@ -79,7 +79,7 @@
     <ClInclude Include="FileManager\FileManager.h">
       <Filter>FileManager</Filter>
     </ClInclude>
-    <ClInclude Include="FileManager\FileConfig.h">
+    <ClInclude Include="FileManager\BaseConfig.h">
       <Filter>FileManager</Filter>
     </ClInclude>
   </ItemGroup>

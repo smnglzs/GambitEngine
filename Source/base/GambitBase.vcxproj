@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FileManager\FileConfig.cpp" />
+    <ClCompile Include="FileManager\BaseConfig.cpp" />
     <ClCompile Include="FileManager\FileManager.cpp" />
     <ClCompile Include="GambitBaseModule.cpp" />
     <ClCompile Include="LoggerManager\LogChannel.cpp" />
@@ -23,7 +23,7 @@
     <ClInclude Include="Common\Export.h" />
     <ClInclude Include="Common\Math.h" />
     <ClInclude Include="Common\NonCopyable.h" />
-    <ClInclude Include="FileManager\FileConfig.h" />
+    <ClInclude Include="FileManager\BaseConfig.h" />
     <ClInclude Include="FileManager\FileManager.h" />
     <ClInclude Include="GambitBaseModule.h" />
     <ClInclude Include="LoggerManager\LogChannel.h" />
@@ -84,9 +84,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;GAMBIT_BASE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\rapidjson\include\;$(SolutionDir)..\ThirdParty\glm\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\json\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;5054;6011;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -102,9 +102,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;GAMBIT_BASE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\rapidjson\include\;$(SolutionDir)..\ThirdParty\glm\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\json\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <DisableSpecificWarnings>4251;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;5054;6011;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

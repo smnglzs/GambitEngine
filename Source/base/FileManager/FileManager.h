@@ -1,9 +1,8 @@
 #pragma once
-#include <any>
 #include <filesystem>
-#include <unordered_map>
 
 #include "Base/Common/Common.h"
+#include "Base/FileManager/BaseConfig.h"
 #include "Base/Singleton/Singleton.h"
 
 namespace gb
@@ -14,11 +13,13 @@ namespace gb
 		FileManager() = default;
 		virtual ~FileManager() override = default;
 
-		void LoadConfigFile(const std::filesystem::path& path);
-		void SaveConfigFile(const std::filesystem::path& path);
+		bool SaveConfigFile(const std::filesystem::path& path, const BaseConfig& config);
+		bool LoadConfigFile(const std::filesystem::path& path, BaseConfig& config);
 
 	private:
-
+		bool CreateDirectories(const std::filesystem::path& path);
+		bool WriteToFile(const std::filesystem::path& path, const std::string& str);
+		bool ReadFromFile(const std::filesystem::path& path, std::string& str);
 	};
 }
 
