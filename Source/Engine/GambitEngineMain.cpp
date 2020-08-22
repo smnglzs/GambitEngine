@@ -6,6 +6,7 @@
 #include "Base/FileManager/BaseConfig.h"
 
 #include "Device/DeviceModule.h"
+#include "Device/Window/WindowManager.h"
 
 int main()
 {
@@ -38,6 +39,14 @@ int main()
 
     gbDevice.StartUp();
     gbDevice.RegisterSingletons();
+
+    auto wm = gb::GetWindowManager();
+    gb::WindowSettings ws;
+    ws.size = { 1900, 1080 };
+    ws.title = "Gambit Engine";
+
+    wm->CreateWindow(ws);
+
     gbDevice.ShutDown();
 
     system("pause");
