@@ -5,6 +5,7 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GambitEngine", "Engine\GambitEngine.vcxproj", "{D490082A-01F1-4811-B9B5-5A1D71E60240}"
 	ProjectSection(ProjectDependencies) = postProject
+		{7500C21C-886A-48D7-8529-947BEF591FFF} = {7500C21C-886A-48D7-8529-947BEF591FFF}
 		{6440823E-F0EA-426F-A969-C385E8489509} = {6440823E-F0EA-426F-A969-C385E8489509}
 		{C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD} = {C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD}
 	EndProjectSection
@@ -14,6 +15,12 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GambitDevice", "Device\GambitDevice.vcxproj", "{C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6440823E-F0EA-426F-A969-C385E8489509} = {6440823E-F0EA-426F-A969-C385E8489509}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GambitGraphics", "Graphics\GambitGraphics.vcxproj", "{7500C21C-886A-48D7-8529-947BEF591FFF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6440823E-F0EA-426F-A969-C385E8489509} = {6440823E-F0EA-426F-A969-C385E8489509}
+		{C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD} = {C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD}
 	EndProjectSection
 EndProject
 Global
@@ -34,6 +41,10 @@ Global
 		{C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD}.Debug|x64.Build.0 = Debug|x64
 		{C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD}.Release|x64.ActiveCfg = Release|x64
 		{C63DB6A3-37EA-4F2B-9074-E8FD11CAECAD}.Release|x64.Build.0 = Release|x64
+		{7500C21C-886A-48D7-8529-947BEF591FFF}.Debug|x64.ActiveCfg = Debug|x64
+		{7500C21C-886A-48D7-8529-947BEF591FFF}.Debug|x64.Build.0 = Debug|x64
+		{7500C21C-886A-48D7-8529-947BEF591FFF}.Release|x64.ActiveCfg = Release|x64
+		{7500C21C-886A-48D7-8529-947BEF591FFF}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
