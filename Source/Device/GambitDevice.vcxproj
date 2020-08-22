@@ -12,26 +12,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DeviceModule.cpp" />
-    <ClCompile Include="Display\DisplayManager.cpp" />
-    <ClCompile Include="Display\Monitor\Monitor.cpp" />
-    <ClCompile Include="Display\Window\Window.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Input\Joystick\Joystick.cpp" />
     <ClCompile Include="Input\Keyboard\Keyboard.cpp" />
     <ClCompile Include="Input\Mouse\Mouse.cpp" />
+    <ClCompile Include="Window\Window.cpp" />
+    <ClCompile Include="Window\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DeviceModule.h" />
-    <ClCompile Include="Display\DisplayManager.h" />
-    <ClInclude Include="Display\Monitor\Monitor.h" />
-    <ClInclude Include="Display\Window\VideoMode.h" />
-    <ClInclude Include="Display\Window\Window.h" />
-    <ClInclude Include="Display\Window\WindowSettings.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="Input\Joystick\Joystick.h" />
     <ClInclude Include="Input\Keyboard\Keyboard.h" />
     <ClInclude Include="Input\Mouse\Mouse.h" />
+    <ClInclude Include="Window\Window.h" />
+    <ClInclude Include="Window\WindowManager.h" />
+    <ClInclude Include="Window\WindowSettings.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
