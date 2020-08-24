@@ -5,15 +5,16 @@
 
 namespace gb
 {
-	class GAMBIT_GRAPHICS_API GraphicsModule final : public Module
+	class GAMBIT_GRAPHICS_API GraphicsModule final : public IModule
 	{
 	public:
 		GraphicsModule();
 		virtual ~GraphicsModule() override;
 
 		virtual void RegisterSingletons() override;
-		virtual void StartUp() override;
-		virtual void ShutDown() override;
+		virtual void Unload() override;
+
+		virtual std::string GetID() const override { return "Graphics"; }
 
 	private:
 		class RHI* m_RHI;

@@ -18,19 +18,9 @@ namespace gb
 
 	}
 
-	void ModuleBase::StartUp()
-	{
-		Module::StartUp();
-	}
-
-	void ModuleBase::ShutDown()
-	{
-		Module::ShutDown();
-	}
-
 	void ModuleBase::RegisterSingletons()
 	{
-		Module::RegisterSingletons();
+		IModule::RegisterSingletons();
 
 		REGISTER_SINGLETON(LoggerManager, LoggerManager);
 		REGISTER_SINGLETON(FileManager, FileManager);

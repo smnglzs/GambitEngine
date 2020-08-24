@@ -28,9 +28,4 @@ namespace gb
 
 	template<class T>
 	using Shared = std::shared_ptr<T>;
-
-	inline static uint64 HashString(const std::string& str)
-	{
-		return std::hash<std::string>{}(str);
-	}
 }

@@ -12,6 +12,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GambitEngineMain.cpp" />
+    <ClCompile Include="GambitEngine\GambitEngine.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GambitEngine\GambitEngine.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

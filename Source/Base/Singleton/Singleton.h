@@ -21,5 +21,10 @@ namespace gb
 	public:
 		ISingleton() = default;
 		virtual ~ISingleton() = default;
+
+		virtual void Init() {}
+		virtual void Start() {}
+		virtual void Stop()	{}
+		virtual void Uninit() {}
 	};
 }

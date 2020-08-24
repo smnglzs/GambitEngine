@@ -25,7 +25,7 @@ namespace gb
 
 	void GraphicsModule::RegisterSingletons()
 	{
-		Module::RegisterSingletons();
+		IModule::RegisterSingletons();
 
 		REGISTER_SINGLETON(RHI, RHI);
 		m_RHI = GetRHI();
@@ -35,14 +35,9 @@ namespace gb
 		REGISTER_SINGLETON(TextureManager, TextureManager);
 	}
 
-	void GraphicsModule::StartUp()
+	void GraphicsModule::Unload()
 	{
-		Module::StartUp();
-	}
-
-	void GraphicsModule::ShutDown()
-	{
-		Module::ShutDown();
+		IModule::Unload();
 
 		// destroy managers
 		// destroy renderer

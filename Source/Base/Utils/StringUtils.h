@@ -76,6 +76,11 @@ namespace gb
 			}
 		}
 
+		inline static uint64 HashString(const std::string& str)
+		{
+			return std::hash<std::string>{}(str);
+		}
+
 		template <typename ...Args>
 		std::string Format(const std::string_view& fmt, Args&&... args)
 		{

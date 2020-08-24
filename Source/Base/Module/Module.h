@@ -11,20 +11,26 @@ m_singletons.push_back((cls*)g_p##name##Singleton);	\
 
 namespace gb
 {
-	class GAMBIT_BASE_API Module
+	class GAMBIT_BASE_API IModule
 	{
 	public:
-		Module();
-		virtual ~Module();
+		IModule();
+		virtual ~IModule();
 
-		virtual void StartUp();
-		virtual void ShutDown();
+		virtual void Load();
+		virtual void Init();
+		virtual void Start();
+		virtual void Stop();
+		virtual void Uninit();
+		virtual void Unload();
 
 		/// <summary>
 		/// This is where the singletons get added to the module (with the help of Macros)
 		///	See REGISTER_SINGLETON for more info.
 		/// </summary>
 		virtual void RegisterSingletons();
+
+		virtual std::string GetID() const = 0;
 
 	protected:
 		std::vector<ISingleton*> m_singletons;

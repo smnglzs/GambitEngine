@@ -1,5 +1,9 @@
 #include "Shader.h"
+
+#include "Base/Utils/StringUtils.h"
+
 #include "Graphics/RHI/RHI.h"
+
 #include <iostream> // TODO: replace with Logger
 
 namespace gb
@@ -49,7 +53,7 @@ namespace gb
 				m_valid = m_RHI->CompileShader(m_id, source.c_str());
 				if (m_valid)
 				{
-					m_hash = HashString(source);
+					m_hash = utils::HashString(source);
 				}
 				else
 				{

@@ -7,7 +7,7 @@
 namespace gb
 {
 	DEFINE_SINGLETON(WindowManager, WindowManager, GAMBIT_DEVICE_API);
-	DEFINE_SINGLETON(InputManager,  InputManager,  GAMBIT_DEVICE_API);
+	DEFINE_SINGLETON(InputManager, InputManager, GAMBIT_DEVICE_API);
 
 	DeviceModule::DeviceModule() :
 		m_ready(false)
@@ -17,39 +17,38 @@ namespace gb
 
 	DeviceModule::~DeviceModule()
 	{
-		// assert that ShutDown was called before dtor
+
 	}
 
 	void DeviceModule::RegisterSingletons()
 	{
-		Module::RegisterSingletons();
+		IModule::RegisterSingletons();
 
 		REGISTER_SINGLETON(WindowManager, WindowManager);
-		REGISTER_SINGLETON(InputManager,  InputManager);
+		REGISTER_SINGLETON(InputManager, InputManager);
 	}
 
-	void DeviceModule::StartUp()
+	void DeviceModule::Load()
 	{
-		Module::StartUp();
+		IModule::Load();
 
-		const bool m_ready = glfwInit() == GLFW_TRUE;
+		m_ready = glfwInit() == GLFW_TRUE;
 		assert(m_ready && "glfwInit failed!");
 
 		glfwSetErrorCallback(HandleGLFWError);
+
+		// Load window context and settings.
 	}
 
-	void DeviceModule::ShutDown()
+	void DeviceModule::Unload()
 	{
-		Module::ShutDown();
-
-		// destroy input manager
-		// destroy window manager
+		IModule::Unload();
 
 		glfwTerminate();
 	}
 
 	void DeviceModule::HandleGLFWError(int error, const char* description)
 	{
-		
+
 	}
 }
