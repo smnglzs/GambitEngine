@@ -46,8 +46,11 @@ namespace gb
 	bool ShaderManager::LoadShader(const std::string& filePath)
 	{
 		LOG(EChannelComponent::EngineWarning, "{} not implemented yet!", __func__);
+		assert(false);
+
 		bool loadResult = false;
 		/*
+		// check filePath.empty()
 		for (uint8 stageIdx = EShaderStage::Vertex; stageIdx < EShaderStage::Count; ++stageIdx)
 		{
 			if (filePath.ends_with(g_ShaderFileExtensions[stageIdx]))
@@ -94,7 +97,7 @@ namespace gb
 			else if (vs->second->IsValid() && fs->second->IsValid())
 			{
 				Unique<ShaderProgram> shaderProgram = std::make_unique<ShaderProgram>(vs->second.get(), fs->second.get());
-				if (shaderProgram->IsValid())
+				if (shaderProgram && shaderProgram->IsValid())
 				{
 					m_shaderProgramMap.insert(std::make_pair(vertexShaderName + fragmentShaderName, std::move(shaderProgram)));
 					createResult = true;

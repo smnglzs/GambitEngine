@@ -5,6 +5,7 @@
 /*
 	TODO: create log channel(s) for RHIObjects and a public RHI method for them to log
 		(only if necessary)
+		- enable blend mode
 */
 
 namespace GL
@@ -130,7 +131,7 @@ namespace gb
 		return glCreateProgram();
 	}
 
-	uint32 RHI::CreateTexture(const ETextureType type)
+	uint32 RHI::CreateTexture(const ETextureType type, uint16 width, uint16 height, const PixelFormat format, const void* pixelData)
 	{
 		GLenum textureTarget = 0u;
 		switch (type)
@@ -146,6 +147,17 @@ namespace gb
 		GLuint textureId = 0u;
 		glCreateTextures(textureTarget, 1, &textureId);
 		assert(textureId);
+
+		// TODO: revisit this after adding support for additional texture types and pixel formats
+		glTextureStorage2D(textureId, 1, GL_RGBA8, width, height);
+		// TODO: replace the below call with a call to UpdateTexture(...), passing in the desired type and format
+		glTextureSubImage2D(textureId, 0, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, pixelData);
+		
+		glTextureParameteri(textureId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTextureParameteri(textureId, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTextureParameteri(textureId, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTextureParameteri(textureId, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
 		return textureId;
 	}
 
@@ -277,6 +289,11 @@ namespace gb
 		glUseProgram(programId);
 	}
 
+	void RHI::BindTexture(const uint32 textureId)
+	{
+		glBindTextureUnit(0, textureId);
+	}
+
 	void RHI::SetUniform(const uint32 programId, const int32 location, const float value)
 	{
 		if (CheckUniformLocation(location))
@@ -396,7 +413,7 @@ namespace gb
 		std::fill(std::begin(m_framePrimCount), std::end(m_framePrimCount), 0u);
 	}
 
-	void RHI::DebugDraw(const EPrimitiveMode mode, const vec2f* vertices, const uint32 vertexCount)
+	void RHI::DebugDraw(const EPrimitiveMode mode, const Vertex1P1UV* vertices, const uint32 vertexCount)
 	{
 		static uint32 vao = 0u;
 
@@ -411,9 +428,11 @@ namespace gb
 		{
 			glGenBuffers(1, &vbo);
 			glBindBuffer(GL_ARRAY_BUFFER, vbo);
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer((uint8)EVertexAttributeType::Position, 2, GL_FLOAT, GL_FALSE, 0, (void*)0u);
-			glBufferData(GL_ARRAY_BUFFER, vertexCount * sizeof(vec2f), vertices, GL_STATIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, vertexCount * sizeof(Vertex1P1UV), vertices, GL_STATIC_DRAW);
+			glEnableVertexAttribArray((uint8)EVertexAttributeType::Position);
+			glVertexAttribPointer((uint8)EVertexAttributeType::Position, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex1P1UV), (void*)0u);
+			glEnableVertexAttribArray((uint8)EVertexAttributeType::TexCoord);
+			glVertexAttribPointer((uint8)EVertexAttributeType::TexCoord, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex1P1UV), (void*)(sizeof(float)*2u));
 		}
 
 		glDrawArrays(GL_TRIANGLES, 0, vertexCount);

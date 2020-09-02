@@ -12,10 +12,11 @@ namespace gb
 		TextureManager();
 		~TextureManager();
 
-		bool LoadTexture();
+		bool LoadTexture(const std::string& name, const std::string& filePath);
+		void BindTexture(const std::string& name);
 
 	private:
-		Hashmap<Unique<class Texture>> m_shaderMap;
+		Hashmap<Unique<Texture>> m_textureMap;
 	};
 }
 

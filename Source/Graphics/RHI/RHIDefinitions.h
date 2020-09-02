@@ -6,6 +6,7 @@ namespace gb
 	/*
 		TODO:
 			- Pixel specification: more formats and types as needed
+				- Map formats and types to number and size of channels
 			- Vertex specification: formats
 	*/
 
@@ -110,6 +111,12 @@ namespace gb
 		uint32				 location;
 		uint32				 offset;
 		bool				 isNormalized;
+	};
+
+	struct Vertex1P1UV
+	{
+		gb::vec2f position;
+		gb::vec2f texCoords;
 	};
 
 	static const uint8  g_NumPrimitiveModes								  = (uint8)EPrimitiveMode::Count;

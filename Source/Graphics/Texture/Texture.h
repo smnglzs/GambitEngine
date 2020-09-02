@@ -13,6 +13,7 @@ namespace gb
 		Texture(const std::string& name, const uint16 width, const uint16 height, const PixelFormat pixelFormat, const void* pixelData);
 		~Texture();
 
+		void Bind();
 		const std::string& GetName() const;
 
 	protected:

@@ -31,15 +31,18 @@ namespace gb
 		m_RHI->EndFrame();
 	}
 
-	static const std::vector<gb::vec2f> vertices =
-	{
-		{  0.5f,   0.5f  },
-		{ -0.5f,   0.25f },
-		{  0.65f, -0.5f  }
-	};
-
 	void Renderer::DrawScene()
 	{
+		static const std::vector<Vertex1P1UV> vertices =
+		{
+			{ {-0.50f, -0.50f}, {0.0f, 0.0f} },
+			{ { 0.50f, -0.50f}, {1.0f, 0.0f} },
+			{ { 0.50f,  0.50f}, {1.0f, 1.0f} },
+			{ {-0.50f, -0.50f}, {0.0f, 0.0f} },
+			{ { 0.50f,  0.50f}, {1.0f, 1.0f} },
+			{ {-0.50f,  0.50f}, {0.0f, 1.0f} }
+		};
+
 		m_RHI->DebugDraw(EPrimitiveMode::Triangles, vertices.data(), (uint32)vertices.size());
 	}
 }

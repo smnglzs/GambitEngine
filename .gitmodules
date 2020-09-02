@@ -10,3 +10,6 @@
 [submodule "ThirdParty/json"]
 	path = ThirdParty/json
 	url = https://github.com/Gambit-Dev/json
+[submodule "ThirdParty/stb"]
+	path = ThirdParty/stb
+	url = https://github.com/Gambit-Dev/stb

@@ -32,11 +32,12 @@ namespace gb
 
 	bool Shader::Compile(const std::string& source)
 	{
-		assert(m_id == 0); // break on existing shader for now
+		assert(m_id == 0); // break on existing shader for now, i.e. disable recompile
 
 		/* TODO: 
 			- add logs for each error case
 			- handle recompile on non-zero id
+			- refactor, possibly just returning compile result and setting + asserting m_valid in ctor
 		*/
 
 		m_valid = false;
@@ -70,6 +71,8 @@ namespace gb
 				m_valid = false;
 			}
 		}
+
+		return m_valid;
 	}
 
 	void Shader::Destroy()
