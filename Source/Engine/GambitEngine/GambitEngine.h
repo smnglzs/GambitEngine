@@ -48,6 +48,7 @@ namespace gb
 
 		void SortModules();
 
+		void MainLoop() const;
 		bool IsRunning() const;
 
 		std::vector<SModulePair> m_modules;

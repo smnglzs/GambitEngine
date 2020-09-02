@@ -9,7 +9,7 @@ namespace gb
 		m_windowCount(0u),
 		m_currentWindowIdx(0u)
 	{
-		glfwSwapInterval(1);
+		//glfwSwapInterval(1); TODO: move elsewhere
 	}
 
 	WindowManager::~WindowManager()

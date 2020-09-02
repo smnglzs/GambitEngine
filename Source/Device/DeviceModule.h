@@ -20,8 +20,9 @@ namespace gb
 		virtual std::string GetID() const override { return "Device"; }
 
 	private:
-		static void HandleGLFWError(int error, const char* description);
+		void InitGLFW();
+		void CreateWindowContext();
 
-		bool m_ready;
+		static void HandleGLFWError(int error, const char* description);
 	};
 }

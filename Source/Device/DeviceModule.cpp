@@ -9,8 +9,7 @@ namespace gb
 	DEFINE_SINGLETON(WindowManager, WindowManager, GAMBIT_DEVICE_API);
 	DEFINE_SINGLETON(InputManager, InputManager, GAMBIT_DEVICE_API);
 
-	DeviceModule::DeviceModule() :
-		m_ready(false)
+	DeviceModule::DeviceModule()
 	{
 
 	}
@@ -32,12 +31,8 @@ namespace gb
 	{
 		IModule::Load();
 
-		m_ready = glfwInit() == GLFW_TRUE;
-		assert(m_ready && "glfwInit failed!");
-
-		glfwSetErrorCallback(HandleGLFWError);
-
-		// Load window context and settings.
+		InitGLFW();
+		CreateWindowContext(/* pass in initial window and context settings */);
 	}
 
 	void DeviceModule::Unload()
@@ -45,6 +40,20 @@ namespace gb
 		IModule::Unload();
 
 		glfwTerminate();
+	}
+
+	void DeviceModule::InitGLFW()
+	{
+		const bool glfwInitRes = glfwInit() == GLFW_TRUE;
+		assert(glfwInitRes && "glfwInit failed!");
+
+		glfwSetErrorCallback(HandleGLFWError);
+	}
+
+	void DeviceModule::CreateWindowContext()
+	{
+		WindowSettings defaultSettings;
+		GetWindowManager()->CreateWindow(defaultSettings);
 	}
 
 	void DeviceModule::HandleGLFWError(int error, const char* description)

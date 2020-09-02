@@ -4,23 +4,15 @@
 #include <iostream>
 
 #include "Device/Window/WindowManager.h"
+#include "Graphics/Renderer/Renderer.h"
 
 namespace gb
 {
 	void GambitEngine::StartEngine()
 	{
 		// This loads the DLLs and register the singletons.
-		/*LoadModules();
-
-		WindowManager* wm = GetWindowManager();
-		WindowSettings defaultSettings;
-
-		wm->CreateWindow(defaultSettings);
-
-		while (IsRunning())
-		{
-			wm->PollEvents();
-		}*/
+		LoadModules();
+		MainLoop();
 	}
 
 	void GambitEngine::LoadModules()
@@ -75,9 +67,19 @@ namespace gb
 			});
 	}
 
+	void GambitEngine::MainLoop() const
+	{
+		auto* winManager = GetWindowManager();
+		while (IsRunning())
+		{
+			winManager->SwapBuffers();
+			winManager->PollEvents();
+		}
+	}
+
 	bool GambitEngine::IsRunning() const
 	{
-		return GetWindowManager()->ShouldClose();
+		return !GetWindowManager()->ShouldClose();
 	}
 
 	void GambitEngine::UnLoadModules()
