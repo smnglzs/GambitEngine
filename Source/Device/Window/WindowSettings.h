@@ -22,7 +22,7 @@ namespace gb
 	struct GAMBIT_DEVICE_API WindowSettings final
 	{
 		std::string  title  = "GambitEngine";
-		vec2i		 size	= { 1900, 1080 };
+		vec2i		 size	= { 1600, 1600 };
 		EWindowFlags flags	= EWindowFlags::Default;
 	};
 }

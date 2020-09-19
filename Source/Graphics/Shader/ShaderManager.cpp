@@ -5,10 +5,54 @@
 
 namespace gb
 {
+#pragma region Fallback Shaders
+	static const char* g_fallbackVsCode =
+		"#version 450 core\n"
+		"layout(location = 0) in vec2 Position;\n"
+		"layout(location = 1) in vec2 TexCoord;\n"
+		"uniform vec3 Color;\n"
+		"uniform vec2 Offset = { 0.f, 0.f };\n"
+		"out VS_OUT\n"
+		"{\n"
+		"   vec2 pos;\n"
+		"   vec2 uv;\n"
+		"   vec3 color;\n"
+		"} vertex;\n"
+		"void main()\n"
+		"{\n"
+		"   vertex.pos = Position + Offset;\n"
+		"   vertex.uv = TexCoord;\n"
+		"   vertex.color = Color;\n"
+		"   gl_Position = vec4(vertex.pos, 0.0, 1.0);\n"
+		"}";
+
+	static const char* g_fallbackFsCode =
+		"#version 450 core\n"
+		"uniform float Time;\n"
+		"uniform sampler2D Texture;\n"
+		"in VS_OUT\n"
+		"{\n"
+		"   vec2 pos;\n"
+		"   vec2 uv;\n"
+		"   vec3 color;\n"
+		"} vertex;\n"
+		"out vec4 fragmentColor;\n"
+		"void main()\n"
+		"{\n"
+		"   float g = abs(sin(Time));\n"
+		"   float b = abs(cos(Time));\n"
+		"   fragmentColor = mix(vec4(0.5, g, b, 1.0), texture2D(Texture, vertex.uv), 0.5);\n"
+		"}";
+
+	static const char* g_fallbackVSName	= "FallbackVS";
+	static const char* g_fallbackFSName = "FallbackFS";
+	static const char* g_fallbackSPName = "FallbackSP";
+#pragma endregion
+
 	ShaderManager::ShaderManager() :
 		m_boundShaderProgram(nullptr)
 	{
-		
+
 	}
 
 	ShaderManager::~ShaderManager()
@@ -16,16 +60,39 @@ namespace gb
 		// TODO: destroy shaders and shader programs
 	}
 
+	bool ShaderManager::CreateFallbackShaders()
+	{
+		if (LoadShader(g_fallbackVSName, g_fallbackVsCode, EShaderStage::Vertex)	&&
+			LoadShader(g_fallbackFSName, g_fallbackFsCode, EShaderStage::Fragment)	&&
+			CreateShaderProgram(g_fallbackVSName, g_fallbackFSName, g_fallbackSPName))
+		{
+			LOG(EChannelComponent::EngineInfo, "Successfully created fallback shaders.");
+			return true;
+		}
+		else
+		{
+			LOG(EChannelComponent::EngineError, "Fallback shader creation was unsuccessful!");
+			assert(false);
+			return false;
+		}
+	}
+
+	void ShaderManager::BindFallbackShaderProgram()
+	{
+		BindShaderProgram(g_fallbackSPName);
+	}
+
 	bool ShaderManager::LoadShader(const std::string& name, const std::string& source, const EShaderStage stage)
 	{
-		/* TODO:
-			- check name.empty() to avoid collisions in m_shaderMap
-		*/
-
 		bool loadResult = false;
-		if (source.empty())
+		if (name.empty())
+		{
+			LOG(EChannelComponent::EngineError, "Shader name is empty!");
+		}
+		else if (source.empty())
 		{
 			LOG(EChannelComponent::EngineError, "Shader source code is empty!");
+
 		}
 		else
 		{
@@ -72,15 +139,13 @@ namespace gb
 		return loadResult;
 	}
 
-	bool ShaderManager::CreateShaderProgram(const std::string& vertexShaderName, const std::string& fragmentShaderName)
+	bool ShaderManager::CreateShaderProgram(const std::string& vertexShaderName, const std::string& fragmentShaderName, const std::string& programName = "")
 	{
 		if (vertexShaderName.empty() || fragmentShaderName.empty())
 		{
 			LOG(EChannelComponent::EngineError, "ShaderPrograms require named vertex and fragment shaders.");
 			return false;
 		}
-
-		bool createResult = false;
 
 		const auto vs = m_shaderMap.find(vertexShaderName);
 		if (vs == m_shaderMap.end())
@@ -96,11 +161,12 @@ namespace gb
 			}
 			else if (vs->second->IsValid() && fs->second->IsValid())
 			{
-				Unique<ShaderProgram> shaderProgram = std::make_unique<ShaderProgram>(vs->second.get(), fs->second.get());
+				const std::string newProgramName = programName == "" ? vertexShaderName + fragmentShaderName : programName;
+				Unique<ShaderProgram> shaderProgram = std::make_unique<ShaderProgram>(vs->second.get(), fs->second.get(), newProgramName);
 				if (shaderProgram && shaderProgram->IsValid())
 				{
-					m_shaderProgramMap.insert(std::make_pair(vertexShaderName + fragmentShaderName, std::move(shaderProgram)));
-					createResult = true;
+					m_shaderProgramMap.insert(std::make_pair(newProgramName, std::move(shaderProgram)));
+					return true;
 				}
 				else
 				{
@@ -109,7 +175,7 @@ namespace gb
 			}
 		}
 
-		return createResult;
+		return false;
 	}
 
 	void ShaderManager::BindShaderProgram(const std::string& name)

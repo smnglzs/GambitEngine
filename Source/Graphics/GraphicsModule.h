@@ -12,6 +12,7 @@ namespace gb
 		virtual ~GraphicsModule() override;
 
 		virtual void RegisterSingletons() override;
+		virtual void Load() override;
 		virtual void Unload() override;
 
 		virtual std::string GetID() const override { return "Graphics"; }

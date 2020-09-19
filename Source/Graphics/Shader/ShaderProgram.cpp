@@ -13,9 +13,9 @@ namespace gb
 	{
 	}
 
-	ShaderProgram::ShaderProgram(Shader* vertexShader, Shader* fragmentShader) :
+	ShaderProgram::ShaderProgram(Shader* vertexShader, Shader* fragmentShader, const std::string& programName) :
 		m_numActiveUniforms(0),
-		m_name("InvalidShaderProgram"),
+		m_name(programName),
 		m_vertexShader(nullptr),
 		m_fragmentShader(nullptr),
 		m_valid(false)
@@ -49,7 +49,7 @@ namespace gb
 			}
 			else
 			{
-				//char infoLog[g_ShaderProgramInfoLogSize];
+				//char infoLog[ShaderConstants::ProgramInfoLogSize];
 				//m_RHI->GetShaderProgramInfoLog(m_id, infoLog);
 				//std::cout << infoLog << std::endl;
 				Destroy();
@@ -134,5 +134,10 @@ namespace gb
 	bool ShaderProgram::IsValid() const
 	{
 		return m_valid;
+	}
+
+	const std::string& ShaderProgram::GetName() const
+	{
+		return m_name;
 	}
 }

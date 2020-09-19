@@ -7,6 +7,8 @@
 
 namespace gb
 {
+	static const char* g_FallbackTextureName = "FallbackTexture";
+
 	TextureManager::TextureManager()
 	{
 
@@ -17,7 +19,27 @@ namespace gb
 
 	}
 
-	bool TextureManager::LoadTexture(const std::string& name, const std::string& filePath)
+	bool TextureManager::CreateFallbackTextures()
+	{
+		if (LoadTexture(g_FallbackTextureName, "D:/Projects/2020/GambitEngine/Assets/QuestionBlock.jfif", true))
+		{
+			LOG(EChannelComponent::EngineInfo, "Successfully created fallback textures.");
+			return true;
+		}
+		else
+		{
+			LOG(EChannelComponent::EngineError, "Fallback texture creation was unsuccessful!");
+			assert(false);
+			return false;
+		}
+	}
+
+	void TextureManager::BindFallbackTexture()
+	{
+		BindTexture(g_FallbackTextureName);
+	}
+
+	bool TextureManager::LoadTexture(const std::string& name, const std::string& filePath, const bool flipHorizontally = true)
 	{
 		if (name.empty() || filePath.empty())
 		{
@@ -32,15 +54,13 @@ namespace gb
 		int32 channels = 0;
 		int32 desiredChannels = 4; // TODO: replace with mapping (NB: will likely always be 4 because RGBA is preferred)
 
-		stbi_set_flip_vertically_on_load(true); // TODO: add flip as Load option
+		stbi_set_flip_vertically_on_load(flipHorizontally);
 		const uint8* pixelData = stbi_load(filePath.c_str(), &width, &height, &channels, desiredChannels);
 		std::vector<char> img;
 		std::copy(&pixelData[0], &pixelData[width * height], std::back_inserter(img));
-
 		if (pixelData)
 		{
 			const PixelFormat format = { EPixelDataFormat::RGBA, EPixelDataType::Uint8 };
-
 			Unique<Texture> texture = std::make_unique<Texture>(name, width, height, format, pixelData);
 			if (texture)
 			{
@@ -52,13 +72,13 @@ namespace gb
 				LOG(EChannelComponent::EngineError, "Texture construction failed!");
 				assert(false);
 			}
+			stbi_image_free((void*)pixelData);
 		}
 		else
 		{
 			LOG(EChannelComponent::EngineError, "Texture image load failed!");
 			assert(false);
 		}
-		stbi_image_free((void*)pixelData);
 
 		return loadResult;
 	}

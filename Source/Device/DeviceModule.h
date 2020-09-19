@@ -14,6 +14,7 @@ namespace gb
 		virtual ~DeviceModule() override;
 
 		virtual void RegisterSingletons() override;
+		virtual void Init() override;
 		virtual void Load() override;
 		virtual void Unload() override;
 

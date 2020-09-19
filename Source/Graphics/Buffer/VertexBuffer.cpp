@@ -7,7 +7,7 @@ namespace gb
 		Buffer(length * GetAttributeSize(attributeType), data, EBufferType::Attribute, usage),
 		m_attributeType(attributeType)
 	{
-
+		assert(m_id > 0 && "RHI buffer creation failed!");
 	}
 
 	VertexBuffer::~VertexBuffer()
@@ -19,7 +19,7 @@ namespace gb
 	{
 		switch (attributeType)
 		{
-		case EVertexAttributeType::Position: return sizeof(vec2f) * 2u;
+		case EVertexAttributeType::Position:
 		case EVertexAttributeType::TexCoord: return sizeof(vec2f) * 2u;
 		default: 
 			assert(false && "Invalid vertex attribute."); 

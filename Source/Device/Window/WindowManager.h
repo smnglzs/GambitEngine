@@ -13,17 +13,14 @@ namespace gb
 		WindowManager();
 		~WindowManager();
 
+		virtual void Init() override;
 		bool CreateWindow(const WindowSettings& winSettings);
 		void PollEvents();
 		bool ShouldClose() const;
 		void SwapBuffers();
 
 	private:
-		static constexpr uint8 MAX_WINDOW_COUNT = 1;
-		Window* m_windows[MAX_WINDOW_COUNT];
-
-		uint8 m_windowCount;
-		uint8 m_currentWindowIdx;
+		Window* m_window;
 	};
 }
 

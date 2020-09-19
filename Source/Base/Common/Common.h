@@ -3,6 +3,7 @@
 #include "Base/Common/Math.h"
 
 #include <array>
+#include <forward_list>
 #include <functional>
 #include <memory>
 #include <string>

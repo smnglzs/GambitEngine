@@ -13,6 +13,8 @@ namespace gb
 		Shader(const std::string& name, const std::string& source, const EShaderStage stage);
 		~Shader();
 
+		bool operator==(const Shader& rhs) const;
+
 		uint64				GetHash()  const;
 		const std::string&	GetName()  const;
 		EShaderStage		GetStage() const;

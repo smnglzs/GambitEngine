@@ -70,10 +70,14 @@ namespace gb
 	void GambitEngine::MainLoop() const
 	{
 		auto* winManager = GetWindowManager();
+		auto* renderer = GetRenderer();
 		while (IsRunning())
 		{
-			winManager->SwapBuffers();
 			winManager->PollEvents();
+			renderer->BeginFrame();
+			// iterate over scene, transforming nodes and accumulating RenderBatch-es
+			renderer->EndFrame();
+			winManager->SwapBuffers();
 		}
 	}
 

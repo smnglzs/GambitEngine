@@ -30,6 +30,11 @@ namespace gb
 		Destroy();
 	}
 
+	bool Shader::operator==(const Shader& rhs) const
+	{
+		return m_stage == rhs.m_stage && m_hash == rhs.m_hash;
+	}
+
 	bool Shader::Compile(const std::string& source)
 	{
 		assert(m_id == 0); // break on existing shader for now, i.e. disable recompile
@@ -46,30 +51,26 @@ namespace gb
 		{
 			return false;
 		}
-		else
+		else if (m_id = m_RHI->CreateShader(m_stage))
 		{
-			m_id = m_RHI->CreateShader(m_stage); // combine this in CompileShader?
-			if (m_id)
+			if (m_valid = m_RHI->CompileShader(m_id, source.c_str()))
 			{
-				m_valid = m_RHI->CompileShader(m_id, source.c_str());
-				if (m_valid)
-				{
-					m_hash = utils::HashString(source);
-				}
-				else
-				{
-					char infoLog[g_ShaderInfoLogSize];
-					m_RHI->GetShaderInfoLog(m_id, infoLog);
-					std::cout << infoLog << std::endl;
-
-					Destroy();
-					return false;
-				}
+				m_hash = utils::HashString(source);
 			}
 			else
 			{
-				m_valid = false;
+				char infoLog[ShaderConstants::InfoLogSize];
+				m_RHI->GetShaderInfoLog(m_id, infoLog);
+				std::cout << infoLog << std::endl;
+
+				Destroy();
+
+				return false;
 			}
+		}
+		else
+		{
+			m_valid = false;
 		}
 
 		return m_valid;

@@ -13,9 +13,13 @@
   <ItemGroup>
     <ClCompile Include="GambitEngineMain.cpp" />
     <ClCompile Include="GambitEngine\GambitEngine.cpp" />
+    <ClCompile Include="Scene\Scene.cpp" />
+    <ClCompile Include="Scene\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GambitEngine\GambitEngine.h" />
+    <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Scene\SceneManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

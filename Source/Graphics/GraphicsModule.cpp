@@ -8,9 +8,9 @@
 namespace gb
 {
 	DEFINE_SINGLETON(RHI, RHI, GAMBIT_GRAPHICS_API);
-	DEFINE_SINGLETON(Renderer, Renderer, GAMBIT_GRAPHICS_API);
 	DEFINE_SINGLETON(ShaderManager, ShaderManager, GAMBIT_GRAPHICS_API);
 	DEFINE_SINGLETON(TextureManager, TextureManager, GAMBIT_GRAPHICS_API);
+	DEFINE_SINGLETON(Renderer, Renderer, GAMBIT_GRAPHICS_API);
 
 	GraphicsModule::GraphicsModule() :
 		m_RHI(nullptr)
@@ -20,7 +20,7 @@ namespace gb
 
 	GraphicsModule::~GraphicsModule()
 	{
-		// assert that ShutDown was called before dtor
+		// assert that Unload was called before dtor
 	}
 
 	void GraphicsModule::RegisterSingletons()
@@ -30,9 +30,21 @@ namespace gb
 		REGISTER_SINGLETON(RHI, RHI);
 		m_RHI = GetRHI();
 
-		REGISTER_SINGLETON(Renderer, Renderer);
 		REGISTER_SINGLETON(ShaderManager, ShaderManager);
 		REGISTER_SINGLETON(TextureManager, TextureManager);
+		REGISTER_SINGLETON(Renderer, Renderer);
+	}
+
+	void GraphicsModule::Load()
+	{
+		// Create RHI, Renderer, ShaderManager, and TextureManager
+		RegisterSingletons();
+
+		const bool hasFallbacks = GetShaderManager()->CreateFallbackShaders() && GetTextureManager()->CreateFallbackTextures();
+		assert(hasFallbacks);
+
+		// GetShaderManager()->CreateShaders(); // TODO: load shader assets from config/manifest
+		// GetTextureManager()->Create...
 	}
 
 	void GraphicsModule::Unload()

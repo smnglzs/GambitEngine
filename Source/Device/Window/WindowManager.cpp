@@ -5,11 +5,8 @@
 namespace gb
 {
 	WindowManager::WindowManager() :
-		m_windows(),
-		m_windowCount(0u),
-		m_currentWindowIdx(0u)
+		m_window(nullptr)
 	{
-		//glfwSwapInterval(1); TODO: move elsewhere
 	}
 
 	WindowManager::~WindowManager()
@@ -17,55 +14,66 @@ namespace gb
 		// kill windows
 	}
 
+	void WindowManager::Init()
+	{
+		ISingleton::Init();
+		
+	}
+
 	bool WindowManager::CreateWindow(const WindowSettings& winSettings)
 	{
-		if (m_windowCount >= MAX_WINDOW_COUNT)
+		if (m_window)
 		{
-			LOG(gb::EChannelComponent::EngineInfo, "{}: The maximum number of windows have been created!\n", __func__);
-			return false;
+			LOG(gb::EChannelComponent::EngineInfo, "{}: A Window has already been created!\n", __func__);
 		}
 		else
 		{
-			m_windows[m_currentWindowIdx] = new Window(winSettings); // TODO: Refactor for multiple windows
-			m_windowCount++;
-			return true;
+			m_window = new Window(winSettings);
+			if (m_window)
+			{
+				m_window->BindContext();
+				glfwSwapInterval(1); // vsync
+				return true;
+			}
 		}
+		LOG(gb::EChannelComponent::EngineError, "Window creation failed!\n");
+		return false;
 	}
 
 	void WindowManager::PollEvents()
 	{
-		if (m_windows[m_currentWindowIdx])
+		if (m_window)
 		{
-			m_windows[m_currentWindowIdx]->PollEvents();
+			m_window->PollEvents();
 		}
 		else
 		{
-			LOG(gb::EChannelComponent::EngineInfo, "{}: Window #{} no longer exists!\n", __func__, m_currentWindowIdx);
+			LOG(gb::EChannelComponent::EngineInfo, "{}: Window no longer exists!\n", __func__);
 		}
 	}
 
 	bool WindowManager::ShouldClose() const
 	{
-		if (m_windows[m_currentWindowIdx])
+		if (m_window)
 		{
-			return m_windows[m_currentWindowIdx]->ShouldClose();
+			return m_window->ShouldClose();
 		}
 		else
 		{
-			LOG(gb::EChannelComponent::EngineInfo, "{}: Window #{} no longer exists!\n", __func__, m_currentWindowIdx);
-			return false;
+			LOG(gb::EChannelComponent::EngineInfo, "{}: Window no longer exists!\n", __func__);
+			return true;
 		}
 	}
 
 	void WindowManager::SwapBuffers()
 	{
-		if (m_windows[m_currentWindowIdx])
+		if (m_window)
 		{
-			m_windows[m_currentWindowIdx]->SwapBuffers();
+			m_window->SwapBuffers();
 		}
 		else
 		{
-			LOG(gb::EChannelComponent::EngineInfo, "{}: Window #{} no longer exists!\n", __func__, m_currentWindowIdx);
+			LOG(gb::EChannelComponent::EngineInfo, "{}: Window no longer exists!\n", __func__);
 		}
 	}
 }

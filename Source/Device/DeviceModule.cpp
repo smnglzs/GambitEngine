@@ -27,6 +27,11 @@ namespace gb
 		REGISTER_SINGLETON(InputManager, InputManager);
 	}
 
+	void DeviceModule::Init()
+	{
+
+	}
+
 	void DeviceModule::Load()
 	{
 		IModule::Load();

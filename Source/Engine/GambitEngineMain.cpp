@@ -7,7 +7,7 @@
 
 #include "Engine/GambitEngine/GambitEngine.h"
 
-#define CONSOLE_PAUSE 1
+#define CONSOLE_PAUSE 0
 
 int main()
 {

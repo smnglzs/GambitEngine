@@ -32,17 +32,15 @@ namespace gb
 			glfwWindowHint(GLFW_BLUE_BITS, videoMode->blueBits);
 			glfwWindowHint(GLFW_REFRESH_RATE, videoMode->refreshRate);
 
-			m_glfwWindow = glfwCreateWindow(videoMode->width, videoMode->height, "My Title", monitor, nullptr);
+			m_glfwWindow = glfwCreateWindow(videoMode->width, videoMode->height, m_title.c_str(), monitor, nullptr);
 		}
 		else
 		{
 			m_glfwWindow = glfwCreateWindow(m_size.x, m_size.y, m_title.c_str(), nullptr, nullptr);
 		}
-
 		assert(m_glfwWindow && "Window creation failed!");
 
 		glfwSetWindowUserPointer(m_glfwWindow, this);
-		BindContext();
 	}
 
 	Window::~Window()

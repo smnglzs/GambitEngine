@@ -1,22 +1,23 @@
 #pragma once
 #include "Base/Common/Common.h"
 #include "Graphics/Export.h"
+#include "Graphics/Geometry/Geometry.h"
 #include "Graphics/RHI/RHIDefinitions.h"
-#include "Graphics/RHI/RHIObject.h"
 
 namespace gb
 {
 	class VertexBuffer;
-
-	class GAMBIT_GRAPHICS_API VertexArray final : public RHIObject
+	class GAMBIT_GRAPHICS_API VertexArray final : public Geometry
 	{
 	public:
 		VertexArray();
 		~VertexArray();
 
 		void AddAttribute(VertexBuffer* attributeBuffer);
-		bool HasAttribute(const EVertexAttributeType attribute);
-		//const bool IsValid();
+		bool HasAttribute(const EVertexAttributeType attribute) const;
+		bool HasAllAttributes() const;
+
+		virtual void Draw() override;
 
 	protected:
 		void Create();

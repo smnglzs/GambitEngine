@@ -1,11 +1,14 @@
 #pragma once
 #include "Base/Common/Common.h"
 #include "Base/Singleton/Singleton.h"
+
 #include "Graphics/Export.h"
-#include "RHIDefinitions.h"
+
+#include "RHIConstants.h"
 
 namespace gb
 {
+	/* TODO: Rework to return RHIObjects or leave that to the RHIObject owners? */
 	class RHI final : public ISingleton
 	{
 	public:
@@ -16,12 +19,15 @@ namespace gb
 		void		 EndFrame();
 		void		 ClearRenderTarget();
 			 
-		uint32		 CreateBuffer(const uint32 size, const void* data, const EBufferType type, const EBufferUsage usage);
+		uint32		 CreateBuffer(const uint64 size, const void* data, const EBufferType type, const EBufferUsage usage);
+		uint32		 CreateVertexBuffer(const uint64 size, const void* data, const EBufferUsage usage);
 		uint32		 CreateShader(const EShaderStage stage);
 		uint32		 CreateShaderProgram();
 		uint32		 CreateTexture(const ETextureType type, uint16 width, uint16 height, const PixelFormat format, const void* pixelData);
 		uint32		 CreateVertexArray();
-		void		 AddAttributeToVertexArray(const uint32 vertexArrayId, const VertexAttribute& vertexAttrib);
+		void		 AddAttributeToVertexArray(const uint32 vertexArrayId, const VertexAttribute& attrib);
+		void		 BindVertexArray(const uint32 vertexArrayId);
+		void		 BindBuffer(const uint32 bufferId, const uint32 bufferTarget);
 
 		void		 DeleteBuffer(const uint32 bufferId);
 		void		 DeleteShader(const uint32 shaderId);
@@ -29,7 +35,7 @@ namespace gb
 		void		 DeleteTexture(const uint32 textureId);
 		void		 DeleteVertexArray(const uint32 vertexArrayId);
 
-		void		 UpdateBuffer(const uint32 bufferId, const uint32 offset, const uint32 size, const void* data);
+		void		 UpdateBuffer(const uint32 bufferId, const uint64 offset, const uint64 size, const void* data);
 		void		 UpdateTexture(const uint32 textureId, const int32 offsetX, const int32 offsetY, const int32 width, const int32 height, const void* pixelData);
 
 		bool		 CompileShader(const uint32 shaderId, const char* source);
@@ -58,7 +64,7 @@ namespace gb
 		void		 SetScissorRect(int32 x, int32 y, int32 width, int32 height);
 		void		 SetViewport(int32 x, int32 y, int32 width, int32 height);
 					 
-		void		 DebugDraw(const EPrimitiveMode mode, const Vertex1P1UV* vertices, const uint32 vertexCount);
+		void		 DebugDraw(const EPrimitiveType primitive, const Vertex2PT* vertices, const uint32 vertexCount);
 					 
 	private:		 
 		void		 EnableDebugging();

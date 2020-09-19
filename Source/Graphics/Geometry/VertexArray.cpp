@@ -30,7 +30,11 @@ namespace gb
 
 	void VertexArray::AddAttribute(VertexBuffer* attributeBuffer)
 	{
-		assert(attributeBuffer && "Can't add attribute to VertexArray because corresponding VertexBuffer is null!");
+		if (attributeBuffer == nullptr)
+		{
+			assert(false && "Can't add attribute to VertexArray because corresponding VertexBuffer is null!");
+			return;
+		}
 
 		const EVertexAttributeType attributeType = attributeBuffer->GetAttributeType();
 		switch (attributeType)
@@ -44,7 +48,7 @@ namespace gb
 			else
 			{
 				m_attributeBuffers[(uint8)attributeType] = attributeBuffer;
-				m_RHI->AddAttributeToVertexArray(m_id, g_VertexAttributes[(uint8)attributeType]);
+				m_RHI->AddAttributeToVertexArray(m_id, VertexAttributes::GetAttributeByType(attributeType));
 			}
 			break;
 		default:
@@ -52,8 +56,25 @@ namespace gb
 		}
 	}
 
-	bool VertexArray::HasAttribute(const EVertexAttributeType attributeType)
+	bool VertexArray::HasAttribute(const EVertexAttributeType attributeType) const
 	{
 		return m_attributeBuffers[(uint8)attributeType];
+	}
+
+	bool VertexArray::HasAllAttributes() const
+	{
+		for (uint8 attr = 0u; attr < m_attributeBuffers.size(); ++attr)
+		{
+			if (m_attributeBuffers[attr] == nullptr)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	void VertexArray::Draw()
+	{
+
 	}
 }

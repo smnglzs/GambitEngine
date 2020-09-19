@@ -16,8 +16,15 @@ namespace gb
 
 		uint32 GetId() const;
 
+		static uint32 GetNumCreated();
+		static uint32 GetNumExisting();
+
 	protected:
 		virtual void Destroy() = 0;
+
+	protected:
+		static uint32 s_numCreated;
+		static uint32 s_numExisting;
 
 	protected:
 		class RHI*	m_RHI;

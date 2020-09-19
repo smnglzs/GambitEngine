@@ -32,7 +32,13 @@ namespace gb
 
 	RHI::~RHI()
 	{
-		
+
+	}
+
+	void RHI::ResetFrameCounters()
+	{
+		m_frameDrawCount = 0u;
+		std::fill(std::begin(m_framePrimCount), std::end(m_framePrimCount), 0u);
 	}
 
 	void RHI::BeginFrame()
@@ -48,15 +54,16 @@ namespace gb
 		{
 			totalPrimCount += m_framePrimCount[i];
 		}
+		LOG(gb::EChannelComponent::EngineInfo, "Draws in last frame: {}\n", m_frameDrawCount);
 		*/
 	}
 
 	void RHI::ClearRenderTarget()
 	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 
-	uint32 RHI::CreateBuffer(const uint32 size, const void* data, const EBufferType type, const EBufferUsage usage)
+	uint32 RHI::CreateBuffer(const uint64 size, const void* data, const EBufferType type, const EBufferUsage usage)
 	{
 		/*
 			TODO: EBufferType isn't currently used!
@@ -84,18 +91,20 @@ namespace gb
 		return bufferId;
 	}
 
-	void RHI::UpdateBuffer(const uint32 bufferId, const uint32 offset, const uint32 size, const void* data)
+	uint32 RHI::CreateVertexBuffer(const uint64 size, const void* data, const EBufferUsage usage)
+	{
+		uint32 vbo = CreateBuffer(size, data, EBufferType::Attribute, EBufferUsage::StaticDraw);
+		UpdateBuffer(vbo, 0u, size, data);
+		return vbo;
+	}
+
+	void RHI::UpdateBuffer(const uint32 bufferId, const uint64 offset, const uint64 size, const void* data)
 	{
 		glNamedBufferSubData(bufferId, offset, size, data);
 	}
 
 	void RHI::UpdateTexture(const uint32 textureId, const int32 offsetX, const int32 offsetY, const int32 width, const int32 height, const void* pixelData)
 	{
-		/*
-			We make three assumptions about 2D rendering in Gambit (for now):
-				- that single-mip textures will suffice
-				- that RGB/A 
-		*/
 		const GLint  mipLevel		 = 0u; // assuming single-mip textures for now
 		const GLenum pixelDataFormat = GL_RGBA;
 		const GLenum pixelDataType	 = GL_UNSIGNED_BYTE;
@@ -150,8 +159,8 @@ namespace gb
 
 		// TODO: revisit this after adding support for additional texture types and pixel formats
 		glTextureStorage2D(textureId, 1, GL_RGBA8, width, height);
-		// TODO: replace the below call with a call to UpdateTexture(...), passing in the desired type and format
-		glTextureSubImage2D(textureId, 0, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, pixelData);
+
+		UpdateTexture(textureId, 0, 0, width, height, pixelData);
 		
 		glTextureParameteri(textureId, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTextureParameteri(textureId, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -169,10 +178,20 @@ namespace gb
 		return vertexArrayId;
 	}
 
-	void RHI::AddAttributeToVertexArray(const uint32 vertexArrayId, const VertexAttribute& vertexAttribute)
+	void RHI::BindVertexArray(const uint32 vertexArrayId)
+	{
+		glBindVertexArray(vertexArrayId);
+	}
+
+	void RHI::BindBuffer(const uint32 bufferId, const uint32 bufferTarget)
+	{
+		glBindBuffer(bufferTarget, bufferId);
+	}
+
+	void RHI::AddAttributeToVertexArray(const uint32 vertexArrayId, const VertexAttribute& attrib)
 	{
 		GLenum elementType = 0u;
-		switch (vertexAttribute.elementType)
+		switch (attrib.elementType)
 		{
 		case EElementType::Float: elementType = GL_FLOAT; break;
 		case EElementType::Int32: elementType = GL_INT;   break;
@@ -182,9 +201,8 @@ namespace gb
 			return;
 		}
 
-		glVertexArrayAttribFormat(vertexArrayId, vertexAttribute.location, g_ElementTypeSizes[(uint8)vertexAttribute.elementType], elementType, vertexAttribute.isNormalized, vertexAttribute.offset);
-		glVertexArrayAttribBinding(vertexArrayId, vertexAttribute.location, vertexAttribute.location);
-		glEnableVertexArrayAttrib(vertexArrayId, vertexAttribute.location);
+		glEnableVertexArrayAttrib(vertexArrayId, attrib.location);
+		glVertexAttribPointer(attrib.location, attrib.numElements, elementType, attrib.isNormalized, sizeof(Vertex2PT), (void*)VertexAttributes::GetAttributeSize(attrib));
 	}
 
 	void RHI::DeleteVertexArray(const uint32 vertexArrayId)
@@ -258,8 +276,8 @@ namespace gb
 	{
 		GLint logLength = 0;
 		glGetShaderiv(shaderId, GL_INFO_LOG_LENGTH, &logLength);
-		assert(logLength <= g_ShaderInfoLogSize);
-		glGetShaderInfoLog(shaderId, logLength > g_ShaderInfoLogSize ? g_ShaderInfoLogSize : logLength, nullptr, log);
+		assert(logLength <= ShaderConstants::InfoLogSize);
+		glGetShaderInfoLog(shaderId, logLength > ShaderConstants::InfoLogSize ? ShaderConstants::InfoLogSize : logLength, nullptr, log);
 	}
 
 	bool RHI::GetShaderProgramLinkStatus(const uint32 programId) const
@@ -273,8 +291,8 @@ namespace gb
 	{
 		GLint logLength = 0;
 		glGetProgramiv(programId, GL_INFO_LOG_LENGTH, &logLength);
-		assert(logLength <= g_ShaderProgramInfoLogSize);
-		glGetProgramInfoLog(programId, logLength > g_ShaderProgramInfoLogSize ? g_ShaderProgramInfoLogSize : logLength, nullptr, log);
+		assert(logLength <= ShaderConstants::ProgramInfoLogSize);
+		glGetProgramInfoLog(programId, logLength > ShaderConstants::ProgramInfoLogSize ? ShaderConstants::ProgramInfoLogSize : logLength, nullptr, log);
 	}
 
 	int32 RHI::GetNumActiveUniforms(const uint32 programId)
@@ -407,32 +425,25 @@ namespace gb
 		}
 	}
 
-	void RHI::ResetFrameCounters()
-	{
-		m_frameDrawCount = 0u;
-		std::fill(std::begin(m_framePrimCount), std::end(m_framePrimCount), 0u);
-	}
-
-	void RHI::DebugDraw(const EPrimitiveMode mode, const Vertex1P1UV* vertices, const uint32 vertexCount)
+	void RHI::DebugDraw(const EPrimitiveType primitive, const Vertex2PT* vertices, const uint32 vertexCount)
 	{
 		static uint32 vao = 0u;
 
 		if (vao == 0u)
 		{
-			glGenVertexArrays(1, &vao);
+			vao = CreateVertexArray();
 		}
-		glBindVertexArray(vao);
+		BindVertexArray(vao);
 
 		static uint32 vbo = 0u;
 		if (vbo == 0u)
 		{
-			glGenBuffers(1, &vbo);
-			glBindBuffer(GL_ARRAY_BUFFER, vbo);
-			glBufferData(GL_ARRAY_BUFFER, vertexCount * sizeof(Vertex1P1UV), vertices, GL_STATIC_DRAW);
-			glEnableVertexAttribArray((uint8)EVertexAttributeType::Position);
-			glVertexAttribPointer((uint8)EVertexAttributeType::Position, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex1P1UV), (void*)0u);
-			glEnableVertexAttribArray((uint8)EVertexAttributeType::TexCoord);
-			glVertexAttribPointer((uint8)EVertexAttributeType::TexCoord, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex1P1UV), (void*)(sizeof(float)*2u));
+			const uint64 bufferSize = vertexCount * sizeof(Vertex2PT);
+			vbo = CreateVertexBuffer(bufferSize, vertices, EBufferUsage::StaticDraw);
+
+			BindBuffer(vbo, GL_ARRAY_BUFFER);
+			AddAttributeToVertexArray(vao, VertexAttributes::Position);
+			AddAttributeToVertexArray(vao, VertexAttributes::TexCoord);
 		}
 
 		glDrawArrays(GL_TRIANGLES, 0, vertexCount);

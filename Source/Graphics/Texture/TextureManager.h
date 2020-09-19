@@ -2,6 +2,7 @@
 #include "Base/Common/Common.h"
 #include "Base/Singleton/Singleton.h"
 #include "Graphics/Export.h"
+#include "Graphics/GraphicsModule.h"
 
 namespace gb
 {
@@ -12,10 +13,14 @@ namespace gb
 		TextureManager();
 		~TextureManager();
 
-		bool LoadTexture(const std::string& name, const std::string& filePath);
+		bool LoadTexture(const std::string& name, const std::string& filePath, const bool flipHorizontally);
+		void BindFallbackTexture();
 		void BindTexture(const std::string& name);
 
 	private:
+		friend void GraphicsModule::Load();
+		bool CreateFallbackTextures();
+
 		Hashmap<Unique<Texture>> m_textureMap;
 	};
 }

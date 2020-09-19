@@ -5,11 +5,11 @@
 
 namespace gb
 {
-	class GAMBIT_GRAPHICS_API Renderer final : public ISingleton
+	class GAMBIT_GRAPHICS_API Renderer : public ISingleton
 	{
 	public:
 		Renderer();
-		~Renderer();
+		virtual ~Renderer();
 
 		void BeginFrame();
 		void EndFrame();
@@ -18,7 +18,11 @@ namespace gb
 		void DrawScene();
 
 	private:
-		class RHI* m_RHI;
+		class RHI*			  m_RHI;
+		class ShaderManager*  m_shaderManager;
+		class TextureManager* m_textureManager;
+
+		vec4f m_clearColor;
 	};
 }
 

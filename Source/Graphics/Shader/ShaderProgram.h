@@ -6,12 +6,11 @@
 namespace gb
 {
 	class Shader;
-
 	class GAMBIT_GRAPHICS_API ShaderProgram final : public RHIObject
 	{
 	public:
 		ShaderProgram();
-		explicit ShaderProgram(Shader* vertexShader, Shader* fragmentShader);
+		explicit ShaderProgram(Shader* vertexShader, Shader* fragmentShader, const std::string& name);
 		~ShaderProgram();
 
 		void Bind();
@@ -25,6 +24,7 @@ namespace gb
 		void SetUniform(const std::string& name, const vec4i& value);
 
 		bool IsValid() const;
+		const std::string& GetName() const;
 
 	protected:
 		virtual void Destroy() override;

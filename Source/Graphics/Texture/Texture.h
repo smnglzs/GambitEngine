@@ -24,6 +24,5 @@ namespace gb
 		uint16		m_width;
 		uint16		m_height;
 		PixelFormat m_pixelFormat;
-		// pixelData
 	};
 }
