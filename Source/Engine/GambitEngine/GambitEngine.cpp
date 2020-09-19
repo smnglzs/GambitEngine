@@ -48,33 +48,39 @@ namespace gb
 	void GambitEngine::SortModules()
 	{
 		std::sort(m_modules.begin(), m_modules.end(), [](const SModulePair& lhs, const SModulePair& rhs)
+		{
+			if (lhs.priority < rhs.priority)
 			{
-				if (lhs.priority < rhs.priority)
-				{
-					return true;
-				}
-				if (rhs.priority < lhs.priority)
-				{
-					return false;
-				}
-
-				if (lhs.m_samePriorityIndex > rhs.m_samePriorityIndex)
-				{
-					return true;
-				}
-
+				return true;
+			}
+			if (rhs.priority < lhs.priority)
+			{
 				return false;
-			});
+			}
+
+			if (lhs.m_samePriorityIndex > rhs.m_samePriorityIndex)
+			{
+				return true;
+			}
+
+			return false;
+		});
 	}
 
-	void GambitEngine::MainLoop() const
+	void GambitEngine::MainLoop()
 	{
+		InitModules();
+		StartModules();
+
 		auto* winManager = GetWindowManager();
 		while (IsRunning())
 		{
 			winManager->SwapBuffers();
 			winManager->PollEvents();
 		}
+
+		StopModules();
+		UninitModules();
 	}
 
 	bool GambitEngine::IsRunning() const
