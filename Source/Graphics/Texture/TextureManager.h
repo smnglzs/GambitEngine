@@ -21,7 +21,7 @@ namespace gb
 		friend void GraphicsModule::Load();
 		bool CreateFallbackTextures();
 
-		Hashmap<Unique<Texture>> m_textureMap;
+		StringHashmap<Unique<Texture>> m_textureMap;
 	};
 }
 

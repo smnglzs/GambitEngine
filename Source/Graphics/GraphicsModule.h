@@ -16,8 +16,5 @@ namespace gb
 		virtual void Unload() override;
 
 		virtual std::string GetID() const override { return "Graphics"; }
-
-	private:
-		class RHI* m_RHI;
 	};
 }

@@ -86,7 +86,8 @@ namespace gb
 	{
 		Vertex,
 		Fragment,
-		Count
+		Count,
+		Invalid
 	};
 
 	enum class EVertexAttributeType : uint8

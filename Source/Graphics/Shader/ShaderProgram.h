@@ -34,11 +34,11 @@ namespace gb
 		int32 GetUniformLocation(const std::string& name);
 
 	private:
-		Hashmap<int32>  m_uniformLookup;
-		std::string		m_name;
-		Shader*			m_vertexShader;
-		Shader*			m_fragmentShader;
-		int32			m_numActiveUniforms;
-		bool			m_valid;
+		StringHashmap<int32> m_uniformLookup;
+		std::string			 m_name;
+		Shader*				 m_vertexShader;
+		Shader*				 m_fragmentShader;
+		int32				 m_numActiveUniforms;
+		bool				 m_valid;
 	};
 }

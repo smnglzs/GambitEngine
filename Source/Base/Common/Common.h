@@ -22,7 +22,7 @@ namespace gb
 	using uint64 = uint64_t;
 
 	template<typename T>
-	using Hashmap = std::unordered_map<std::string, T>;
+	using StringHashmap = std::unordered_map<std::string, T>;
 
 	template<class T>
 	using Unique = std::unique_ptr<T>;

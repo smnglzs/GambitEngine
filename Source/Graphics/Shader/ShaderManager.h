@@ -3,7 +3,7 @@
 #include "Base/Singleton/Singleton.h"
 #include "Graphics/Export.h"
 #include "Graphics/GraphicsModule.h"
-#include "Graphics/RHI/RHIDefinitions.h"
+#include "Graphics/RHI/RHIConstants.h"
 
 namespace gb
 {
@@ -19,9 +19,10 @@ namespace gb
 		ShaderManager();
 		~ShaderManager();
 
+		void SetRootLoadPath(const std::string& loadPath);
+
 		bool LoadShader(const std::string& name, const std::string& source, const EShaderStage stage);
 		bool LoadShader(const std::string& filePath);
-		//bool LoadShader();
 		bool CreateShaderProgram(const std::string& vertexShaderName, const std::string& fragmentShaderName, const std::string& programName);
 
 		void BindFallbackShaderProgram();
@@ -40,9 +41,11 @@ namespace gb
 		bool CreateFallbackShaders();
 
 	private:
-		Hashmap<Unique<Shader>>			m_shaderMap;
-		Hashmap<Unique<ShaderProgram>>  m_shaderProgramMap;
-		ShaderProgram*					m_boundShaderProgram;
+		StringHashmap<Unique<Shader>>		  m_shaderMap;
+		StringHashmap<Unique<ShaderProgram>>  m_shaderProgramMap;
+		std::string							  m_rootLoadPath;
+		ShaderProgram*						  m_boundShaderProgram;
+
 	};
 }
 

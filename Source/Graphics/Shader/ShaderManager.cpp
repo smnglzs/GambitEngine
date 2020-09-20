@@ -1,55 +1,19 @@
 #include "ShaderManager.h"
+#include "Base/FileManager/FileManager.h"
 #include "Base/LoggerManager/LoggerManager.h"
 #include "Graphics/Shader/Shader.h"
 #include "Graphics/Shader/ShaderProgram.h"
 
 namespace gb
 {
-#pragma region Fallback Shaders
-	static const char* g_fallbackVsCode =
-		"#version 450 core\n"
-		"layout(location = 0) in vec2 Position;\n"
-		"layout(location = 1) in vec2 TexCoord;\n"
-		"uniform vec3 Color;\n"
-		"uniform vec2 Offset = { 0.f, 0.f };\n"
-		"out VS_OUT\n"
-		"{\n"
-		"   vec2 pos;\n"
-		"   vec2 uv;\n"
-		"   vec3 color;\n"
-		"} vertex;\n"
-		"void main()\n"
-		"{\n"
-		"   vertex.pos = Position + Offset;\n"
-		"   vertex.uv = TexCoord;\n"
-		"   vertex.color = Color;\n"
-		"   gl_Position = vec4(vertex.pos, 0.0, 1.0);\n"
-		"}";
-
-	static const char* g_fallbackFsCode =
-		"#version 450 core\n"
-		"uniform float Time;\n"
-		"uniform sampler2D Texture;\n"
-		"in VS_OUT\n"
-		"{\n"
-		"   vec2 pos;\n"
-		"   vec2 uv;\n"
-		"   vec3 color;\n"
-		"} vertex;\n"
-		"out vec4 fragmentColor;\n"
-		"void main()\n"
-		"{\n"
-		"   float g = abs(sin(Time));\n"
-		"   float b = abs(cos(Time));\n"
-		"   fragmentColor = mix(vec4(0.5, g, b, 1.0), texture2D(Texture, vertex.uv), 0.5);\n"
-		"}";
-
-	static const char* g_fallbackVSName	= "FallbackVS";
-	static const char* g_fallbackFSName = "FallbackFS";
-	static const char* g_fallbackSPName = "FallbackSP";
-#pragma endregion
+	static const char* g_fallbackVSName	= "FS_Fallback";
+	static const char* g_fallbackFSName = "VS_Fallback";
+	static const char* g_fallbackSPName = "Fallback";
 
 	ShaderManager::ShaderManager() :
+		m_shaderMap(),
+		m_shaderProgramMap(),
+		m_rootLoadPath(""),
 		m_boundShaderProgram(nullptr)
 	{
 
@@ -60,11 +24,21 @@ namespace gb
 		// TODO: destroy shaders and shader programs
 	}
 
+	void ShaderManager::SetRootLoadPath(const std::string& loadPath)
+	{
+		if (loadPath.empty())
+		{
+			LOG(EChannelComponent::EngineInfo, "Shader load path is empty! Preserving original path.");
+		}
+		else
+		{
+			m_rootLoadPath = loadPath;
+		}
+	}
+
 	bool ShaderManager::CreateFallbackShaders()
 	{
-		if (LoadShader(g_fallbackVSName, g_fallbackVsCode, EShaderStage::Vertex)	&&
-			LoadShader(g_fallbackFSName, g_fallbackFsCode, EShaderStage::Fragment)	&&
-			CreateShaderProgram(g_fallbackVSName, g_fallbackFSName, g_fallbackSPName))
+		if (LoadShader("VS_Fallback.glsl") && LoadShader("FS_Fallback.glsl") && CreateShaderProgram(g_fallbackVSName, g_fallbackFSName, g_fallbackSPName))
 		{
 			LOG(EChannelComponent::EngineInfo, "Successfully created fallback shaders.");
 			return true;
@@ -112,30 +86,24 @@ namespace gb
 
 	bool ShaderManager::LoadShader(const std::string& filePath)
 	{
-		LOG(EChannelComponent::EngineWarning, "{} not implemented yet!", __func__);
-		assert(false);
-
 		bool loadResult = false;
-		/*
-		// check filePath.empty()
-		for (uint8 stageIdx = EShaderStage::Vertex; stageIdx < EShaderStage::Count; ++stageIdx)
+		if (filePath.empty())
 		{
-			if (filePath.ends_with(g_ShaderFileExtensions[stageIdx]))
-			{
-				filePath.substr(0u, filePath.length() - strlen(g_ShaderFileExtensions[stageIdx]));
-
-				UniqueResource<Shader> shader = std::make_unique<Shader>(source.c_str(), stage);
-				if (shader.get() + check shader creation + compilation)
-				{
-					// check shader creation + compilation
-					m_shaderMap.insert(std::make_pair(source, shader));
-				}
-				else
-				{
-				
-				}
+			LOG(EChannelComponent::EngineError, "Shader file path is empty!");
 		}
-		*/
+		else if (filePath.ends_with(ShaderConstants::FileExtension))
+		{
+			const std::string fullPath  = m_rootLoadPath + filePath;
+			std::string		  name		= filePath.substr(0u, filePath.length() - strlen(ShaderConstants::FileExtension));
+			std::string		  prefix	= filePath.substr(0u, ShaderConstants::FilePrefixLength);
+			std::string		  source	= "";
+
+			loadResult = GetFileManager()->ReadFromFile(fullPath, source) && LoadShader(name, source, ShaderConstants::GetStageFromFilePrefix(prefix));
+		}
+		else
+		{
+			LOG(EChannelComponent::EngineError, "Please provide a {} file!", ShaderConstants::FileExtension);
+		}
 		return loadResult;
 	}
 

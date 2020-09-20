@@ -14,14 +14,15 @@ namespace gb
 		Window(const WindowSettings& settings);
 		~Window();
 
-		bool IsDecorated() const;
-		bool IsFocused() const;
-		bool IsFullscreen() const;
-		bool IsMaximized() const;
-		bool IsMinimized() const;
-		bool IsResizable() const;
-		bool IsVisible() const;
-		bool ShouldClose() const;
+		bool  IsDecorated()  const;
+		bool  IsFocused()	 const;
+		bool  IsFullscreen() const;
+		bool  IsMaximized()  const;
+		bool  IsMinimized()  const;
+		bool  IsResizable()  const;
+		bool  IsVisible()	 const;
+		bool  ShouldClose()  const;
+		vec2i GetSize()		 const;
 
 		void SetAspectRatio	(int32 width, int32 height);
 		void SetFullscreen(bool fullscreen);

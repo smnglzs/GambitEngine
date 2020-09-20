@@ -2,6 +2,7 @@
 #include "Base/Common/Common.h"
 #include "Base/Singleton/Singleton.h"
 #include "Graphics/Export.h"
+#include <chrono>
 
 namespace gb
 {
@@ -18,6 +19,8 @@ namespace gb
 		void DrawScene();
 
 	private:
+		std::chrono::milliseconds m_startTime;
+
 		class RHI*			  m_RHI;
 		class ShaderManager*  m_shaderManager;
 		class TextureManager* m_textureManager;

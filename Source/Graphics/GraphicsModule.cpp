@@ -12,8 +12,7 @@ namespace gb
 	DEFINE_SINGLETON(TextureManager, TextureManager, GAMBIT_GRAPHICS_API);
 	DEFINE_SINGLETON(Renderer, Renderer, GAMBIT_GRAPHICS_API);
 
-	GraphicsModule::GraphicsModule() :
-		m_RHI(nullptr)
+	GraphicsModule::GraphicsModule()
 	{
 
 	}
@@ -28,8 +27,6 @@ namespace gb
 		IModule::RegisterSingletons();
 
 		REGISTER_SINGLETON(RHI, RHI);
-		m_RHI = GetRHI();
-
 		REGISTER_SINGLETON(ShaderManager, ShaderManager);
 		REGISTER_SINGLETON(TextureManager, TextureManager);
 		REGISTER_SINGLETON(Renderer, Renderer);
@@ -40,7 +37,12 @@ namespace gb
 		// Create RHI, Renderer, ShaderManager, and TextureManager
 		RegisterSingletons();
 
-		const bool hasFallbacks = GetShaderManager()->CreateFallbackShaders() && GetTextureManager()->CreateFallbackTextures();
+		auto& shaderManager  = *GetShaderManager();
+		auto& textureManager = *GetTextureManager();
+
+		shaderManager.SetRootLoadPath("D:/Projects/2020/GambitEngine/Assets/Shaders/");
+
+		const bool hasFallbacks = shaderManager.CreateFallbackShaders() && textureManager.CreateFallbackTextures();
 		assert(hasFallbacks);
 
 		// GetShaderManager()->CreateShaders(); // TODO: load shader assets from config/manifest

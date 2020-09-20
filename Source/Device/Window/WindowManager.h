@@ -14,10 +14,13 @@ namespace gb
 		~WindowManager();
 
 		virtual void Init() override;
+		
 		bool CreateWindow(const WindowSettings& winSettings);
-		void PollEvents();
 		bool ShouldClose() const;
 		void SwapBuffers();
+		void PollEvents();
+	
+		vec2i GetSize() const;
 
 	private:
 		Window* m_window;

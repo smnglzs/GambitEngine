@@ -26,6 +26,7 @@
     <ClCompile Include="Shader\ShaderManager.cpp" />
     <ClCompile Include="Shader\ShaderProgram.cpp" />
     <ClCompile Include="Texture\Texture.cpp" />
+    <ClCompile Include="Texture\TextureAtlas.cpp" />
     <ClCompile Include="Texture\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +48,7 @@
     <ClInclude Include="Shader\ShaderManager.h" />
     <ClInclude Include="Shader\ShaderProgram.h" />
     <ClInclude Include="Texture\Texture.h" />
+    <ClInclude Include="Texture\TextureAtlas.h" />
     <ClInclude Include="Texture\TextureManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -99,7 +101,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;GAMBIT_GRAPHICS_EXPORTS;_WINDOWS;GLFW_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\ThirdParty\glew\include\;$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\stb\;$(SolutionDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\ThirdParty\glew\include\;$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\stb\;$(SolutionDir)..\ThirdParty\json\include\;$(SolutionDir)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -119,7 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;GAMBIT_GRAPHICS_EXPORTS;_WINDOWS;GLFW_DLL%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\ThirdParty\glew\include\;$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\stb\;$(SolutionDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\ThirdParty\glew\include\;$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\stb\;$(SolutionDir)..\ThirdParty\json\include\;$(SolutionDir)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>

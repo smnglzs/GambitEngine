@@ -27,10 +27,10 @@ namespace gb
 		bool Compile(const std::string& source);
 
 	private:
-		Hashmap<int32>  m_uniformMap;
-		std::string		m_name;
-		uint64			m_hash;
-		EShaderStage	m_stage;
-		bool			m_valid;
+		StringHashmap<int32>  m_uniformMap;
+		std::string			  m_name;
+		uint64				  m_hash;
+		EShaderStage		  m_stage;
+		bool				  m_valid;
 	};
 }

@@ -38,10 +38,25 @@ namespace gb
 
 	namespace ShaderConstants
 	{
-		static const uint8	NumShaderStages = (uint8)EShaderStage::Count;
-		static const char*  StageNames[NumShaderStages] = { "Vertex", "Fragment" };
-		static const char*  FileExtensions[NumShaderStages] = { ".vs", ".fs" };
-		static const uint32	InfoLogSize = 512u;
-		static const uint32	ProgramInfoLogSize = 512u;
+		static const uint8	NumShaderStages					= (uint8)EShaderStage::Count;
+		static const char*  StageNames[NumShaderStages]		= { "Vertex", "Fragment" };
+		static const char*  FilePrefixes[NumShaderStages]	= { "VS_", "FS_" };
+		static const uint8	FilePrefixLength				= 3;
+		static const char*	FileExtension					= { ".glsl" };
+		static const uint32	InfoLogSize						= 2048u;
+		static const uint32	ProgramInfoLogSize				= 2048u;
+
+		static constexpr EShaderStage GetStageFromFilePrefix(const std::string& prefix)
+		{
+			for (uint8 stageIdx = 0; stageIdx < NumShaderStages; ++stageIdx)
+			{
+				if (prefix == FilePrefixes[stageIdx])
+				{
+					return (EShaderStage)stageIdx;
+				}
+			}
+			assert(false);
+			return EShaderStage::Invalid;
+		}
 	}
 }

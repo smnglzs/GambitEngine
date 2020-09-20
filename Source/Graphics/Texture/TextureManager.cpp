@@ -21,7 +21,7 @@ namespace gb
 
 	bool TextureManager::CreateFallbackTextures()
 	{
-		if (LoadTexture(g_FallbackTextureName, "D:/Projects/2020/GambitEngine/Assets/QuestionBlock.jfif", true))
+		if (LoadTexture(g_FallbackTextureName, "D:/Projects/2020/GambitEngine/Assets/Textures/QuestionBlock.jfif", true))
 		{
 			LOG(EChannelComponent::EngineInfo, "Successfully created fallback textures.");
 			return true;

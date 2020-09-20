@@ -76,4 +76,9 @@ namespace gb
 			LOG(gb::EChannelComponent::EngineInfo, "{}: Window no longer exists!\n", __func__);
 		}
 	}
+
+	vec2i WindowManager::GetSize() const
+	{
+		return m_window ? m_window->GetSize() : vec2i{INT_MIN, INT_MIN};
+	}
 }

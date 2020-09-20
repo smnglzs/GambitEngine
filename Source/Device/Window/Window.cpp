@@ -88,6 +88,11 @@ namespace gb
 	{
 		return glfwWindowShouldClose(m_glfwWindow) == GLFW_TRUE;
 	}
+
+	vec2i Window::GetSize() const
+	{
+		return m_size;
+	}
 #pragma endregion
 
 #pragma region Setters
