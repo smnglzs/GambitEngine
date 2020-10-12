@@ -22,6 +22,7 @@
     <ClInclude Include="Common\Common.h" />
     <ClInclude Include="Common\Math.h" />
     <ClInclude Include="Common\NonCopyable.h" />
+    <ClInclude Include="Delegate\Delegate.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="FileManager\BaseConfig.h" />
     <ClInclude Include="FileManager\FileManager.h" />

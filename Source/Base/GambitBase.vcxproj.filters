@@ -19,6 +19,9 @@
     <Filter Include="FileManager">
       <UniqueIdentifier>{0d0613a6-1463-4d8e-98af-0eb216be446f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Delegate">
+      <UniqueIdentifier>{bec5b2e2-b6be-461e-bc29-2856d141e077}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LoggerManager\LoggerManager.cpp">
@@ -79,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="FileManager\BaseConfig.h">
       <Filter>FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Delegate\Delegate.h">
+      <Filter>Delegate</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
