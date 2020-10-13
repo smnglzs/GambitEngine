@@ -1,4 +1,6 @@
 /*
+SOURCE: https://github.com/simco50/CppDelegates/blob/master/Delegates.h
+
 DOCUMENTATION
 
 // CONFIG

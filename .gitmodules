@@ -13,3 +13,6 @@
 [submodule "ThirdParty/stb"]
 	path = ThirdParty/stb
 	url = https://github.com/Gambit-Dev/stb
+[submodule "Thirdparty/imgui"]
+	path = Thirdparty/imgui
+	url = https://github.com/Gambit-Dev/imgui
