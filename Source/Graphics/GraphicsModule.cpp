@@ -1,16 +1,18 @@
 #include "GraphicsModule.h"
 #include "Base/LoggerManager/LoggerManager.h"
-#include "Graphics/Renderer/Renderer.h"
-#include "Graphics/RHI/RHI.h"
-#include "Graphics/Shader/ShaderManager.h"
-#include "Graphics/Texture/TextureManager.h"
+#include "System/Window/WindowManager.h"
+#include "Graphics/GHI/GHI.h"
+#include "Graphics/GHI/Buffer/VertexArrayManager.h"
+#include "Graphics/GHI/Shader/ShaderManager.h"
+#include "Graphics/GHI/Texture/TextureManager.h"
+#include "Graphics/Rendering/2D/Renderer2D.h"
 
 namespace gb
 {
-	DEFINE_SINGLETON(RHI, RHI, GAMBIT_GRAPHICS_API);
-	DEFINE_SINGLETON(ShaderManager, ShaderManager, GAMBIT_GRAPHICS_API);
-	DEFINE_SINGLETON(TextureManager, TextureManager, GAMBIT_GRAPHICS_API);
-	DEFINE_SINGLETON(Renderer, Renderer, GAMBIT_GRAPHICS_API);
+	DEFINE_SINGLETON(ShaderManager,		 ShaderManager,		  GAMBIT_GRAPHICS_API)
+	DEFINE_SINGLETON(TextureManager,	 TextureManager,	  GAMBIT_GRAPHICS_API)
+	DEFINE_SINGLETON(VertexArrayManager, VertexArrayManager,  GAMBIT_GRAPHICS_API)
+	DEFINE_SINGLETON(Renderer2D,		 Renderer2D,		  GAMBIT_GRAPHICS_API);
 
 	GraphicsModule::GraphicsModule()
 	{
@@ -19,42 +21,42 @@ namespace gb
 
 	GraphicsModule::~GraphicsModule()
 	{
-		// assert that Unload was called before dtor
+		// assert in ~IModule that we are unloaded
 	}
 
 	void GraphicsModule::RegisterSingletons()
 	{
-		IModule::RegisterSingletons();
-
-		REGISTER_SINGLETON(RHI, RHI);
-		REGISTER_SINGLETON(ShaderManager, ShaderManager);
-		REGISTER_SINGLETON(TextureManager, TextureManager);
-		REGISTER_SINGLETON(Renderer, Renderer);
+		REGISTER_SINGLETON(ShaderManager,	   ShaderManager)
+		REGISTER_SINGLETON(TextureManager,	   TextureManager)
+		REGISTER_SINGLETON(VertexArrayManager, VertexArrayManager)
+		REGISTER_SINGLETON(Renderer2D,		   Renderer2D);
 	}
 
 	void GraphicsModule::Load()
 	{
-		// Create RHI, Renderer, ShaderManager, and TextureManager
-		RegisterSingletons();
+		IModule::Load();
 
-		auto& shaderManager  = *GetShaderManager();
-		auto& textureManager = *GetTextureManager();
+		// load default assets
+	}
 
-		shaderManager.SetRootLoadPath("D:/Projects/2020/GambitEngine/Assets/Shaders/");
+	void GraphicsModule::Init()
+	{
+		//GetWindowManager()->Create
 
-		const bool hasFallbacks = shaderManager.CreateFallbackShaders() && textureManager.CreateFallbackTextures();
-		assert(hasFallbacks);
+		if (!GHI::Init())
+		{
+			LOG(gb::EChannelComponent::EngineError, "Init failed!");
+			assert(false);
+		}
 
-		// GetShaderManager()->CreateShaders(); // TODO: load shader assets from config/manifest
-		// GetTextureManager()->Create...
+		// We can now destroy our transient (function-loading) context.
+		GetWindowManager()->DestroyTransientWindow();
 	}
 
 	void GraphicsModule::Unload()
 	{
 		IModule::Unload();
 
-		// destroy managers
-		// destroy renderer
-		// destroy RHI
+		// tear down GHI
 	}
 }

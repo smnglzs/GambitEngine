@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{631b54b4-0eae-4c35-a72a-61677c7e03c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Shaders">
+      <UniqueIdentifier>{e13cb838-f37a-4c2c-9cbe-aba54c739e55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\WorldData">
+      <UniqueIdentifier>{ba416e22-dcac-4534-8f6a-e43b90b8f5e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Textures">
+      <UniqueIdentifier>{76f24f7b-a67e-4446-add0-2644cabe1163}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\FS_Basic.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\VS_Basic.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Assets\WorldData\BlockTypes.json">
+      <Filter>Assets\WorldData</Filter>
+    </None>
+    <None Include="Assets\Shaders\FS_Grid.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="Assets\Shaders\VS_Grid.glsl">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="VoxelGame.cpp" />
+    <ClCompile Include="VoxelMain.cpp" />
+    <ClCompile Include="VoxelWorld.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="VoxelGame.h" />
+    <ClInclude Include="VoxelWorld.h" />
+  </ItemGroup>
+</Project>

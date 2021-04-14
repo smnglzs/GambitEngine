@@ -1,40 +1,50 @@
 #pragma once
 #include "Base/Common/Common.h"
+#include "Engine/Export.h"
 
 namespace gb
 {
-	class SceneNode
+	class GAMBIT_ENGINE_API SceneNode
 	{
 	public:
-		SceneNode(const uint16 sortIndex, const std::string& name);
-		virtual ~SceneNode() = default;
+		SceneNode(const size_t sortIndex, const std::string& name);
+		virtual ~SceneNode();
 
 		void AddChild(SceneNode* child);
-		const std::string& GetName() const;
-		uint16 GetSortIndex() const;
+
+		const std::string& GetName()		const;
+		size_t			   GetNumChildren() const; 
+		size_t			   GetSortIndex()	const;
 
 	public:
-		static const size_t BASE_CHILDREN_CAPACITY = 4u;
-
-		std::vector<SceneNode*> m_children;
 		std::string				m_name;
-		uint32					m_sortIndex;
+		std::vector<SceneNode*> m_children;
+		size_t					m_sortIndex;
+
+	protected:
+		static const size_t s_baseChildrenCapacity = 4u;
 	};
 
-	class SceneLayer : public SceneNode
+	class GAMBIT_ENGINE_API SceneLayer : public SceneNode
 	{
 	public:
-		static const SceneLayer SCENE_LAYER_NULL;
-		static const SceneLayer SCENE_LAYER_UI;
-		static const SceneLayer SCENE_LAYER_BASE;
+		static const SceneLayer SceneLayer_Null;
+		static const SceneLayer SceneLayer_UI;
+		static const SceneLayer SceneLayer_Base;
 
 	public:
 		SceneLayer(const uint16 sortIndex, const std::string& name);
 		virtual ~SceneLayer();
+
+		inline void operator=(const SceneLayer& other)
+		{
+			m_sortIndex = other.m_sortIndex;
+			m_name = other.m_name;
+		}
 	};
 
 	using SceneLayerArray = std::vector<Unique<SceneLayer>>;
-	class Scene
+	class GAMBIT_ENGINE_API Scene
 	{
 	public:
 		Scene();

@@ -1,5 +1,5 @@
 #pragma once
-#include "Base/Common/Common.h"
+#include "Base/GambitBasePCH.h"
 #include "Base/Singleton/Singleton.h"
 
 #define DEFINE_SINGLETON(cls, name, API)						\
@@ -34,5 +34,6 @@ namespace gb
 
 	protected:
 		std::vector<ISingleton*> m_singletons;
+		bool m_loaded;
 	};
 }

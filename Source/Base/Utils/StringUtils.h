@@ -1,5 +1,4 @@
 #pragma once
-#include <string_view>
 #include <type_traits>
 
 #include "Base/Common/Common.h"
@@ -76,11 +75,6 @@ namespace gb
 			}
 		}
 
-		inline static uint64 HashString(const std::string& str)
-		{
-			return std::hash<std::string>{}(str);
-		}
-
 		template <typename ...Args>
 		std::string Format(const std::string_view& fmt, Args&&... args)
 		{
@@ -96,5 +90,24 @@ namespace gb
 
 			return output;
 		}
+
+		class GAMBIT_BASE_API HashedString
+		{
+		public:
+			using Hash = uint64_t;
+
+			HashedString();
+			HashedString(const std::string& str);
+
+			void SetString(const std::string& str);
+			const std::string& GetString() const;
+			uint64_t GetHash() const;
+
+		private:
+			Hash HashString(const std::string& str) const;
+
+			std::string m_str;
+			Hash		m_hash;
+		};
 	}
 }

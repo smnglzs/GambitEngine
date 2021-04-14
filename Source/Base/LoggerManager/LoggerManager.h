@@ -46,6 +46,6 @@ namespace gb
 	};
 }
 
-CREATE_SINGLETON_ACCESSOR(LoggerManager, LoggerManager, GAMBIT_BASE_API);
+GB_CREATE_SINGLETON_ACCESSOR(LoggerManager, LoggerManager, GAMBIT_BASE_API);
 
 #include "LoggerManager_impl.h"

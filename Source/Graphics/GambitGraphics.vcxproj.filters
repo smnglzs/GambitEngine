@@ -2,131 +2,227 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="GraphicsModule.cpp" />
-    <ClCompile Include="Shader\ShaderManager.cpp">
-      <Filter>Shader</Filter>
+    <ClCompile Include="Camera\2D\Camera2D.cpp">
+      <Filter>Camera\2D</Filter>
     </ClCompile>
-    <ClCompile Include="Texture\TextureManager.cpp">
-      <Filter>Texture</Filter>
+    <ClCompile Include="Rendering\2D\Renderer2D.cpp">
+      <Filter>Rendering\2D</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer\Renderer.cpp">
-      <Filter>Renderer</Filter>
+    <ClCompile Include="Rendering\2D\TIlesheet\Tilesheet.cpp">
+      <Filter>Rendering\2D\Tilesheet</Filter>
     </ClCompile>
-    <ClCompile Include="Shader\Shader.cpp">
-      <Filter>Shader</Filter>
+    <ClCompile Include="Rendering\2D\Sprite\Sprite.cpp">
+      <Filter>Rendering\2D\Sprite</Filter>
     </ClCompile>
-    <ClCompile Include="RHI\RHI.cpp">
-      <Filter>RHI</Filter>
+    <ClCompile Include="Rendering\2D\TIlesheet\Tilemap.cpp">
+      <Filter>Rendering\2D\Tilesheet</Filter>
     </ClCompile>
-    <ClCompile Include="Shader\ShaderProgram.cpp">
-      <Filter>Shader</Filter>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>Camera</Filter>
     </ClCompile>
-    <ClCompile Include="RHI\RHIObject.cpp">
-      <Filter>RHI</Filter>
+    <ClCompile Include="Common\Color.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="Buffer\Buffer.cpp">
-      <Filter>Buffer</Filter>
+    <ClCompile Include="Rendering\3D\Renderer3D.cpp">
+      <Filter>Rendering\3D</Filter>
     </ClCompile>
-    <ClCompile Include="Buffer\VertexBuffer.cpp">
-      <Filter>Buffer</Filter>
+    <ClCompile Include="Rendering\Renderer.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Geometry\VertexArray.cpp">
-      <Filter>Geometry</Filter>
+    <ClCompile Include="Rendering\Geometry\Mesh.cpp">
+      <Filter>Rendering\Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Buffer\IndexBuffer.cpp">
-      <Filter>Buffer</Filter>
+    <ClCompile Include="GHI\Buffer\Buffer.cpp">
+      <Filter>GHI\Buffer</Filter>
     </ClCompile>
-    <ClCompile Include="Texture\Texture.cpp">
-      <Filter>Texture</Filter>
+    <ClCompile Include="GHI\Buffer\IndexBuffer.cpp">
+      <Filter>GHI\Buffer</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer\RenderObject.cpp">
-      <Filter>Renderer</Filter>
+    <ClCompile Include="GHI\Buffer\UniformBuffer.cpp">
+      <Filter>GHI\Buffer</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer\RenderBatch.cpp">
-      <Filter>Renderer</Filter>
+    <ClCompile Include="GHI\Buffer\VertexArrayManager.cpp">
+      <Filter>GHI\Buffer</Filter>
     </ClCompile>
-    <ClCompile Include="Geometry\Geometry.cpp">
-      <Filter>Geometry</Filter>
+    <ClCompile Include="GHI\Buffer\VertexArray.cpp">
+      <Filter>GHI\Buffer</Filter>
     </ClCompile>
-    <ClCompile Include="Texture\TextureAtlas.cpp">
-      <Filter>Texture</Filter>
+    <ClCompile Include="GHI\Buffer\VertexBuffer.cpp">
+      <Filter>GHI\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="GHI\Texture\Framebuffer.cpp">
+      <Filter>GHI\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="GHI\Texture\Texture.cpp">
+      <Filter>GHI\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="GHI\Texture\TextureManager.cpp">
+      <Filter>GHI\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="GHI\Shader\Shader.cpp">
+      <Filter>GHI\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="GHI\Shader\ShaderManager.cpp">
+      <Filter>GHI\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="GHI\Shader\ShaderProgram.cpp">
+      <Filter>GHI\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="GHI\Query\Query.cpp">
+      <Filter>GHI\Query</Filter>
+    </ClCompile>
+    <ClCompile Include="GHI\Backend\OpenGL\GLGHI.cpp">
+      <Filter>GHI\Backend\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Scene\SceneNode.cpp">
+      <Filter>Rendering\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Export.h" />
     <ClInclude Include="GraphicsModule.h" />
-    <ClInclude Include="Shader\ShaderManager.h">
-      <Filter>Shader</Filter>
+    <ClInclude Include="Camera\2D\Camera2D.h">
+      <Filter>Camera\2D</Filter>
     </ClInclude>
-    <ClInclude Include="Texture\TextureManager.h">
-      <Filter>Texture</Filter>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\Renderer.h">
-      <Filter>Renderer</Filter>
+    <ClInclude Include="Rendering\2D\Renderer2D.h">
+      <Filter>Rendering\2D</Filter>
     </ClInclude>
-    <ClInclude Include="RHI\RHI.h">
-      <Filter>RHI</Filter>
+    <ClInclude Include="Rendering\2D\TIlesheet\Tilesheet.h">
+      <Filter>Rendering\2D\Tilesheet</Filter>
     </ClInclude>
-    <ClInclude Include="RHI\RHIDefinitions.h">
-      <Filter>RHI</Filter>
+    <ClInclude Include="Rendering\2D\Sprite\Sprite.h">
+      <Filter>Rendering\2D\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="Shader\ShaderProgram.h">
-      <Filter>Shader</Filter>
+    <ClInclude Include="Rendering\2D\TIlesheet\Tilemap.h">
+      <Filter>Rendering\2D\Tilesheet</Filter>
     </ClInclude>
-    <ClInclude Include="Shader\Shader.h">
-      <Filter>Shader</Filter>
+    <ClInclude Include="Rendering\Renderer.h">
+      <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="RHI\RHIObject.h">
-      <Filter>RHI</Filter>
+    <ClInclude Include="Common\Common.h">
+      <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="Buffer\Buffer.h">
-      <Filter>Buffer</Filter>
+    <ClInclude Include="Common\Color.h">
+      <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="Buffer\VertexBuffer.h">
-      <Filter>Buffer</Filter>
+    <ClInclude Include="Rendering\3D\Renderer3D.h">
+      <Filter>Rendering\3D</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry\VertexArray.h">
-      <Filter>Geometry</Filter>
+    <ClInclude Include="Rendering\Geometry\Mesh.h">
+      <Filter>Rendering\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Buffer\IndexBuffer.h">
-      <Filter>Buffer</Filter>
+    <ClInclude Include="Rendering\Geometry\MeshBuilder.h">
+      <Filter>Rendering\Geometry</Filter>
     </ClInclude>
-    <ClInclude Include="Texture\Texture.h">
-      <Filter>Texture</Filter>
+    <ClInclude Include="GHI\GHI.h">
+      <Filter>GHI</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\RenderObject.h">
-      <Filter>Renderer</Filter>
+    <ClInclude Include="GHI\GHICommon.h">
+      <Filter>GHI</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\RenderBatch.h">
-      <Filter>Renderer</Filter>
+    <ClInclude Include="GHI\Buffer\Buffer.h">
+      <Filter>GHI\Buffer</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry\Geometry.h">
-      <Filter>Geometry</Filter>
+    <ClInclude Include="GHI\Buffer\IndexBuffer.h">
+      <Filter>GHI\Buffer</Filter>
     </ClInclude>
-    <ClInclude Include="RHI\RHIConstants.h">
-      <Filter>RHI</Filter>
+    <ClInclude Include="GHI\Buffer\UniformBuffer.h">
+      <Filter>GHI\Buffer</Filter>
     </ClInclude>
-    <ClInclude Include="Texture\TextureAtlas.h">
-      <Filter>Texture</Filter>
+    <ClInclude Include="GHI\Buffer\VertexArrayManager.h">
+      <Filter>GHI\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="GHI\Buffer\VertexArray.h">
+      <Filter>GHI\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="GHI\Buffer\VertexBuffer.h">
+      <Filter>GHI\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="GHI\Texture\Framebuffer.h">
+      <Filter>GHI\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="GHI\Texture\Texture.h">
+      <Filter>GHI\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="GHI\Texture\TextureManager.h">
+      <Filter>GHI\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="GHI\Shader\Shader.h">
+      <Filter>GHI\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="GHI\Shader\ShaderManager.h">
+      <Filter>GHI\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="GHI\Shader\ShaderProgram.h">
+      <Filter>GHI\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="GHI\Query\Query.h">
+      <Filter>GHI\Query</Filter>
+    </ClInclude>
+    <ClInclude Include="GHI\Query\QueryManager.h">
+      <Filter>GHI\Query</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderScene.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Scene\SceneNode.h">
+      <Filter>Rendering\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Shader">
-      <UniqueIdentifier>{24c27162-bfd0-4fef-b392-44f8ecadef32}</UniqueIdentifier>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{265e5ac5-1984-4253-ac68-8446b1474ec9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Renderer">
+    <Filter Include="Camera\2D">
+      <UniqueIdentifier>{1dc2f056-5316-4dba-9b2d-d472fc362c9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
       <UniqueIdentifier>{1f3ad7c9-99f2-44a3-a3f0-ce5941314b58}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RHI">
-      <UniqueIdentifier>{f6affcf5-bfe3-4c65-8bc6-3fef50e1e909}</UniqueIdentifier>
+    <Filter Include="Rendering\2D">
+      <UniqueIdentifier>{aa47f2b2-0d26-4321-a135-f09ca4cc8ab9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Texture">
-      <UniqueIdentifier>{ff4b3592-9ea5-428b-b284-70ef36cc7569}</UniqueIdentifier>
+    <Filter Include="Rendering\2D\Sprite">
+      <UniqueIdentifier>{0b120ec1-134e-45c4-9c58-6e67140afeed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Buffer">
-      <UniqueIdentifier>{daa964b9-12a2-46d2-91ff-91cb8389fc72}</UniqueIdentifier>
+    <Filter Include="Rendering\2D\Tilesheet">
+      <UniqueIdentifier>{d12cf5bc-3470-49a0-934b-8df54bbc87ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Geometry">
-      <UniqueIdentifier>{5bb27752-982f-4918-9965-3a8d0dc9620f}</UniqueIdentifier>
+    <Filter Include="Common">
+      <UniqueIdentifier>{2da46827-690d-48ff-a346-7b952756eff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\3D">
+      <UniqueIdentifier>{a71a8aef-dc39-4c53-89d3-76f0ee700c61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Geometry">
+      <UniqueIdentifier>{a6c0f6bf-c509-4009-8363-bd0bf376c790}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GHI">
+      <UniqueIdentifier>{559cec36-82c8-44c4-99f5-6804043f3f35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GHI\Buffer">
+      <UniqueIdentifier>{a62e9497-73b6-4b78-8970-fe3b21bb1b28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GHI\Query">
+      <UniqueIdentifier>{34cbbd10-7e75-4f6e-aa56-0a09fff3f4c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GHI\Texture">
+      <UniqueIdentifier>{afeecd60-da1e-4532-a9ba-a4601323c3f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GHI\Shader">
+      <UniqueIdentifier>{7baf73e1-0824-4cf7-95a5-19c6b4a3c9fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GHI\Backend">
+      <UniqueIdentifier>{2992a9f2-e22d-48fa-9b0f-b478bd8fe02c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GHI\Backend\OpenGL">
+      <UniqueIdentifier>{18ee692f-bedc-44b4-bbf5-59368a162949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Scene">
+      <UniqueIdentifier>{73aa671a-c444-471f-aca2-93e955d3de67}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

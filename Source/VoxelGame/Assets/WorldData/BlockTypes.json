@@ -1,0 +1,22 @@
+{
+    "BlockTypes":
+    [
+        {
+            "coords": [0, 0],
+            "name": "GroundBlock"
+        },
+        {
+            "coords": [0, 0],
+            "name": "Bush"
+        },
+        {
+            "coords": [0, 0],
+            "name": "Pipe"
+        },
+        {
+            "coords": [0, 0],
+            "name": "QuestionBlock",
+            "tileable": false 
+        }
+    ]
+}

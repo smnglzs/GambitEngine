@@ -1,7 +1,7 @@
 #pragma once
+#include "Base/GambitBasePCH.h"
 #include <filesystem>
 
-#include "Base/Common/Common.h"
 #include "Base/Export.h"
 
 namespace gb

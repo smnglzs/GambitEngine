@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Input">
+      <UniqueIdentifier>{26902712-549d-4c0e-8c9a-b7df57bc8e47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Mouse">
+      <UniqueIdentifier>{f2323738-656c-4890-8aa6-7d8f04c841a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Keyboard">
+      <UniqueIdentifier>{8d799b11-0eb8-4e61-901a-f51b7021215d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Joystick">
+      <UniqueIdentifier>{3e5da4af-0b56-49f2-a376-6769cf255bbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{ac864f9d-6faa-4588-b84e-e2347d9225ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Backend">
+      <UniqueIdentifier>{8f32ee27-f11d-42f8-a116-8f58952ab998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Backend\OpenGL">
+      <UniqueIdentifier>{5a646519-1ea5-43f4-bf90-ce083602c552}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Input\Mouse\Mouse.cpp">
+      <Filter>Input\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Keyboard\Keyboard.cpp">
+      <Filter>Input\Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Joystick\Joystick.cpp">
+      <Filter>Input\Joystick</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\InputManager.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\Window.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Window\WindowManager.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemModule.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Input\Mouse\Mouse.h">
+      <Filter>Input\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Keyboard\Keyboard.h">
+      <Filter>Input\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Joystick\Joystick.h">
+      <Filter>Input\Joystick</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputManager.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Export.h" />
+    <ClInclude Include="Window\Window.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\WindowManager.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\WindowSettings.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemModule.h" />
+    <ClInclude Include="Window\Backend\OpenGL\GLContextSettings.h">
+      <Filter>Window\Backend\OpenGL</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

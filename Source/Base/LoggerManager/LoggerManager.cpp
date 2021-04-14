@@ -1,6 +1,5 @@
 #include "LoggerManager.h"
-
-#include <assert.h>
+#include "Base/GambitBasePCH.h"
 
 namespace gb
 {

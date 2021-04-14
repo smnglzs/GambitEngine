@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 
+#include "Base/GambitBasePCH.h"
 #include "Base/LoggerManager/LoggerManager.h"
 
 namespace gb
@@ -83,10 +84,11 @@ namespace gb
 			return false;
 		}
 
-		std::ifstream ifs(path);
+		const std::filesystem::path realPath = path.lexically_normal();
+		std::ifstream ifs(realPath);
 		if (!ifs.is_open())
 		{
-			LOG(gb::EChannelComponent::EngineError, "{} - Can't open file at path: [{}]", __func__, path.string());
+			LOG(gb::EChannelComponent::EngineError, "{} - Can't open file at path: [{}]", __func__, realPath.string());
 			return false;
 		}
 

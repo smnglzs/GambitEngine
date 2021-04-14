@@ -2,11 +2,16 @@
 
 namespace gb
 {
-	SceneNode::SceneNode(const uint16 sortIndex, const std::string& name = "") :
+	SceneNode::SceneNode(const size_t sortIndex, const std::string& name = "") :
 		m_sortIndex(sortIndex),
 		m_name(name)
 	{
-		m_children.reserve(BASE_CHILDREN_CAPACITY);
+		m_children.reserve(s_baseChildrenCapacity);
+	}
+
+	SceneNode::~SceneNode()
+	{
+
 	}
 
 	void SceneNode::AddChild(SceneNode* child)
@@ -19,14 +24,19 @@ namespace gb
 		return m_name;
 	}
 
-	uint16 SceneNode::GetSortIndex() const
+	size_t SceneNode::GetNumChildren() const
+	{
+		return m_children.size();
+	}
+
+	size_t SceneNode::GetSortIndex() const
 	{
 		return m_sortIndex;
 	}
 
-	const SceneLayer SceneLayer::SCENE_LAYER_NULL = { UINT16_MAX,		"SceneLayerNull" };
-	const SceneLayer SceneLayer::SCENE_LAYER_UI	  = { UINT16_MAX - 1u,  "SceneLayerUI"	 };
-	const SceneLayer SceneLayer::SCENE_LAYER_BASE = { 0u,				"SceneLayerBase" };
+	const SceneLayer SceneLayer::SceneLayer_Null = { UINT16_MAX,		"SceneLayer_Null" };
+	const SceneLayer SceneLayer::SceneLayer_UI	 = { UINT16_MAX - 1u,   "SceneLayer_UI"   };
+	const SceneLayer SceneLayer::SceneLayer_Base = { 0u,				"SceneLayer_Base" };
 
 	SceneLayer::SceneLayer(const uint16 sortIndex, const std::string& name) :
 		SceneNode(sortIndex, name)
@@ -41,8 +51,8 @@ namespace gb
 
 	Scene::Scene()
 	{
-		m_layers.push_back(std::make_unique<SceneLayer>(SceneLayer::SCENE_LAYER_BASE));
-		m_layers.push_back(std::make_unique<SceneLayer>(SceneLayer::SCENE_LAYER_UI));
+		m_layers.push_back(std::make_unique<SceneLayer>(SceneLayer::SceneLayer_Base));
+		m_layers.push_back(std::make_unique<SceneLayer>(SceneLayer::SceneLayer_UI));
 	}
 
 	Scene::~Scene()
@@ -58,7 +68,7 @@ namespace gb
 		}
 		else
 		{
-			return SceneLayer::SCENE_LAYER_NULL;
+			return SceneLayer::SceneLayer_Null;
 		}
 	}
 

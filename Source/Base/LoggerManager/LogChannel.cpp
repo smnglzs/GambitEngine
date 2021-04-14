@@ -1,3 +1,4 @@
+#include "Base/GambitBasePCH.h"
 #include "LogChannel.h"
 
 namespace gb

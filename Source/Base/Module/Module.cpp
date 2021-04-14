@@ -1,20 +1,24 @@
 #include "Module.h"
+#include "Base/GambitBasePCH.h"
 
 namespace gb
 {
-	IModule::IModule()
+	IModule::IModule() :
+		m_loaded(false)
 	{
 
 	}
 
 	IModule::~IModule()
 	{
-
+		// Check that Unload has been called by now
+		assert(!m_loaded);
 	}
 
 	void IModule::Load()
 	{
 		RegisterSingletons();
+		m_loaded = true;
 	}
 
 	void IModule::Init()
@@ -52,6 +56,7 @@ namespace gb
 	void IModule::Unload()
 	{
 		m_singletons.clear();
+		m_loaded = false;
 	}
 
 	void IModule::RegisterSingletons()

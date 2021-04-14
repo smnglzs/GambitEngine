@@ -1,7 +1,8 @@
 #pragma once
+#include "Base/GambitBasePCH.h"
+
 #include <filesystem>
 
-#include "Base/Common/Common.h"
 #include "Base/Export.h"
 #include "Base/FileManager/BaseConfig.h"
 #include "Base/Singleton/Singleton.h"
@@ -24,4 +25,4 @@ namespace gb
 	};
 }
 
-CREATE_SINGLETON_ACCESSOR(FileManager, FileManager, GAMBIT_BASE_API);
+GB_CREATE_SINGLETON_ACCESSOR(FileManager, FileManager, GAMBIT_BASE_API);

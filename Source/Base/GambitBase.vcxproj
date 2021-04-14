@@ -13,25 +13,36 @@
   <ItemGroup>
     <ClCompile Include="FileManager\BaseConfig.cpp" />
     <ClCompile Include="FileManager\FileManager.cpp" />
-    <ClCompile Include="GambitBaseModule.cpp" />
+    <ClCompile Include="GambitBasePCH.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="BaseModule.cpp" />
     <ClCompile Include="LoggerManager\LogChannel.cpp" />
     <ClCompile Include="LoggerManager\LoggerManager.cpp" />
     <ClCompile Include="Module\Module.cpp" />
+    <ClCompile Include="Utils\HashedString.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Common\Checks.h" />
     <ClInclude Include="Common\Common.h" />
-    <ClInclude Include="Common\Math.h" />
     <ClInclude Include="Common\NonCopyable.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="FileManager\BaseConfig.h" />
     <ClInclude Include="FileManager\FileManager.h" />
-    <ClInclude Include="GambitBaseModule.h" />
+    <ClInclude Include="BaseModule.h" />
+    <ClInclude Include="GambitBasePCH.h" />
     <ClInclude Include="LoggerManager\LogChannel.h" />
     <ClInclude Include="LoggerManager\LoggerManager.h" />
     <ClInclude Include="LoggerManager\LoggerManager_impl.h" />
+    <ClInclude Include="Math\Primitive.h" />
+    <ClInclude Include="Math\Types.h" />
     <ClInclude Include="Module\Module.h" />
     <ClInclude Include="Singleton\Singleton.h" />
-    <ClInclude Include="Utils\AssertUtils.h" />
     <ClInclude Include="Utils\EnumUtils.h" />
     <ClInclude Include="Utils\StringUtils.h" />
   </ItemGroup>
@@ -87,10 +98,13 @@
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\json\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <DisableSpecificWarnings>4251;5054;6011;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
@@ -105,12 +119,15 @@
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\json\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <DisableSpecificWarnings>4251;5054;6011;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>

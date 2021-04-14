@@ -1,18 +1,20 @@
 #pragma once
 
-#include "Base/Common/Common.h"
+#include "Base/GambitBasePCH.h"
 #include "Base/Common/NonCopyable.h"
 #include "Base/Export.h"
 
-#define CREATE_SINGLETON_ACCESSOR(iface, name, API)	\
-namespace gb										\
-{													\
-inline iface* Get##name()							\
-{													\
-	API extern char g_p##name##Singleton[];			\
-	return (iface*)g_p##name##Singleton;			\
-}													\
-}													\
+#define CREATE_SINGLETON_ACCESSOR(ns, iface, name, API)	\
+namespace ns								\
+{											\
+inline iface* Get##name()					\
+{											\
+	API extern char g_p##name##Singleton[];	\
+	return (iface*)g_p##name##Singleton;	\
+}											\
+}											\
+
+#define GB_CREATE_SINGLETON_ACCESSOR(iface, name, API)	CREATE_SINGLETON_ACCESSOR(gb, iface, name, API)
 
 namespace gb
 {
