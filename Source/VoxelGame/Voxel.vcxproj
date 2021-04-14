@@ -88,8 +88,11 @@
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\ThirdParty\glfw\lib\glfw3.dll" "$(OutDir)" /Y /I
-xcopy "$(SolutionDir)..\ThirdParty\glew\lib\glew32.dll" "$(OutDir)" /Y /I</Command>
+      <Command>
+        xcopy /f "$(SolutionDir)..\ThirdParty\glfw\lib\glfw3.dll" "$(OutDir)" /Y
+        xcopy /f "$(SolutionDir)..\ThirdParty\glew\lib\glew32.dll" "$(OutDir)" /Y
+        xcopy /f "$(ProjectDir)Assets" "$(OutDir)Assets\" /Y /E
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -114,8 +117,10 @@ xcopy "$(SolutionDir)..\ThirdParty\glew\lib\glew32.dll" "$(OutDir)" /Y /I</Comma
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\ThirdParty\glfw\lib\glfw3.dll" "$(OutDir)" /Y /I
-xcopy "$(SolutionDir)..\ThirdParty\glew\lib\glew32.dll" "$(OutDir)" /Y /I</Command>
+      <Command>xcopy /f "$(ProjectDir)Assets\" "$(OutDir)" /Y /E
+xcopy /f "$(SolutionDir)..\ThirdParty\glfw\lib\glfw3.dll" "$(OutDir)" /Y /I
+xcopy /f "$(SolutionDir)..\ThirdParty\glew\lib\glew32.dll" "$(OutDir)" /Y /I
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

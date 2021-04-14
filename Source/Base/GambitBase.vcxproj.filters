@@ -22,6 +22,9 @@
     <Filter Include="Math">
       <UniqueIdentifier>{02e85ca0-b183-4eaa-b350-2d08ee35b06f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Delegate">
+      <UniqueIdentifier>{1817f1fa-281d-4b1e-8d40-83e46be798d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LoggerManager\LoggerManager.cpp">
@@ -91,5 +94,8 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="BaseModule.h" />
+    <ClInclude Include="Delegate\Delegate.h">
+      <Filter>Delegate</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
