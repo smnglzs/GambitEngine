@@ -16,3 +16,6 @@
 [submodule "Thirdparty/imgui"]
 	path = Thirdparty/imgui
 	url = https://github.com/Gambit-Dev/imgui
+[submodule "ThirdParty/uuid"]
+	path = ThirdParty/uuid
+	url = https://github.com/boostorg/uuid
