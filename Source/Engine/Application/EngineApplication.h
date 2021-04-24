@@ -26,7 +26,7 @@ namespace gb
 		inline void SetAssetFolder(const std::string& assetFolder) { m_assetFolder = assetFolder; }
 
 	protected:
-		Window* m_window;
 		std::string m_assetFolder;
+		Window*     m_window;
 	};
 }

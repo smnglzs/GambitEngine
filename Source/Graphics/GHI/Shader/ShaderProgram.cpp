@@ -133,8 +133,7 @@ namespace gb
 
 	void ShaderProgram::GetActiveUniforms()
 	{
-		assert(false);		
-		// todo(simon)
+		throw Exceptions::NotImplemented();
 	}
 
 	int32 ShaderProgram::GetUniformLocation(const std::string& name)

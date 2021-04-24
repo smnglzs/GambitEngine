@@ -34,7 +34,7 @@
     <ClCompile Include="Rendering\2D\TIlesheet\Tilemap.cpp" />
     <ClCompile Include="Rendering\2D\TIlesheet\Tilesheet.cpp" />
     <ClCompile Include="Rendering\3D\Renderer3D.cpp" />
-    <ClCompile Include="Rendering\Geometry\Mesh.cpp" />
+    <ClCompile Include="Rendering\Geometry\Geometry.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Rendering\Scene\SceneNode.cpp" />
   </ItemGroup>
@@ -66,7 +66,7 @@
     <ClInclude Include="Rendering\2D\TIlesheet\Tilemap.h" />
     <ClInclude Include="Rendering\2D\TIlesheet\Tilesheet.h" />
     <ClInclude Include="Rendering\3D\Renderer3D.h" />
-    <ClInclude Include="Rendering\Geometry\Mesh.h" />
+    <ClInclude Include="Rendering\Geometry\Geometry.h" />
     <ClInclude Include="Rendering\Geometry\MeshBuilder.h" />
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Rendering\RenderScene.h" />

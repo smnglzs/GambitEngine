@@ -22,7 +22,7 @@ namespace gb
 		glfwWindowHint(GLFW_MAXIMIZED, winSettings.maximized);
 		glfwWindowHint(GLFW_VISIBLE,   winSettings.visible);
 
-		// TODO: OpenGL hints force a RenderWindow, considering distinguishing the two
+		// TODO: OpenGL hints force a RenderWindow, consider distinguishing the two
 		// Context settings
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, ctxSettings.majorVersion);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, ctxSettings.majorVersion);
@@ -111,7 +111,9 @@ namespace gb
 		m_updateViewport = true;
 	}
 
-	// TODO: add range checks
+	// TODO: (SetSize overloads) 
+	//	- Add range checks
+	//	- Check if resize or not! Update width & height!
 	void Window::SetSize(const vec2i& size) 
 	{ 
 		glfwSetWindowSize(m_windowImpl, size.x, size.y); 
@@ -120,7 +122,7 @@ namespace gb
 	void Window::SetSize(const int32 width, const int32 height) 
 	{ 
 		glfwSetWindowSize(m_windowImpl, width, height); 
-	} // TODO: Check if resize or not! Update width & height!
+	} 
 
 	void Window::SetPosition(const vec2i& pos) 
 	{ 

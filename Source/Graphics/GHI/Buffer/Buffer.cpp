@@ -35,7 +35,7 @@ namespace gb
 		else
 		{
 			// Reallocate?
-			assert(false);
+			throw Exceptions::NotImplemented();
 		}
 	}
 }

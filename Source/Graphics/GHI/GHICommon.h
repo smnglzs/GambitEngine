@@ -224,6 +224,8 @@ namespace gb
 		Position2D,
 		Position3D,
 		TexCoord,
+		Normal,
+		Color,
 		Count,
 		Invalid
 	};
@@ -256,10 +258,12 @@ namespace gb
 		bool				 isNormalized;
 	};
 
-	static const VertexAttribute Invalid	= { EVertexAttributeType::Invalid,    EVertexElementType::Invalid, 0u, 0u, 0u, false };
-	static const VertexAttribute Position2D = { EVertexAttributeType::Position2D, EVertexElementType::Float,   2u, 0u, 0u, false };
-	static const VertexAttribute Position3D = { EVertexAttributeType::Position3D, EVertexElementType::Float,   3u, 0u, 0u, false };
-	static const VertexAttribute TexCoord	= { EVertexAttributeType::TexCoord,   EVertexElementType::Float,   2u, 1u, 0u, false };
+	static const VertexAttribute VAtrrib_Invalid	= { EVertexAttributeType::Invalid,    EVertexElementType::Invalid, 0u, 0u, 0u, false };
+	static const VertexAttribute VAtrrib_Position2D = { EVertexAttributeType::Position2D, EVertexElementType::Float,   2u, 0u, 0u, false };
+	static const VertexAttribute VAtrrib_Position3D = { EVertexAttributeType::Position3D, EVertexElementType::Float,   3u, 0u, 0u, false };
+	static const VertexAttribute VAtrrib_TexCoord	= { EVertexAttributeType::TexCoord,   EVertexElementType::Float,   2u, 1u, 0u, false };
+	static const VertexAttribute VAtrrib_Normal		= { EVertexAttributeType::Normal,     EVertexElementType::Float,   2u, 1u, 0u, false };
+	static const VertexAttribute VAtrrib_Color		= { EVertexAttributeType::Color,	  EVertexElementType::Float,   2u, 1u, 0u, false };
 
 	static const uint8 NumAttributeTypes = ToUnderlyingType(EVertexAttributeType::Count);
 	static const char* AttributeNames[NumAttributeTypes] = { "Position2D", "Position3D", "TexCoord" };
@@ -271,12 +275,12 @@ namespace gb
 	{
 		switch (type)
 		{
-		case EVertexAttributeType::Position2D: return Position2D;
-		case EVertexAttributeType::Position3D: return Position3D;
-		case EVertexAttributeType::TexCoord:   return TexCoord;
+		case EVertexAttributeType::Position2D: return VAtrrib_Position2D;
+		case EVertexAttributeType::Position3D: return VAtrrib_Position3D;
+		case EVertexAttributeType::TexCoord:   return VAtrrib_TexCoord;
 		default:
 			assert(false && "Invalid vertex attribute!");
-			return Invalid;
+			return VAtrrib_Invalid;
 		}
 	}
 

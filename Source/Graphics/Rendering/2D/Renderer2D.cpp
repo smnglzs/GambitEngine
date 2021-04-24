@@ -31,7 +31,7 @@ namespace gb
 			- get near/far from params
 		*/
 		m_camera = std::make_shared<Camera>(viewport, ClipPlanes{-0.001f, 1000.f}, Camera::EProjection::Orthographic);
-		m_camera->SetClearColor(gb::Color::Cyan);
+		m_camera->SetClearColor(Color::Cyan);
 	}
 
 	void Renderer2D::Render(const RenderScene& scene)
@@ -39,7 +39,7 @@ namespace gb
 		throw Exceptions::NotImplemented();
 	}
 
-	void Renderer2D::DrawSquare(const IntRect square, const Color color, ShaderProgram& shader)
+	void Renderer2D::DrawRect(const IntRect rect, const Color color, ShaderProgram& shader)
 	{
 		throw Exceptions::NotImplemented();
 	}

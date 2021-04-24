@@ -3,15 +3,15 @@
 #include "Base/GambitBasePCH.h"
 #include "Base/Module/Module.h"
 
-#include "System/Export.h"
+#include "Runtime/Export.h"
 
 namespace gb
 {
-	class GAMBIT_SYSTEM_API SystemModule final : public IModule
+	class GAMBIT_RUNTIME_API RuntimeModule final : public IModule
 	{
 	public:
-		SystemModule();
-		virtual ~SystemModule() override;
+		RuntimeModule();
+		virtual ~RuntimeModule() override;
 
 		virtual void RegisterSingletons() override;
 		virtual void Init()				  override;
@@ -19,11 +19,9 @@ namespace gb
 		virtual void Start()			  override;
 		virtual void Unload()			  override;
 
-		virtual std::string GetID() const override { return "System"; }
+		virtual std::string GetID() const override { return "Runtime"; }
 
 	private:
-		void InitGLFW();
 
-		static void HandleGLFWError(int error, const char* description);
 	};
 }

@@ -6,6 +6,7 @@
 #define GB_BASE_MODULE
 #define GB_SYSTEM_MODULE
 #define GB_GRAPHICS_MODULE
+#define GB_RUNTIME_MODULE
 #endif
 
 #ifdef GB_BASE_MODULE
@@ -18,4 +19,8 @@
 
 #ifdef GB_GRAPHICS_MODULE
 #include "Graphics/GraphicsModule.h"
+#endif
+
+#ifdef GB_RUNTIME_MODULE
+#include "Runtime/RuntimeModule.h"
 #endif

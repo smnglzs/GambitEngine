@@ -11,6 +11,7 @@ namespace gb
 	public:
 		using ShaderArray = std::array<Shader*, ShaderGlobals::NumShaderStages>;
 
+		// TODO: need to distinguish VS/FS/GS/etc. by type to allow for ctor overloads
 		struct LinkedShaders
 		{
 			LinkedShaders(ShaderArray&& shaders) :
@@ -24,7 +25,7 @@ namespace gb
 				const auto stageIdx = ToUnderlyingType(stage);
 				if (stageIdx < ShaderGlobals::NumShaderStages && shaders[stageIdx])
 					return *shaders[stageIdx];
-		
+
 				assert(false && "LinkedShaders has no shader bound to the specified stage!");
 				return Shader::GetInvalidShader();
 			}
@@ -83,22 +84,6 @@ namespace gb
 			return invalid;
 		}
 	};
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 
 /*  TODO:

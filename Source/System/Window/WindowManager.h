@@ -19,7 +19,7 @@ namespace gb
 
 		Window* CreateWindow(const WindowSettings& winSettings, const GLContextSettings ctxSettings);
 
-		enum EWindowSlot
+		enum class EWindowSlot : uint8
 		{
 			PrimaryWindow,
 			SecondaryWindow

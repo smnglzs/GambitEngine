@@ -2,8 +2,6 @@
 #include "Base/LoggerManager/LoggerManager.h"
 #include "Graphics/GHI/GHI.h"
 
-#include <iostream> // TODO: replace with Logger
-
 namespace gb
 {
 	Shader::Shader() :
@@ -27,17 +25,25 @@ namespace gb
 		Destroy();
 	}
 
+	/* TODO:
+		- distinguish nameHash & sourceHash
+		- add logs for each error case
+		- GLhandle recompile on non-zero id
+		- refactor, possibly just returning compile result and setting + asserting m_valid in ctor
+	*/
 	bool Shader::Compile(const std::string& source)
 	{
-		assert(m_handle == 0u); // break on existing shader for now, i.e. disable recompile
-
-		/* TODO:
-			- distinguish nameHash & sourceHash
-			- add logs for each error case
-			- GLhandle recompile on non-zero id
-			- refactor, possibly just returning compile result and setting + asserting m_valid in ctor
-		*/
-		if (!source.empty() && (m_handle = GHI::CreateShader(m_stage)))
+		if (m_handle != 0u)
+		{
+			// TODO: support recompilation
+			LOG(EChannelComponent::EngineError, "Shader recompilation has not been implemented!");
+			throw Exceptions::NotImplemented();
+		}
+		else if (source.empty())
+		{
+			LOG(EChannelComponent::EngineError, "Shader source is empty; nothing to compile.");
+		}
+		else if (m_handle = GHI::CreateShader(m_stage)) // let GHI error-handle its functions
 		{
 			if (m_valid = GHI::CompileShader(m_handle, source.c_str()))
 			{
@@ -48,7 +54,7 @@ namespace gb
 			{
 				char infoLog[ShaderGlobals::ShaderInfoLogSize];
 				GHI::GetShaderInfoLog(m_handle, infoLog);
-				printf("%s|%s\n", m_name.c_str(), infoLog);
+				LOG(EChannelComponent::EngineWarning, "%s|%s\n", m_name.c_str(), std::string(infoLog));
 
 				Destroy();
 			}

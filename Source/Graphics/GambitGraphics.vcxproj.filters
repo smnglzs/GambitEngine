@@ -29,9 +29,6 @@
     <ClCompile Include="Rendering\Renderer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Geometry\Mesh.cpp">
-      <Filter>Rendering\Geometry</Filter>
-    </ClCompile>
     <ClCompile Include="GHI\Buffer\Buffer.cpp">
       <Filter>GHI\Buffer</Filter>
     </ClCompile>
@@ -77,6 +74,9 @@
     <ClCompile Include="Rendering\Scene\SceneNode.cpp">
       <Filter>Rendering\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Geometry\Geometry.cpp">
+      <Filter>Rendering\Geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Export.h" />
@@ -99,9 +99,6 @@
     <ClInclude Include="Rendering\2D\TIlesheet\Tilemap.h">
       <Filter>Rendering\2D\Tilesheet</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Renderer.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Common\Common.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -110,9 +107,6 @@
     </ClInclude>
     <ClInclude Include="Rendering\3D\Renderer3D.h">
       <Filter>Rendering\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Geometry\Mesh.h">
-      <Filter>Rendering\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Geometry\MeshBuilder.h">
       <Filter>Rendering\Geometry</Filter>
@@ -170,6 +164,12 @@
     </ClInclude>
     <ClInclude Include="Rendering\Scene\SceneNode.h">
       <Filter>Rendering\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Geometry\Geometry.h">
+      <Filter>Rendering\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Renderer.h">
+      <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

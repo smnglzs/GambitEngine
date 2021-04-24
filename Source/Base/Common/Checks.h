@@ -7,7 +7,8 @@
 #include <stdexcept>
 
 #define gbCheckMsg(expr, msg) static_assert(expr, msg)
-#define gbCheckRange(inRangeCond) if(!(inRangeCond)) throw std::out_of_range(#inRangeCond)
+#define gbCheckRange(inRangeCond) if(!(inRangeCond)) gbThrowRange(#inRangeCond)
+#define gbThrowRange(inRangeCond) throw std::out_of_range(#inRangeCond)
 
 namespace gb
 {

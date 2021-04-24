@@ -71,7 +71,6 @@ namespace gb
 		{
 			float	  m_fieldOfView;
 			float	  m_height;
-			
 		};
 		float		  m_aspectRatio;
 		bool	      m_projectionDirty;

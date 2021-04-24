@@ -63,6 +63,25 @@ namespace gb
 		return loadResult;
 	}
 
+	/* TODO: introduce generic Image type but outside the GHI. Avoid having TextureManager load pixel data directly.
+	void LoadImage()
+	{
+		int32 width = 0, height = 0, channels = 0, desiredChannels = 4; 
+
+		bool loadResult	= false;
+		int32 width = 0, height = 0, channels = 0, desiredChannels = 4; // TODO: replace with mapping (NB: will likely always be 4 because RGBA is preferred)
+		if (const uint8* pixelData = stbi_load((m_rootLoadPath + filePath).c_str(), &width, &height, &channels, desiredChannels))
+		{
+			...
+			stbi_image_free((void*)pixelData);
+		}
+		else
+		{
+			throw Exceptions::LoadFailed();
+		}
+	}
+	*/
+
 	const Texture* TextureManager::BindTexture(const std::string& name)
 	{
 		const auto tex = m_textureMap.find(name);

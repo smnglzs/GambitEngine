@@ -1,10 +1,10 @@
 #pragma once
 #include "GHICommon.h"
 
-// Only one API can be active at a given time.
 #define GB_GRAPHICS_GHI_GL 1 // Use OpenGL backend.
+#if 0 // Unsupported.
 #define GB_GRAPHICS_GHI_VK 0 // Use Vulkan backend.
-
+#endif
 namespace gb
 {
 	//=====================================================================

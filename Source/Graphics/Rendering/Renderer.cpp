@@ -54,17 +54,17 @@ namespace gb
 		// Bind shader (TODO: tweak bind)
 		ShaderProgram& prog = m_shaderManager->BindShaderProgram(drawData.shader.GetName());
 
-		if (drawData.mesh.HasIndexBuffer())
+		if (const IndexBuffer* indexBuffer = drawData.mesh.GetIndexBuffer())
 		{
 			// TODO: check num and offset
-			const uint32	   numIndices  = drawData.mesh.GetIndexBuffer()->GetNumElements();
-			const EIndexFormat indexFormat = drawData.mesh.GetIndexBuffer()->GetIndexFormat();
+			const uint32	   numIndices  = indexBuffer->GetNumElements();
+			const EIndexFormat indexFormat = indexBuffer->GetIndexFormat();
 			const void*		   indexOffset = drawData.mesh.GetIndexOffsetPointer();
 
 			if (auto* transform = std::get_if<mat4f>(&drawData.transforms))
 			{
 				prog.SetUniform("u_model", *transform, false);
-				GHI::DrawIndexed(drawData.mesh.GetPrimitiveType(), numIndices, indexFormat, indexOffset);
+				GHI::DrawIndexed(primitiveType, numIndices, indexFormat, indexOffset);
 			}
 			else if (auto* transforms = std::get_if<std::vector<mat4f>*>(&drawData.transforms))
 			{
@@ -72,7 +72,7 @@ namespace gb
 				throw Exceptions::NotImplemented();
 
 				const int32 numInstances = static_cast<int32>((*transforms)->size());
-				GHI::DrawIndexedInstanced(drawData.mesh.GetPrimitiveType(), numIndices, indexFormat, indexOffset, numInstances);
+				GHI::DrawIndexedInstanced(primitiveType, numIndices, indexFormat, indexOffset, numInstances);
 			}
 		}
 		else

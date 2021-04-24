@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="RuntimeModule.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RuntimeModule.h" />
+    <ClInclude Include="Export.h" />
+  </ItemGroup>
+</Project>

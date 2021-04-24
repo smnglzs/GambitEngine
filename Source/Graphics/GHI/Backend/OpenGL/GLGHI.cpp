@@ -3,6 +3,7 @@
 //====================================================================
 
 // TODO: Some definitions could probably be moved to a forced include.
+
 #include "Graphics/GHI/GHI.h"
 
 #if GB_GRAPHICS_GHI_GL
@@ -322,9 +323,9 @@ namespace gb
 		case ETextureType::Texture2D:		textureTarget = GL_TEXTURE_2D;		 break;
 		case ETextureType::Texture2DArray:	textureTarget = GL_TEXTURE_2D_ARRAY; // not yet supported, let this fall through
 		default:
-			LOG(EChannelComponent::EngineError, "Texture type is not yet supported or does not exist!");
+			LOG(EChannelComponent::EngineError, "Texture type is not yet supported or does not exist!"); // TODO: invalid argument
 			assert(false);
-			return 0u;
+			return GL_NONE;
 		}
 
 		GLhandle textureId = 0u;
@@ -352,11 +353,11 @@ namespace gb
 
 	void GHI::UpdateTexture(const GHIHandle textureId, const int32 offsetX, const int32 offsetY, const int32 width, const int32 height, const void* pixelData)
 	{
-		// TODO: early out if last pixel
+		// TODO: Early out if last pixel.
 		gbCheckRange(offsetX <= width);
 		gbCheckRange(offsetY <= height);
 
-		// TODO: Other formats and types. Assuming single-mip for now.
+		// TODO: Other formats and types. Assuming LOD0 for now.
 		const GLint  mipLevel		 = 0u;
 		const GLenum pixelDataFormat = GL_RGBA;
 		const GLenum pixelDataType	 = GL_UNSIGNED_BYTE;
@@ -387,8 +388,8 @@ namespace gb
 		else
 		{
 			LOG(EChannelComponent::EngineError, "Shader stage not supported!");
-			assert(false);
-			return 0u;
+			throw Exceptions::NotImplemented();
+			return GL_NONE;
 		}
 	}
 
@@ -767,7 +768,6 @@ namespace gb
 	GHIGL_GETSTRING_IMPL(GpuVendor,				 s_gpuVendor,			   GL_VENDOR)
 	GHIGL_GETSTRING_IMPL(ShadingLanguageVersion, s_shadingLanguageVersion, GL_SHADING_LANGUAGE_VERSION)
 
-	#define GHIGL_GETVERSION(ghiStr) GHIGL_GETSTRING(ghiStr, GL_VERSION)
 	const std::string& GHI::GetApiVersion()
 	{
 		if (s_apiVersion.empty())

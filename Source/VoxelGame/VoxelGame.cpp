@@ -75,6 +75,7 @@ namespace vxl
 	void VoxelGame::Render()
 	{
 		Renderer2D->Clear();
+		
 	}
 
 	void VoxelGame::Stop()

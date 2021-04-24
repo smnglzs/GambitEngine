@@ -10,7 +10,7 @@ namespace gb
 
 	WindowManager::~WindowManager()
 	{
-		// kill windows
+		// TODO: kill windows
 	}
 
 	void WindowManager::Init()
@@ -64,9 +64,16 @@ namespace gb
 
 	Window* WindowManager::GetWindow(const EWindowSlot winSlot /* = EWindowSlot::PrimaryWindows */)
 	{
-		// TODO: add logs / error-handling
-		return winSlot >= m_windows.size() ? nullptr : m_windows[winSlot].get();
-
+		uint8 winIdx = ToUnderlyingType(winSlot);
+		if (winIdx < m_windows.size())
+		{
+			return m_windows[winIdx].get();
+		}
+		else 
+		{
+			LOG(gb::EChannelComponent::EngineWarning, "No window at %dth index (# windows = %d) \n", winIdx, m_windows.size());
+			return nullptr;
+		}
 	}
 }
 /*

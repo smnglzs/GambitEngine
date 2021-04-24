@@ -17,7 +17,7 @@ namespace gb
 		virtual void Init() override;
 		virtual void Render(const RenderScene& scene) override;
 		
-		void DrawSquare(const IntRect square, const Color color, ShaderProgram& shader);
+		void DrawRect(const IntRect rect, const Color color, ShaderProgram& shader);
 
 		// void DebugDrawScene();
 	};

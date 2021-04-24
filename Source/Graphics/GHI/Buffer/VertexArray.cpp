@@ -4,7 +4,7 @@
 namespace gb
 {
 	VertexArray::VertexArray() :
-		m_drawMode(EVertexDrawMode::NonIndexed),
+		m_drawMode(EVertexDrawMode::Invalid),
 		m_indexBuffer(),
 		m_indexOffset(0u),
 		m_numVertices(0u),
@@ -31,7 +31,7 @@ namespace gb
 		assert(IsValid() && "GHI failed to create a VertexArray!");
 	}
 
-	void VertexArray::AddAttribute(VertexBuffer* attributeBuffer)
+	void VertexArray::AddAttribute(Unique<VertexBuffer>&& attributeBuffer)
 	{
 		if (attributeBuffer == nullptr)
 		{
@@ -51,7 +51,7 @@ namespace gb
 			}
 			else
 			{
-				m_vertexBuffers[ToUnderlyingType(attributeType)] = attributeBuffer;
+				m_vertexBuffers[ToUnderlyingType(attributeType)] = std::move(attributeBuffer);
 				GHI::AddAttributeToVertexArray(m_handle, GetAttributeByType(attributeType));
 			}
 			break;
@@ -73,17 +73,16 @@ namespace gb
 			{
 				GHI::DrawIndexed(m_primitiveType, m_indexBuffer->GetNumElements(), m_indexBuffer->GetIndexFormat(), GetIndexOffsetPointer());
 				break;
-			}
+			} // fall back
 		case EVertexDrawMode::NonIndexed:
 			GHI::Draw(m_primitiveType, m_vertexOffset, m_numVertices);
 			break;
 		case EVertexDrawMode::IndexedInstanced:
-			numInstances = numInstances > 0 ? numInstances : 1;
 			if (HasIndexBuffer())
 			{
 				GHI::DrawIndexedInstanced(m_primitiveType, m_indexBuffer->GetNumElements(), m_indexBuffer->GetIndexFormat(), GetIndexOffsetPointer(), numInstances);
 				break;
-			}
+			} // fall back
 		case EVertexDrawMode::NonIndexedInstanced:
 			GHI::DrawInstanced(m_primitiveType, m_vertexOffset, m_numVertices, numInstances);
 			break;
