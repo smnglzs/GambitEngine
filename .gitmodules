@@ -13,9 +13,9 @@
 [submodule "ThirdParty/stb"]
 	path = ThirdParty/stb
 	url = https://github.com/Gambit-Dev/stb
-[submodule "Thirdparty/imgui"]
-	path = Thirdparty/imgui
-	url = https://github.com/Gambit-Dev/imgui
 [submodule "ThirdParty/uuid"]
 	path = ThirdParty/uuid
 	url = https://github.com/boostorg/uuid
+[submodule "ThirdParty/imgui"]
+	path = ThirdParty/imgui
+	url = https://github.com/Gambit-Dev/imgui
