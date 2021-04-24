@@ -1,6 +1,6 @@
 #pragma once
 #include "Base/GambitBasePCH.h"
-#include "Graphics/Camera/Camera.h"
+#include "Graphics/Rendering/Camera/Camera.h"
 #include "Graphics/Export.h"
 
 namespace gb

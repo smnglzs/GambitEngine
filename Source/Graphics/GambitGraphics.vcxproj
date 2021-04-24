@@ -11,9 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera\2D\Camera2D.cpp" />
-    <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="Common\Color.cpp" />
+    <ClCompile Include="Geometry\Geometry.cpp" />
     <ClCompile Include="GHI\Backend\OpenGL\GLGHI.cpp" />
     <ClCompile Include="GHI\Buffer\Buffer.cpp" />
     <ClCompile Include="GHI\Buffer\IndexBuffer.cpp" />
@@ -34,15 +33,16 @@
     <ClCompile Include="Rendering\2D\TIlesheet\Tilemap.cpp" />
     <ClCompile Include="Rendering\2D\TIlesheet\Tilesheet.cpp" />
     <ClCompile Include="Rendering\3D\Renderer3D.cpp" />
-    <ClCompile Include="Rendering\Geometry\Geometry.cpp" />
+    <ClCompile Include="Rendering\Camera\2D\Camera2D.cpp" />
+    <ClCompile Include="Rendering\Camera\Camera.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
     <ClCompile Include="Rendering\Scene\SceneNode.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera\2D\Camera2D.h" />
-    <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="Common\Color.h" />
     <ClInclude Include="Common\Common.h" />
+    <ClInclude Include="Geometry\Geometry.h" />
+    <ClInclude Include="Geometry\MeshBuilder.h" />
     <ClInclude Include="GHI\Buffer\Buffer.h" />
     <ClInclude Include="GHI\Buffer\IndexBuffer.h" />
     <ClInclude Include="GHI\Buffer\UniformBuffer.h" />
@@ -66,8 +66,8 @@
     <ClInclude Include="Rendering\2D\TIlesheet\Tilemap.h" />
     <ClInclude Include="Rendering\2D\TIlesheet\Tilesheet.h" />
     <ClInclude Include="Rendering\3D\Renderer3D.h" />
-    <ClInclude Include="Rendering\Geometry\Geometry.h" />
-    <ClInclude Include="Rendering\Geometry\MeshBuilder.h" />
+    <ClInclude Include="Rendering\Camera\2D\Camera2D.h" />
+    <ClInclude Include="Rendering\Camera\Camera.h" />
     <ClInclude Include="Rendering\Renderer.h" />
     <ClInclude Include="Rendering\RenderScene.h" />
     <ClInclude Include="Rendering\Scene\SceneNode.h" />

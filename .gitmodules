@@ -19,3 +19,6 @@
 [submodule "ThirdParty/imgui"]
 	path = ThirdParty/imgui
 	url = https://github.com/Gambit-Dev/imgui
+[submodule "ThirdParty/sole"]
+	path = ThirdParty/sole
+	url = https://github.com/r-lyeh-archived/sole

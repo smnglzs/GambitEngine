@@ -3,10 +3,10 @@
 #include "Base/Singleton/Singleton.h"
 #include "System/Window/WindowManager.h"
 #include "Graphics/Export.h"
-#include "Graphics/Camera/Camera.h"
 #include "Graphics/GHI/Shader/ShaderManager.h"
 #include "Graphics/GHI/Texture/TextureManager.h"
 #include "Graphics/GHI/Buffer/VertexArrayManager.h"
+#include "Graphics/Rendering/Camera/Camera.h"
 #include "Graphics/Rendering/RenderScene.h"
 
 namespace gb
