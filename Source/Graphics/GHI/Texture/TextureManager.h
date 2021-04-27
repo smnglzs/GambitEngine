@@ -13,7 +13,7 @@ namespace gb
 		~TextureManager();
 
 		void SetRootLoadPath(const std::string& loadPath);
-		bool LoadTexture(const std::string& name, const std::string& filePath, const bool flipHorizontally = true);
+		bool LoadTexture(const std::string& name, const std::string& imagePath, const bool flipVertically = true);
 
 		const Texture* BindTexture(const std::string& name);
 

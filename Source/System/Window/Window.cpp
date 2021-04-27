@@ -7,10 +7,11 @@
 namespace gb
 {
 	Window::Window(const WindowSettings& winSettings, const GLContextSettings ctxSettings) :
+		m_windowPtr(nullptr),
 		m_title(winSettings.title),
 		m_position({0, 0}),
 		m_size(winSettings.size),
-		m_windowImpl(nullptr),
+		m_opacity(winSettings.opacity),
 		m_updateViewport(false),
 		m_isContextBound(false),
 		m_isFullscreen(winSettings.fullscreen)
@@ -44,10 +45,11 @@ namespace gb
 			m_size.y = videoMode->height;
 		}
 
-		if (m_windowImpl = glfwCreateWindow(m_size.x, m_size.y, m_title.c_str(), monitor, nullptr))
+		if (m_windowPtr = glfwCreateWindow(m_size.x, m_size.y, m_title.c_str(), monitor, nullptr))
 		{
-			glfwSetWindowUserPointer(m_windowImpl, this);
-			glfwMakeContextCurrent(m_windowImpl);
+			glfwMakeContextCurrent(m_windowPtr);
+			SetCallbacks();
+			SetOpacity(m_opacity);
 		}
 		else
 		{
@@ -60,25 +62,40 @@ namespace gb
 
 	Window::~Window()
 	{
-		glfwDestroyWindow(m_windowImpl);
+		glfwDestroyWindow(m_windowPtr);
 	}
 
+#pragma region Event-handling
+	Window::ListenerId Window::AddEventListener(const uint8 eventCode, WindowEventListener&& listener)
+	{
+		return m_eventCaster[eventCode].Add(std::move(listener));
+	}
+
+	void Window::RemoveEventListener(const uint8 eventCode, ListenerId listenerId)
+	{
+		m_eventCaster[eventCode].Remove(listenerId);
+	}
+
+	void Window::DispatchEvent(const WindowEvent winEvent)
+	{
+		m_eventCaster[winEvent.code].Broadcast(winEvent);
+	}
+#pragma endregion
+
 #pragma region Getters
-	bool  Window::IsFocused()	 const { return GetAttrib(GLFW_FOCUSED) == GLFW_TRUE; }
-	bool  Window::IsFullscreen() const { return m_isFullscreen; }
-	bool  Window::IsVisible()	 const { return GetAttrib(GLFW_VISIBLE) == GLFW_TRUE; }
-	bool  Window::IsMaximized()  const { return GetAttrib(GLFW_MAXIMIZED) == GLFW_TRUE; }
-	bool  Window::IsMinimized()  const { return GetAttrib(GLFW_ICONIFIED) == GLFW_TRUE; }
-	bool  Window::IsResizable()  const { return GetAttrib(GLFW_RESIZABLE) == GLFW_TRUE; }
-	bool  Window::IsDecorated()  const { return GetAttrib(GLFW_DECORATED) == GLFW_TRUE; }
-	bool  Window::ShouldClose()  const { return glfwWindowShouldClose(m_windowImpl) == GLFW_TRUE; }
-	vec2i Window::GetSize()		 const { return m_size; }
+	bool  Window::IsFocused()	 const { return GetAttrib(GLFW_FOCUSED)			   == GLFW_TRUE; }
+	bool  Window::IsVisible()	 const { return GetAttrib(GLFW_VISIBLE)			   == GLFW_TRUE; }
+	bool  Window::IsMaximized()  const { return GetAttrib(GLFW_MAXIMIZED)		   == GLFW_TRUE; }
+	bool  Window::IsMinimized()  const { return GetAttrib(GLFW_ICONIFIED)		   == GLFW_TRUE; }
+	bool  Window::IsResizable()  const { return GetAttrib(GLFW_RESIZABLE)		   == GLFW_TRUE; }
+	bool  Window::IsDecorated()  const { return GetAttrib(GLFW_DECORATED)		   == GLFW_TRUE; }
+	bool  Window::ShouldClose()  const { return glfwWindowShouldClose(m_windowPtr) == GLFW_TRUE; }
 #pragma endregion
 
 #pragma region Setters
 	void Window::BindContext()
 	{
-		glfwMakeContextCurrent(m_windowImpl);
+		glfwMakeContextCurrent(m_windowPtr);
 		m_isContextBound = true;
 	}
 
@@ -91,24 +108,40 @@ namespace gb
 	// TODO: Broadcast event to resize viewports and update cameras
 	void Window::SetFullscreen(bool fullscreen)
 	{
-		if (IsFullscreen() == fullscreen)
+		if (m_isFullscreen == fullscreen)
 			return;
 
 		if (fullscreen)
 		{
-			glfwGetWindowPos(m_windowImpl, &m_position.x, &m_position.y);
-			glfwGetWindowSize(m_windowImpl, &m_size.x, &m_size.y);
+			glfwGetWindowPos(m_windowPtr, &m_position.x, &m_position.y);
+			glfwGetWindowSize(m_windowPtr, &m_size.x, &m_size.y);
 
 			GLFWmonitor* monitor = glfwGetPrimaryMonitor();
 			const GLFWvidmode* videoMode = glfwGetVideoMode(monitor);
-			glfwSetWindowMonitor(m_windowImpl, monitor, 0, 0, videoMode->width, videoMode->height, 0);
+			glfwSetWindowMonitor(m_windowPtr, monitor, 0, 0, videoMode->width, videoMode->height, 0);
 		}
 		else
 		{
-			glfwSetWindowMonitor(m_windowImpl, nullptr, m_position.x, m_position.y, m_size.x, m_size.y, 0);
+			glfwSetWindowMonitor(m_windowPtr, nullptr, m_position.x, m_position.y, m_size.x, m_size.y, 0);
 		}
 
 		m_updateViewport = true;
+	}
+
+	void Window::SetIcon(const Image& image)
+	{
+		GLFWimage icon = { image.GetWidth(), image.GetHeight(), (byte*)image.GetPixelData() };
+		glfwSetWindowIcon(m_windowPtr, 1, &icon);
+	}
+
+	void Window::ResetIcon()
+	{
+		glfwSetWindowIcon(m_windowPtr, 0, NULL);
+	}
+
+	void Window::RequestAttention()
+	{
+		glfwRequestWindowAttention(m_windowPtr);
 	}
 
 	// TODO: (SetSize overloads) 
@@ -116,37 +149,49 @@ namespace gb
 	//	- Check if resize or not! Update width & height!
 	void Window::SetSize(const vec2i& size) 
 	{ 
-		glfwSetWindowSize(m_windowImpl, size.x, size.y); 
+		glfwSetWindowSize(m_windowPtr, size.x, size.y); 
 	}
 
 	void Window::SetSize(const int32 width, const int32 height) 
 	{ 
-		glfwSetWindowSize(m_windowImpl, width, height); 
+		glfwSetWindowSize(m_windowPtr, width, height); 
 	} 
+
+	void Window::SetOpacity(const float opacity)
+	{
+		gbCheckRange(opacity >= 0.f && opacity <= 1.f);
+		m_opacity = opacity;
+		glfwSetWindowOpacity(m_windowPtr, m_opacity);
+	}
 
 	void Window::SetPosition(const vec2i& pos) 
 	{ 
-		glfwSetWindowPos(m_windowImpl, pos.x, pos.y); 
+		glfwSetWindowPos(m_windowPtr, pos.x, pos.y); 
 	}
 
 	void Window::SetPosition(const int32 posX, const int32  posY) 
 	{ 
-		glfwSetWindowPos(m_windowImpl, posX, posY); 
+		glfwSetWindowPos(m_windowPtr, posX, posY); 
 	}
 
 	void Window::SetAspectRatio(const int32 width, const int32  height) 
 	{ 
-		glfwSetWindowAspectRatio(m_windowImpl, width, height);
+		glfwSetWindowAspectRatio(m_windowPtr, width, height);
 	}
 
 	void Window::SetSizeLimits(const vec2i& minSize, const vec2i& maxSize) 
 	{ 
-		glfwSetWindowSizeLimits(m_windowImpl, minSize.x, minSize.y, maxSize.x, maxSize.y); 
+		glfwSetWindowSizeLimits(m_windowPtr, minSize.x, minSize.y, maxSize.x, maxSize.y); 
 	}
 
 	void Window::SetSizeLimits(const int32 minWidth, const int32 minHeight, const int32 maxWidth, const int32 maxHeight) 
 	{ 
-		glfwSetWindowSizeLimits(m_windowImpl, minWidth, minHeight, maxWidth, maxHeight); 
+		glfwSetWindowSizeLimits(m_windowPtr, minWidth, minHeight, maxWidth, maxHeight); 
+	}
+
+	void Window::SetTitle(const std::string& title)
+	{
+		glfwSetWindowTitle(m_windowPtr, title.c_str());
 	}
 	 
 	void Window::ToggleFullscreen() 
@@ -163,25 +208,54 @@ namespace gb
 
 	void Window::SwapBuffers()
 	{
-		glfwSwapBuffers(m_windowImpl);
+		glfwSwapBuffers(m_windowPtr);
 	}
 
 	int32 Window::GetAttrib(int32 glfwAttrib) const
 	{
-		return glfwGetWindowAttrib(m_windowImpl, glfwAttrib);
+		return glfwGetWindowAttrib(m_windowPtr, glfwAttrib);
+	}
+
+	void Window::GiveFocus()
+	{
+		glfwFocusWindow(m_windowPtr);
+	}
+
+	Window* Window::GetGambitPointer(GLFWwindow* window)
+	{
+		return window ? (Window*)glfwGetWindowUserPointer(window) : nullptr;
 	}
 
 #pragma region Callbacks
-	// For multiple windows, we can find GLFWwindow* in linear search
-	// Called directly after the GLFW close flag has been set
-	void OnSetClose(GLFWwindow* window)
+	void Window::OnSetFocus(GLFWwindow* window, int focused)
+	{
+		if (Window* win = GetGambitPointer(window))
+		{
+			WindowEvent winEvent;
+			winEvent.window = win;
+			winEvent.code = (uint8)WindowEvent::Code::FocusChanged;
+			winEvent.focused = focused;
+			win->DispatchEvent(winEvent);
+		}
+		else
+		{
+			// TODO: window lost warning
+		}
+	}
+
+	void Window::OnSetClose(GLFWwindow* window)
 	{
 		
 	}
 
 	void Window::SetCallbacks()
 	{
-		glfwSetWindowCloseCallback(m_windowImpl, OnSetClose);
+		// Sets the user pointer, retrievable with GetGambitPointer.
+		// This pointer affords the below C-style callbacks the ability to pipe GLFW events to specific windows.
+		glfwSetWindowUserPointer(m_windowPtr, this);
+
+		glfwSetWindowCloseCallback(m_windowPtr, OnSetClose);
+		glfwSetWindowFocusCallback(m_windowPtr, OnSetFocus);
 	}
 #pragma endregion
 

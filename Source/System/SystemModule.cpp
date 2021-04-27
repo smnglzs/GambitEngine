@@ -9,6 +9,8 @@ namespace gb
 {
 	DEFINE_SINGLETON(WindowManager, WindowManager, GAMBIT_SYSTEM_API);
 	DEFINE_SINGLETON(InputManager,  InputManager,  GAMBIT_SYSTEM_API);
+	DEFINE_SINGLETON(Keyboard,		Keyboard,	   GAMBIT_SYSTEM_API);
+	DEFINE_SINGLETON(Mouse,			Mouse,		   GAMBIT_SYSTEM_API);
 
 	SystemModule::SystemModule()
 	{
@@ -26,6 +28,9 @@ namespace gb
 
 		REGISTER_SINGLETON(WindowManager, WindowManager);
 		REGISTER_SINGLETON(InputManager,  InputManager);
+		REGISTER_SINGLETON(Keyboard,	  Keyboard);
+		REGISTER_SINGLETON(Mouse,		  Mouse);
+
 	}
 
 	void SystemModule::Start()

@@ -6,8 +6,9 @@ namespace gb
 {
 	struct WindowSettings
 	{
-		std::string  title = "GambitEngine";
-		vec2i		 size  = { 1600, 900 };
+		std::string  title   = "GambitEngine";
+		vec2i		 size    = { 1600, 900 };
+		float		 opacity = 1.f;
 
 		uint8 decorated  : 1 = 1;
 		uint8 focused	 : 1 = 1;

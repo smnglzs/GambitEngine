@@ -388,14 +388,14 @@ public:
 	constexpr static const unsigned int INVALID_ID = (unsigned int)~0;
 private:
 	unsigned int m_Id;
-	static unsigned int CURRENT_ID;
 
 	static int GetNewID()
 	{
-		unsigned int output = DelegateHandle::CURRENT_ID++;
-		if (DelegateHandle::CURRENT_ID == INVALID_ID)
+		static unsigned int CURRENT_ID = 0;
+		unsigned int output = CURRENT_ID++;
+		if (CURRENT_ID == INVALID_ID)
 		{
-			DelegateHandle::CURRENT_ID = 0;
+			CURRENT_ID = 0;
 		}
 		return output;
 	}

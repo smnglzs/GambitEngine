@@ -1,5 +1,6 @@
 #include "VoxelGame.h"
 #include "VoxelWorld.h"
+#include "System/Input/InputManager.h"
 #include "System/Window/Window.h"
 #include "Graphics/GHI/Shader/ShaderManager.h"
 #include "Graphics/GHI/Texture/TextureManager.h"
@@ -8,9 +9,10 @@
 // TODO: Use for async loads.
 #include <future>
 
+#define InputManager   gb::GetInputManager()
+#define Renderer2D	   gb::GetRenderer2D()
 #define ShaderManager  gb::GetShaderManager()
 #define TextureManager gb::GetTextureManager()
-#define Renderer2D	   gb::GetRenderer2D()
 
 namespace vxl
 {
@@ -31,7 +33,13 @@ namespace vxl
 		Window* window = GetWindowManager()->GetWindow();
 		if (window == nullptr)
 		{
-			if (window = GetWindowManager()->CreateWindow(WindowSettings{}, GLContextSettings{}))
+			// Window
+			WindowSettings winSettings;
+
+			// GL Context
+			GLContextSettings ctxSettings;
+
+			if (window = GetWindowManager()->CreateWindow(winSettings, ctxSettings))
 				SetWindow(window);
 		}
 		else
@@ -56,20 +64,26 @@ namespace vxl
 		}
 		assert(shaderLoadResult);
 
-		bool textureLoadResult = TextureManager->LoadTexture("QuestionBlock", "T_QuestionBlock.jfif");
-		assert(textureLoadResult);
-		
-		return shaderLoadResult && textureLoadResult;
+		return shaderLoadResult;
 	}
 
 	void VoxelGame::Start()
 	{
+		EngineApplication::Start();
 
+		// KBM event examples
+		gbMouseAddListener(MouseEvent::Code::EnterContentArea, this, VoxelGame::OnCursorEnterContentArea);
+		gbMouseAddListener(MouseEvent::Code::Move, this, VoxelGame::OnCursorMove);
+		gbKeyboardAddListener(KeyEvent::Code::Press, this, VoxelGame::OnKeyEvent);
+		gbKeyboardAddListener(KeyEvent::Code::Release, this, VoxelGame::OnKeyEvent);
+
+		// Window event example
+		gbWindowAddListener(m_window, WindowEvent::Code::FocusChanged, this, VoxelGame::OnFocusChanged);
 	}
 
 	void VoxelGame::Update(const float deltaTime)
 	{
-
+	
 	}
 
 	void VoxelGame::Render()
@@ -85,6 +99,31 @@ namespace vxl
 
 	bool VoxelGame::IsRunning()
 	{
-		return m_window && !m_window->ShouldClose();
+		return m_running && m_window && !m_window->ShouldClose();
+	}
+
+	//--------------------------------------------------------------
+	//	Event examples
+	//--------------------------------------------------------------
+	void VoxelGame::OnCursorEnterContentArea(MouseEvent mouseEvent)
+	{
+		Renderer2D->GetCamera().SetClearColor(mouseEvent.enteredContentArea ? Color::Green : Color::Red);
+	}
+
+	void VoxelGame::OnCursorMove(MouseEvent mouseEvent)
+	{
+		Color posAsColor(mouseEvent.position.x / m_window->GetWidth(), mouseEvent.position.y / m_window->GetHeight(), 1.f);
+		Renderer2D->GetCamera().SetClearColor(posAsColor);
+	}
+
+	void VoxelGame::OnKeyEvent(KeyEvent keyEvent)
+	{
+		Renderer2D->GetCamera().SetClearColor(keyEvent.code == (uint8)KeyEvent::Code::Press ? Color::Blue : Color::Yellow);
+	}
+
+	void VoxelGame::OnFocusChanged(gb::WindowEvent winEvent)
+	{
+		printf("Window %s focus\n", winEvent.focused ? "gained" : "lost");
+		winEvent.window->SetOpacity(winEvent.focused ? 1.f : 0.5f);
 	}
 }

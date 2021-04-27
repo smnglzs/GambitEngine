@@ -30,6 +30,9 @@ namespace gb
 		virtual void Render(const RenderScene& scene);
 		virtual void Draw(const DrawCallData& drawData);
 
+		inline virtual Camera& GetCamera() { return *m_camera; }
+		inline virtual const Camera& GetCamera() const { return *m_camera; }
+
 	protected:
 		virtual void BeginFrame();
 		virtual void EndFrame();

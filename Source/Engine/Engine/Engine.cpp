@@ -1,5 +1,6 @@
 #include "Engine.h" 
 
+#include "System/Input/InputManager.h"
 #include "System/Window/WindowManager.h"
 #include "Engine/Application/EngineApplication.h"
 
@@ -43,6 +44,13 @@ namespace gb
 
 		std::cout << "Starting app...\n";
 		app.Start();
+		
+		// Binds the InputManager to the app's window, setting up KBM callbacks.
+		gbInput->Init(app.GetWindow());
+
+		Image icon(app.GetAssetFolder() + "icon.png", false);
+		app.GetWindow()->SetIcon(icon);
+		
 		while (app.IsRunning())
 		{
 			app.GetWindow()->PollEvents();
