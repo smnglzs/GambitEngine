@@ -33,7 +33,7 @@ namespace gb
 		Gamepad();
 		virtual ~Gamepad() override;
 
-		static Gamepad& Get(const GamepadId gpid) {}
+		//static Gamepad& Get(const GamepadId gpid) {}
 
 		GB_DEFINE_LISTENER(GamepadEvent);
 		virtual ListenerId AddEventListener(const uint8 eventCode, EventClassListener&& listener) override;

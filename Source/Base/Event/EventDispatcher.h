@@ -28,5 +28,6 @@ namespace gb
 	template class IEventDispatcher<struct KeyEvent>;
 	template class IEventDispatcher<struct MouseEvent>;
 	template class IEventDispatcher<struct WindowEvent>;
+	template class IEventDispatcher<struct GamepadEvent>;
 }
 

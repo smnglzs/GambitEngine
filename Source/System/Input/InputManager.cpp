@@ -28,7 +28,7 @@ namespace gb
 			glfwSetKeyCallback(winPtr, Keyboard::OnKeyEvent);
 
 			// Gamepad
-			glfwSetJoystickCallback(Gamepad::OnJoystickConnected);
+			//glfwSetJoystickCallback(Gamepad::OnJoystickConnected);
 		}
 		else
 		{
