@@ -42,10 +42,10 @@ namespace gb
 		GHI::ClearRenderTarget(m_camera->GetClearMask());
 	}
 
-	void Renderer::Render(const RenderScene& scene)
-	{
-		throw Exceptions::NotImplemented();
-	}
+	//void Renderer::Render(const RenderScene& scene)
+	//{
+	//	throw Exceptions::NotImplemented();
+	//}
 
 	void Renderer::Draw(const DrawCallData& drawData)
 	{

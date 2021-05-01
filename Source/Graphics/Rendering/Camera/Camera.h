@@ -33,7 +33,8 @@ namespace gb
 		inline const FloatRect&	 GetView()		     const { return m_view;			  }
 	#pragma endregion
 		
-		inline void SetClearColor(const Color& clearColor) { m_clearColor = clearColor; }
+		inline void SetClearColor(const Color& clearColor)  { m_clearColor = clearColor; }
+		inline void SetClearMask(const ClearMask clearMask) { m_clearMask  = clearMask;	 }
 
 		inline void	SetClipPlanes(const ClipPlanes& clipPlanes)
 		{

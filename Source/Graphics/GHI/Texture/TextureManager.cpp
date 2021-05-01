@@ -13,7 +13,7 @@ namespace gb
 
 	TextureManager::~TextureManager()
 	{
-
+		// TODO: unload textures?
 	}
 
 	void TextureManager::SetRootLoadPath(const std::string& loadPath)
@@ -28,23 +28,22 @@ namespace gb
 		}
 	}
 
-	bool TextureManager::LoadTexture(const std::string& name, const std::string& filePath, const bool flipVertically)
+	bool TextureManager::LoadTexture(const std::string& name, const std::string& imagePath, const bool flipVertically)
 	{
-		if (name.empty() || filePath.empty())
+		if (name.empty() || imagePath.empty())
 		{
 			LOG(EChannelComponent::EngineError, "Texture name or filepath is empty!");
 			assert(false);
 			return false;
 		}
 
-		stbi_set_flip_vertically_on_load(flipVertically);
-
-		bool loadResult	= false;
-		int32 width = 0, height = 0, channels = 0, desiredChannels = 4; // TODO: replace with mapping (NB: will likely always be 4 because RGBA is preferred)
-		if (const uint8* pixelData = stbi_load((m_rootLoadPath + filePath).c_str(), &width, &height, &channels, desiredChannels))
+		bool loadResult = false;
+		Image image(imagePath, flipVertically);
+		if (image.IsValid())
 		{
-			const PixelFormat format = { EPixelDataFormat::RGBA, EPixelDataType::Uint8 }; // TODO: other formats as needed
-			if (auto texture = std::make_unique<Texture>(name, width, height, format, pixelData))
+			// TODO: add other formats as needed
+			const PixelFormat format = { EPixelDataFormat::RGBA, EPixelDataType::Uint8 }; 
+			if (Unique<Texture> texture = std::make_unique<Texture>(name, std::move(image), format))
 			{
 				m_textureMap.insert(std::make_pair(name, std::move(texture)));
 				loadResult = true;
@@ -54,33 +53,14 @@ namespace gb
 				LOG(EChannelComponent::EngineError, "Texture construction failed!");
 				assert(false);
 			}
-			stbi_image_free((void*)pixelData);
 		}
 		else
 		{
+			LOG(EChannelComponent::EngineError, "Image load failed!");
 			throw Exceptions::LoadFailed();
 		}
 		return loadResult;
 	}
-
-	/* TODO: introduce generic Image type but outside the GHI. Avoid having TextureManager load pixel data directly.
-	void LoadImage()
-	{
-		int32 width = 0, height = 0, channels = 0, desiredChannels = 4; 
-
-		bool loadResult	= false;
-		int32 width = 0, height = 0, channels = 0, desiredChannels = 4; // TODO: replace with mapping (NB: will likely always be 4 because RGBA is preferred)
-		if (const uint8* pixelData = stbi_load((m_rootLoadPath + filePath).c_str(), &width, &height, &channels, desiredChannels))
-		{
-			...
-			stbi_image_free((void*)pixelData);
-		}
-		else
-		{
-			throw Exceptions::LoadFailed();
-		}
-	}
-	*/
 
 	const Texture* TextureManager::BindTexture(const std::string& name)
 	{

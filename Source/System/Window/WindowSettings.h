@@ -6,15 +6,18 @@ namespace gb
 {
 	struct WindowSettings
 	{
-		std::string  title = "GambitEngine";
-		vec2i		 size  = { 1600, 900 };
+		std::string  title   = "GambitEngine";
+		vec2i		 size    = { 1900, 1080 };
+		float		 opacity = 1.f;
 
-		uint8 decorated  : 1 = 1;
-		uint8 focused	 : 1 = 1;
-		uint8 fullscreen : 1 = 0;
-		uint8 maximized  : 1 = 0;
-		uint8 resizable  : 1 = 0;
-		uint8 visible	 : 1 = 1;
-		uint8 vsync		 : 1 = 1;
+		GB_FLAG(decorated,		  1);
+		GB_FLAG(fixedAspectRatio, 0);
+		GB_FLAG(floating,		  0);
+		GB_FLAG(focused,		  1);
+		GB_FLAG(fullscreen,		  0);
+		GB_FLAG(maximized,		  0);
+		GB_FLAG(resizable,		  1);
+		GB_FLAG(visible,		  1);
+		GB_FLAG(vsync,			  0);
 	};
 }

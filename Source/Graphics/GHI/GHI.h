@@ -45,13 +45,13 @@ namespace gb
 	#pragma region Renderer Capabilities
 		static void			SetClearColor(const vec3f& color);
 		static void			SetBlendFunc(const EBlendFunc srcBlend, const EBlendFunc dstBlend);
-		static void			SetDepthFunc(const EDepthFunc depthFunc);
+		static void			SetDepthFunc(const EComparisonFunc depthFunc);
 		static void			SetRenderCapEnabled(const RenderCaps::ERenderCap cap, const bool enable);
 		static void			SetScissorRect(int32 x, int32 y, int32 w, int32 h);
 		static void			SetViewport(int32 x, int32 y, int32 w, int32 h);
 		static void			SetViewport(const IntRect& view);
 		static void			SetViewport(const FloatRect& view);
-		static void			SetWireframe(const bool enable);
+		static void			SetPolygonRasterMode(const EPolygonRasterMode mode, const EFace face = EFace::FrontAndBack);
 
 		static bool			IsRenderCapEnabled(const RenderCaps::ERenderCap cap);
 	#pragma endregion
@@ -137,14 +137,14 @@ namespace gb
 		static void			ResetFrameCounters();
 
 	private:
-		static std::string	s_apiName;
-		static std::string	s_apiVersion;
-		static std::string	s_gpuName;
-		static std::string	s_gpuVendor;
-		static std::string	s_shadingLanguageVersion;
-		static uint32		s_frameDrawCount;
-		static uint32		s_framePrimCount[g_NumPrimitiveModes];
-		static RenderCaps	s_renderCaps;
+		static std::string s_apiName;
+		static std::string s_apiVersion;
+		static std::string s_gpuName;
+		static std::string s_gpuVendor;
+		static std::string s_shadingLanguageVersion;
+		static uint32	   s_frameDrawCount;
+		static uint32	   s_framePrimCount[g_NumPrimitiveModes];
+		static RenderCaps  s_renderCaps;
 	};
 }
 

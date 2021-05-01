@@ -62,7 +62,7 @@ namespace gb
 		}
 	}
 
-	Window* WindowManager::GetWindow(const EWindowSlot winSlot /* = EWindowSlot::PrimaryWindows */)
+	Window* WindowManager::GetWindow(const EWindowSlot winSlot /* = EWindowSlot::PrimaryWindow */)
 	{
 		uint8 winIdx = ToUnderlyingType(winSlot);
 		if (winIdx < m_windows.size())

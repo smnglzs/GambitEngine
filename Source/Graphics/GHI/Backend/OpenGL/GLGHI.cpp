@@ -17,14 +17,19 @@
 namespace gb
 {
 #pragma region Static Variables
-	uint32	    GHI::s_frameDrawCount = 0u;
-	uint32	    GHI::s_framePrimCount[g_NumPrimitiveModes] = { 0u };
+	// API strings
+	std::string GHI::s_apiName				  = "OpenGL";
+	std::string GHI::s_apiVersion			  = "N/A";
+	std::string GHI::s_gpuName				  = "N/A";
+	std::string GHI::s_gpuVendor			  = "N/A";
+	std::string GHI::s_shadingLanguageVersion = "N/A";
+	
+	// Render rapabilities
 	RenderCaps  GHI::s_renderCaps = { };
-	std::string GHI::s_apiName = "OpenGL";
-	std::string GHI::s_apiVersion = { };
-	std::string GHI::s_gpuName = { };
-	std::string GHI::s_gpuVendor = { };
-	std::string GHI::s_shadingLanguageVersion = { };
+
+	// Frame Counters
+	uint32	    GHI::s_frameDrawCount					    = 0u;
+	uint32	    GHI::s_framePrimCount[g_NumPrimitiveModes] = { 0u };
 /* Static Variables */ #pragma endregion
 
 #pragma region Handles
@@ -78,7 +83,7 @@ namespace gb
 			return GL_NONE;
 		}
 	}
-
+	
 	inline static constexpr GLenum ConvertIndexFormat(const EIndexFormat indexType)
 	{
 		switch (indexType)
@@ -126,18 +131,18 @@ namespace gb
 		}
 	}
 
-	inline static constexpr GLenum ConvertDepthFunc(const EDepthFunc depthFunc)
+	inline static constexpr GLenum ConvertComparisonFunc(const EComparisonFunc depthFunc)
 	{
 		switch (depthFunc)
 		{
-		case EDepthFunc::Always:	   return GL_ALWAYS;
-		case EDepthFunc::Equal:		   return GL_EQUAL;
-		case EDepthFunc::Greater:	   return GL_GREATER;
-		case EDepthFunc::GreaterEqual: return GL_GEQUAL;
-		case EDepthFunc::Less:		   return GL_LESS;
-		case EDepthFunc::LessEqual:    return GL_LEQUAL;
-		case EDepthFunc::Never:		   return GL_NEVER;
-		case EDepthFunc::NotEqual:	   return GL_NOTEQUAL;
+		case EComparisonFunc::Always:	   return GL_ALWAYS;
+		case EComparisonFunc::Equal:		   return GL_EQUAL;
+		case EComparisonFunc::Greater:	   return GL_GREATER;
+		case EComparisonFunc::GreaterEqual: return GL_GEQUAL;
+		case EComparisonFunc::Less:		   return GL_LESS;
+		case EComparisonFunc::LessEqual:    return GL_LEQUAL;
+		case EComparisonFunc::Never:		   return GL_NEVER;
+		case EComparisonFunc::NotEqual:	   return GL_NOTEQUAL;
 		default:
 			LOG(gb::EChannelComponent::EngineError, "Depth function not recognized!");
 			assert(false);
@@ -647,11 +652,22 @@ namespace gb
 		glViewport(int32(view.x), int32(view.y), int32(view.w), int32(view.h));
 	}
 
-	void GHI::SetWireframe(const bool enable)
+	void GHI::SetPolygonRasterMode(const EPolygonRasterMode mode, const EFace face)
 	{
-		// TODO: Use EFace.
-		if (enable) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		else		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		int32 glFace = GL_NONE;
+		switch (face)
+		{
+		case EFace::Front:		  glFace = GL_FRONT;		  break;
+		case EFace::Back:		  glFace = GL_BACK;			  break;
+		case EFace::FrontAndBack: glFace = GL_FRONT_AND_BACK; break;
+		}
+
+		switch (mode)
+		{
+		case EPolygonRasterMode::Point: glPolygonMode(glFace, GL_POINT); break;
+		case EPolygonRasterMode::Line:  glPolygonMode(glFace, GL_LINE);  break;
+		case EPolygonRasterMode::Fill:  glPolygonMode(glFace, GL_FILL);  break;
+		}
 	}
 
 	void GHI::SetClearColor(const vec3f& color)
@@ -664,9 +680,9 @@ namespace gb
 		glBlendFunc(ConvertBlendFunc(srcBlend), ConvertBlendFunc(dstBlend));
 	}
 
-	void GHI::SetDepthFunc(const EDepthFunc depthFunc)
+	void GHI::SetDepthFunc(const EComparisonFunc depthFunc)
 	{
-		glDepthFunc(ConvertDepthFunc(depthFunc));
+		glDepthFunc(ConvertComparisonFunc(depthFunc));
 	}
 /* Misc. */ #pragma endregion // TODO: Rename
 

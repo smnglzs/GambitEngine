@@ -1,5 +1,6 @@
 #include "Engine.h" 
 
+#include "System/Input/InputManager.h"
 #include "System/Window/WindowManager.h"
 #include "Engine/Application/EngineApplication.h"
 
@@ -33,16 +34,24 @@ namespace gb
 		UnLoadModules();
 	}
 
-	void Engine::RunApplication(EngineApplication& app)
+	EApplicationExitCode Engine::RunApplication(EngineApplication& app)
 	{
 		std::cout << "Initializing app...\n";
 		app.Init();
 
 		std::cout << "Loading assets required by the app... \n";
-		app.LoadAssets();
+		if (!app.LoadAssets())
+			return EApplicationExitCode::LoadFailed;
 
 		std::cout << "Starting app...\n";
 		app.Start();
+		
+		// Binds the InputManager to the app's window, setting up KBM callbacks.
+		gbInput->Init(app.GetWindow());
+
+		Image icon(app.GetAssetFolder() + "icon.png", false);
+		app.GetWindow()->SetIcon(icon);
+		
 		while (app.IsRunning())
 		{
 			app.GetWindow()->PollEvents();
@@ -55,6 +64,8 @@ namespace gb
 
 		std::cout << "Stopping app...\n";
 		app.Stop();
+
+		return EApplicationExitCode::Success;
 	}
 
 	void Engine::LoadModules()

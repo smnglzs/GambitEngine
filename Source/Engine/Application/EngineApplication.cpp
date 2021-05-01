@@ -6,7 +6,8 @@
 namespace gb
 {
 	EngineApplication::EngineApplication() :
-		m_window(nullptr)
+		m_window(nullptr),
+		m_running(false)
 	{
 
 	}
@@ -18,12 +19,8 @@ namespace gb
 
 	bool EngineApplication::LoadAssets()
 	{
+		// Asset-less applications are valid, so return true by default. 
 		return true;
-	}
-
-	void EngineApplication::Render()
-	{
-
 	}
 
 	void EngineApplication::Present()

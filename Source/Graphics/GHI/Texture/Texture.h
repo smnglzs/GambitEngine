@@ -1,5 +1,6 @@
 #pragma once
 #include "Base/GambitBasePCH.h"
+#include "Base/Image/Image.h"
 #include "Graphics/Export.h"
 #include "Graphics/GHI/GHICommon.h"
 
@@ -16,15 +17,18 @@ namespace gb
 
 	public:
 		Texture();
-		Texture(const std::string& name, const uint16 width, const uint16 height, const PixelFormat pixelFormat, const void* pixelData);
+		Texture(const std::string& name, Image&& image, const PixelFormat pixelFormat);
 		virtual ~Texture();
 
 		void Bind();
 
-		virtual bool IsValid() const override { return m_valid; }
-		inline const std::string& GetName() const { return m_name; }
-		inline uint16 GetWidth() const { return m_width; }
-		inline uint16 GetHeight() const { return m_height; }
+		inline virtual bool IsValid() const override { return m_valid; }
+
+		inline const std::string& GetName()      const { return m_name;					}
+		inline const Image&		  GetImage()     const { return m_image;			    }
+		inline int32			  GetWidth()     const { return m_image.GetWidth();     }
+		inline int32			  GetHeight()    const { return m_image.GetHeight();    }
+		inline const byte*		  GetPixelData() const { return m_image.GetPixelData(); }
 
 		// TODO: implement move & copy
 
@@ -33,8 +37,7 @@ namespace gb
 
 	private:
 		std::string	m_name;
-		uint16		m_width;
-		uint16		m_height;
+		Image		m_image;
 		PixelFormat m_pixelFormat;
 		bool		m_valid;
 	};

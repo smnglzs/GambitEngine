@@ -1,34 +1,33 @@
-#include "Keyboard.h"
-#include "GLFW/glfw3.h"
+#include "Gamepad.h"
 
 namespace gb
 {
-	Keyboard::Keyboard()
+	Gamepad::Gamepad()
 	{
 
 	}
 
-	Keyboard::~Keyboard()
+	Gamepad::~Gamepad()
 	{
 
 	}
 
-	Keyboard::ListenerId Keyboard::AddEventListener(const uint8 eventCode, EventClassListener&& listener)
+	Gamepad::ListenerId Gamepad::AddEventListener(const uint8 eventCode, EventClassListener&& listener)
 	{
 		return m_eventCaster[eventCode].Add(std::move(listener));
 	}
 
-	void Keyboard::RemoveEventListener(const uint8 eventCode, ListenerId listenerId)
+	void Gamepad::RemoveEventListener(const uint8 eventCode, ListenerId listenerId)
 	{
 		m_eventCaster[eventCode].Remove(listenerId);
 	}
 
-	void Keyboard::DispatchEvent(const KeyEvent keyEvent)
+	void Gamepad::DispatchEvent(const KeyEvent keyEvent)
 	{
 		m_eventCaster[keyEvent.code].Broadcast(keyEvent);
 	}
 
-	void Keyboard::OnKeyEvent(GLFWwindow* window, int32 key, int32 scancode, int32 action, int32 mods)
+	void Gamepad::OnKeyEvent(GLFWwindow* window, int32 key, int32 scancode, int32 action, int32 mods)
 	{
 		KeyEvent keyEvent;
 		switch (action)
@@ -39,6 +38,6 @@ namespace gb
 		default:
 			keyEvent.code = (uint8)KeyEvent::ECode::Count;
 		}
-		gbKeyboard->DispatchEvent(keyEvent);
+		Gamepad::Get(->DispatchEvent(keyEvent);
 	}
 }

@@ -1,7 +1,6 @@
 #pragma once
 #include "Base/GambitBasePCH.h"
 #include "Base/Singleton/Singleton.h"
-#include "Graphics/Common/Common.h"
 #include "Graphics/Export.h"
 #include "Graphics/GHI/Buffer/VertexArray.h"
 #include "Graphics/Rendering/Renderer.h"
@@ -15,7 +14,7 @@ namespace gb
 		virtual ~Renderer2D();
 
 		virtual void Init() override;
-		virtual void Render(const RenderScene& scene) override;
+		//virtual void Render(const RenderScene& scene) override;
 		
 		void DrawRect(const IntRect rect, const Color color, ShaderProgram& shader);
 

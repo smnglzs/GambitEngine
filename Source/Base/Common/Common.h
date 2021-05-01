@@ -1,5 +1,6 @@
 #pragma once
 #include <array>
+#include <filesystem>
 #include <forward_list>
 #include <functional>
 #include <memory>
@@ -12,6 +13,7 @@
 namespace gb
 {
 	// Integral types
+	using byte	 = unsigned char;
 	using int8   = int8_t;
 	using int16  = int16_t;
 	using int32  = int32_t;

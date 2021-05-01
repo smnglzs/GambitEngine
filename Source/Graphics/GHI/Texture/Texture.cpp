@@ -6,24 +6,22 @@ namespace gb
 	Texture::Texture() :
 		m_valid(false),
 		m_name("InvalidTexture"),
-		m_width(0u),
-		m_height(0u),
-		m_pixelFormat()
+		m_pixelFormat(),
+		m_image({})
 	{
 
 	}
 
-	Texture::Texture(const std::string& name, const uint16 width, const uint16 height, const PixelFormat pixelFormat, const void* pixelData) :
+	Texture::Texture(const std::string& name, Image&& image, const PixelFormat pixelFormat) :
 		m_valid(false),
 		m_name(name),
-		m_width(width),
-		m_height(height),
+		m_image(image),
 		m_pixelFormat(pixelFormat)
 	{
 		// TODO: Support more texture types. Also, possibly store pixelData.
-		if (pixelData && width > 0u && height > 0u)
+		if (GetPixelData() && GetWidth() > 0u && GetHeight() > 0u)
 		{
-			if (m_handle = GHI::CreateTexture(ETextureType::Texture2D, width, height, pixelFormat, pixelData))
+			if (m_handle = GHI::CreateTexture(ETextureType::Texture2D, GetWidth(), GetHeight(), pixelFormat, GetPixelData()))
 			{
 				m_valid = GHI::IsTexture(m_handle);
 			}
@@ -40,8 +38,6 @@ namespace gb
 	{
 		GHI::DeleteTexture(m_handle);
 		m_handle = 0u;
-		m_width = 0u;
-		m_height = 0u;
 		m_name = "";
 	}
 

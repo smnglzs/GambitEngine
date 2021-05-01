@@ -22,6 +22,7 @@
       </PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="BaseModule.cpp" />
+    <ClCompile Include="Image\Image.cpp" />
     <ClCompile Include="LoggerManager\LogChannel.cpp" />
     <ClCompile Include="LoggerManager\LoggerManager.cpp" />
     <ClCompile Include="Math\Transform.cpp" />
@@ -31,13 +32,17 @@
   <ItemGroup>
     <ClInclude Include="Common\Checks.h" />
     <ClInclude Include="Common\Common.h" />
+    <ClInclude Include="Common\Macros.h" />
     <ClInclude Include="Common\NonCopyable.h" />
     <ClInclude Include="Delegate\Delegate.h" />
+    <ClInclude Include="Event\Event.h" />
+    <ClInclude Include="Event\EventDispatcher.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="FileManager\BaseConfig.h" />
     <ClInclude Include="FileManager\FileManager.h" />
     <ClInclude Include="BaseModule.h" />
     <ClInclude Include="GambitBasePCH.h" />
+    <ClInclude Include="Image\Image.h" />
     <ClInclude Include="LoggerManager\LogChannel.h" />
     <ClInclude Include="LoggerManager\LoggerManager.h" />
     <ClInclude Include="LoggerManager\LoggerManager_impl.h" />
@@ -98,7 +103,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;GAMBIT_BASE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\json\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\json\include\;$(SolutionDir)..\ThirdParty\stb\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <DisableSpecificWarnings>4251;5054;6011;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -119,7 +124,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;GAMBIT_BASE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\json\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\ThirdParty\glm\;$(SolutionDir)..\ThirdParty\json\include\;$(SolutionDir)..\ThirdParty\stb\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <DisableSpecificWarnings>4251;5054;6011;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>

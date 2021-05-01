@@ -7,7 +7,7 @@
 
 #define CONSOLE_PAUSE_BEFORE_CLOSE 1
 
-void run(const char* exePath)
+gb::EApplicationExitCode run(const char* exePath)
 {
     std::string assetPath(exePath);
     size_t newSize = assetPath.rfind('\\') + 1;
@@ -28,17 +28,17 @@ void run(const char* exePath)
 
     engine.StartEngine();
     // The whole game starts NOW!
-    engine.RunApplication(vxlGame);
+    return engine.RunApplication(vxlGame);
 }
 
 int main(int argc, char* argv[])
 {
-    std::string exePath(argv[0]);
-    run(argv[0]);
+    // Pass in executable path to the application.
+    gb::EApplicationExitCode exitCode = run(argv[0]);
 
 #if CONSOLE_PAUSE_BEFORE_CLOSE
     system("pause");
 #endif
 
-    return 0;
+    return (int)exitCode;
 }

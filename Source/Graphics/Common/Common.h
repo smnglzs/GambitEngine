@@ -14,9 +14,14 @@ namespace gb
 
 	struct ClearMask
 	{
-		uint8 color : 1;
-		uint8 depth : 1;
-		uint8 stencil : 1;
+		ClearMask(bool clearColor = true, bool clearDepth = false, bool clearStencil = false) :
+			color(clearColor),
+			depth(clearDepth),
+			stencil(clearStencil) { }
+
+		GB_FLAG(color,	 1);
+		GB_FLAG(depth,	 1);
+		GB_FLAG(stencil, 1);
 	};
 
 	using MatrixVariant = std::variant<mat4f, std::vector<mat4f>*>;
