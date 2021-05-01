@@ -6,5 +6,13 @@
   <ItemGroup>
     <ClInclude Include="RuntimeModule.h" />
     <ClInclude Include="Export.h" />
+    <ClInclude Include="Object\Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object">
+      <UniqueIdentifier>{cfd082ba-9480-42f6-913e-07767c317ae0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

@@ -48,6 +48,9 @@
     <ClCompile Include="GambitBasePCH.cpp" />
     <ClCompile Include="BaseModule.cpp" />
     <ClCompile Include="Image\Image.cpp" />
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LoggerManager\LoggerManager.h">
@@ -98,9 +101,5 @@
     <ClInclude Include="Delegate\Delegate.h">
       <Filter>Delegate</Filter>
     </ClInclude>
-    <ClInclude Include="Event\EventDispatcher.h" />
-    <ClInclude Include="Event\Event.h" />
-    <ClInclude Include="Image\Image.h" />
-    <ClInclude Include="Common\Macros.h" />
   </ItemGroup>
 </Project>
