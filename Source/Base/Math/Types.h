@@ -45,6 +45,6 @@ namespace gb
         T w, h;
     };
 
-    using IntRect   = typename Rect<int32>;
+    using IntRect   = typename Rect<int>;
     using FloatRect = typename Rect<float>;
 }
