@@ -24,6 +24,7 @@
     <ClCompile Include="BaseModule.cpp" />
     <ClCompile Include="LoggerManager\LogChannel.cpp" />
     <ClCompile Include="LoggerManager\LoggerManager.cpp" />
+    <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Module\Module.cpp" />
     <ClCompile Include="Utils\HashedString.cpp" />
   </ItemGroup>
@@ -41,6 +42,7 @@
     <ClInclude Include="LoggerManager\LoggerManager.h" />
     <ClInclude Include="LoggerManager\LoggerManager_impl.h" />
     <ClInclude Include="Math\Primitive.h" />
+    <ClInclude Include="Math\Transform.h" />
     <ClInclude Include="Math\Types.h" />
     <ClInclude Include="Module\Module.h" />
     <ClInclude Include="Singleton\Singleton.h" />

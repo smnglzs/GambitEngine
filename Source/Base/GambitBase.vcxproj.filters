@@ -47,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="GambitBasePCH.cpp" />
     <ClCompile Include="BaseModule.cpp" />
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LoggerManager\LoggerManager.h">
@@ -96,6 +99,9 @@
     <ClInclude Include="BaseModule.h" />
     <ClInclude Include="Delegate\Delegate.h">
       <Filter>Delegate</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Transform.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

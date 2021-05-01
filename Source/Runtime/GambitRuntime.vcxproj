@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Export.h" />
+    <ClInclude Include="Object\Object.h" />
     <ClInclude Include="RuntimeModule.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
