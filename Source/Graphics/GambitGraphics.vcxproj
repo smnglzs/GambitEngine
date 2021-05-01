@@ -29,10 +29,9 @@
     <ClCompile Include="GHI\Texture\TextureManager.cpp" />
     <ClCompile Include="GraphicsModule.cpp" />
     <ClCompile Include="Rendering\2D\Renderer2D.cpp" />
-    <ClCompile Include="Rendering\2D\Sprite\Sprite.cpp" />
-    <ClCompile Include="Rendering\2D\TIlesheet\Tilemap.cpp" />
-    <ClCompile Include="Rendering\2D\TIlesheet\Tilesheet.cpp" />
-    <ClCompile Include="Rendering\3D\Renderer3D.cpp" />
+    <ClCompile Include="Rendering\2D\Sprite.cpp" />
+    <ClCompile Include="Rendering\2D\Tilemap.cpp" />
+    <ClCompile Include="Rendering\2D\Tilesheet.cpp" />
     <ClCompile Include="Rendering\Camera\2D\Camera2D.cpp" />
     <ClCompile Include="Rendering\Camera\Camera.cpp" />
     <ClCompile Include="Rendering\Renderer.cpp" />
@@ -62,14 +61,12 @@
     <ClInclude Include="GraphicsModule.h" />
     <ClInclude Include="Export.h" />
     <ClInclude Include="Rendering\2D\Renderer2D.h" />
-    <ClInclude Include="Rendering\2D\Sprite\Sprite.h" />
-    <ClInclude Include="Rendering\2D\TIlesheet\Tilemap.h" />
-    <ClInclude Include="Rendering\2D\TIlesheet\Tilesheet.h" />
-    <ClInclude Include="Rendering\3D\Renderer3D.h" />
+    <ClInclude Include="Rendering\2D\Sprite.h" />
+    <ClInclude Include="Rendering\2D\Tilemap.h" />
+    <ClInclude Include="Rendering\2D\Tilesheet.h" />
     <ClInclude Include="Rendering\Camera\2D\Camera2D.h" />
     <ClInclude Include="Rendering\Camera\Camera.h" />
     <ClInclude Include="Rendering\Renderer.h" />
-    <ClInclude Include="Rendering\RenderScene.h" />
     <ClInclude Include="Rendering\Scene\SceneNode.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

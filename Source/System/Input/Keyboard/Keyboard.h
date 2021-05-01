@@ -21,7 +21,7 @@ namespace gb
 		GB_MULTICASTER(KeyEvent) m_eventCaster;
 		virtual void DispatchEvent(const KeyEvent keyEvent) override;
 
-		static void OnKeyEvent(GLFWwindow* window, int key, int scancode, int action, int mods);
+		static void OnKeyEvent(GLFWwindow* window, int32 key, int32 scancode, int32 action, int32 mods);
 
 		friend class InputManager;
 	};

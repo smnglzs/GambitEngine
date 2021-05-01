@@ -17,15 +17,18 @@ namespace gb
 	{
 		if (window)
 		{
-			GLFWwindow* winPtr = window->GetWindowPtr();
+			GLFWwindow* winPtr = window->GetGlfwWindow();
 
-			// Mouse callbacks
+			// Mouse
 			glfwSetMouseButtonCallback(winPtr, Mouse::OnButtonEvent);
 			glfwSetCursorEnterCallback(winPtr, Mouse::OnEnterContentArea);
-			glfwSetCursorPosCallback(  winPtr, Mouse::OnMove);
+			glfwSetCursorPosCallback  (winPtr, Mouse::OnMove);
 
-			// Keyboard callbacks
+			// Keyboard
 			glfwSetKeyCallback(winPtr, Keyboard::OnKeyEvent);
+
+			// Gamepad
+			glfwSetJoystickCallback(Gamepad::OnJoystickConnected);
 		}
 		else
 		{

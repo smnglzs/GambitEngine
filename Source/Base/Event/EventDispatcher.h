@@ -4,7 +4,7 @@
 #include "Base/Event/Event.h"
 
 #define GB_DEFINE_LISTENER(EventClass) using EventClass##Listener = Delegate<void, EventClass>;
-#define GB_MULTICASTER(EventClass) std::array<MulticastDelegate<EventClass>, (size_t)EventClass::Code::Count>
+#define GB_MULTICASTER(EventClass) std::array<MulticastDelegate<EventClass>, (size_t)EventClass::ECode::Count>
 
 namespace gb
 {

@@ -4,6 +4,7 @@
 #include "System/Export.h"
 #include "System/Input/Keyboard/Keyboard.h"
 #include "System/Input/Mouse/Mouse.h"
+#include "System/Input/Gamepad/Gamepad.h"
 #include "System/Window/Window.h"
 
 namespace gb

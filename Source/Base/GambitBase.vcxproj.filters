@@ -101,5 +101,6 @@
     <ClInclude Include="Event\EventDispatcher.h" />
     <ClInclude Include="Event\Event.h" />
     <ClInclude Include="Image\Image.h" />
+    <ClInclude Include="Common\Macros.h" />
   </ItemGroup>
 </Project>

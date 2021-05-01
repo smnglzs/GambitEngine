@@ -1,6 +1,7 @@
 #pragma once
 #include "Base/Common/Checks.h"
 #include "Base/Common/Common.h"
+#include "Base/Common/Macros.h"
 #include "Base/Common/NonCopyable.h"
 #include "Base/Event/EventDispatcher.h"
 #include "Base/Math/Types.h"

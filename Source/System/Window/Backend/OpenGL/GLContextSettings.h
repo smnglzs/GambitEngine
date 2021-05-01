@@ -8,7 +8,8 @@ namespace gb
 	{
 		uint8 majorVersion   : 3 = 4;
 		uint8 minorVersion   : 3 = 6;
-		uint8 isCoreProfile  : 1 = 1;
-		uint8 isDebugContext : 1 = 0;
+
+		GB_FLAG(isCoreProfile,  1);
+		GB_FLAG(isDebugContext, 0);
 	};
 }

@@ -1,7 +1,7 @@
 #include "VoxelGame.h"
 #include "VoxelWorld.h"
 #include "System/Input/InputManager.h"
-#include "System/Window/Window.h"
+#include "System/Window/WindowManager.h"
 #include "Graphics/GHI/Shader/ShaderManager.h"
 #include "Graphics/GHI/Texture/TextureManager.h"
 #include "Graphics/Rendering/2D/Renderer2D.h"
@@ -35,6 +35,7 @@ namespace vxl
 		{
 			// Window
 			WindowSettings winSettings;
+			winSettings.fixedAspectRatio = true;
 
 			// GL Context
 			GLContextSettings ctxSettings;
@@ -72,13 +73,13 @@ namespace vxl
 		EngineApplication::Start();
 
 		// KBM event examples
-		gbMouseAddListener(MouseEvent::Code::EnterContentArea, this, VoxelGame::OnCursorEnterContentArea);
-		gbMouseAddListener(MouseEvent::Code::Move, this, VoxelGame::OnCursorMove);
-		gbKeyboardAddListener(KeyEvent::Code::Press, this, VoxelGame::OnKeyEvent);
-		gbKeyboardAddListener(KeyEvent::Code::Release, this, VoxelGame::OnKeyEvent);
+		gbMouseAddListener(MouseEvent::ECode::EnterContentArea, this, VoxelGame::OnCursorEnterContentArea);
+		gbMouseAddListener(MouseEvent::ECode::Move, this, VoxelGame::OnCursorMove);
+		gbKeyboardAddListener(KeyEvent::ECode::Press, this, VoxelGame::OnKeyEvent);
+		gbKeyboardAddListener(KeyEvent::ECode::Release, this, VoxelGame::OnKeyEvent);
 
 		// Window event example
-		gbWindowAddListener(m_window, WindowEvent::Code::FocusChanged, this, VoxelGame::OnFocusChanged);
+		gbWindowAddListener(m_window, WindowEvent::ECode::FocusChanged, this, VoxelGame::OnFocusChanged);
 	}
 
 	void VoxelGame::Update(const float deltaTime)
@@ -118,7 +119,7 @@ namespace vxl
 
 	void VoxelGame::OnKeyEvent(KeyEvent keyEvent)
 	{
-		Renderer2D->GetCamera().SetClearColor(keyEvent.code == (uint8)KeyEvent::Code::Press ? Color::Blue : Color::Yellow);
+		Renderer2D->GetCamera().SetClearColor(keyEvent.code == (uint8)KeyEvent::ECode::Press ? Color::Blue : Color::Yellow);
 	}
 
 	void VoxelGame::OnFocusChanged(gb::WindowEvent winEvent)

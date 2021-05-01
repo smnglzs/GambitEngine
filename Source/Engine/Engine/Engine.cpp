@@ -34,13 +34,14 @@ namespace gb
 		UnLoadModules();
 	}
 
-	void Engine::RunApplication(EngineApplication& app)
+	EApplicationExitCode Engine::RunApplication(EngineApplication& app)
 	{
 		std::cout << "Initializing app...\n";
 		app.Init();
 
 		std::cout << "Loading assets required by the app... \n";
-		app.LoadAssets();
+		if (!app.LoadAssets())
+			return EApplicationExitCode::LoadFailed;
 
 		std::cout << "Starting app...\n";
 		app.Start();
@@ -63,6 +64,8 @@ namespace gb
 
 		std::cout << "Stopping app...\n";
 		app.Stop();
+
+		return EApplicationExitCode::Success;
 	}
 
 	void Engine::LoadModules()

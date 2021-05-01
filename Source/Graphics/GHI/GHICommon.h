@@ -64,7 +64,7 @@ namespace gb
 		OneMinusConstAlpha
 	};
 
-	enum class EDepthFunc : uint8
+	enum class EComparisonFunc : uint8
 	{
 		Always,
 		Equal,
@@ -76,9 +76,43 @@ namespace gb
 		NotEqual
 	};
 
+	enum class EStencilOp : uint8
+	{
+		Keep,
+		Zero,
+		Replace,
+		Increment,
+		IncrementClamp,
+		Decrement,
+		DecrementClamp,
+		Invert
+	};
+
+	enum class EPolygonRasterMode : uint8
+	{
+		Point,
+		Line,
+		Fill
+	};
+
+	enum class ECullMode : uint8
+	{
+		None,
+		Front,
+		Back,
+		FrontAndBack
+	};
+
+	enum class EWindingOrder : uint8
+	{
+		Clockwise,
+		CounterClockwise
+	};
+
 #pragma region Render Capabilties
 	struct RenderCaps
 	{
+		// TODO: Introduce enum-flag type combining flag, enum, and name.
 		enum ERenderCap : uint8
 		{
 			AlphaTest,
@@ -93,24 +127,13 @@ namespace gb
 		};
 		static const uint8 g_NumRenderCaps = ToUnderlyingType(RenderCaps::ERenderCap::Count);
 
-		RenderCaps() :
-			alphaTest(false),
-			blend(false),
-			culling(false),
-			debugOutput(false),
-			depthTest(false),
-			scissorTest(false),
-			stencilTest(false)
-		{
-		}
-
-		bool alphaTest	 : 1;
-		bool blend		 : 1;
-		bool culling	 : 1;
-		bool debugOutput : 1;
-		bool depthTest	 : 1;
-		bool scissorTest : 1;
-		bool stencilTest : 1;
+		GB_FLAG(alphaTest,	 0);
+		GB_FLAG(blend,		 0);
+		GB_FLAG(culling,	 0);
+		GB_FLAG(debugOutput, 0);
+		GB_FLAG(depthTest,	 0);
+		GB_FLAG(scissorTest, 0);
+		GB_FLAG(stencilTest, 0);
 	};
 	static const char* g_RenderCapNames[] =
 	{
@@ -173,12 +196,6 @@ namespace gb
 		Fragment,
 		Count,
 		Invalid
-	};
-
-	enum class EWindingOrder : uint8
-	{
-		Clockwise,
-		Counterclockwise
 	};
 
 	enum class EFace : uint8
@@ -310,6 +327,7 @@ namespace gb
 		"TimeElapsed"
 	};
 
+	// TODO: Move to Shader/...
 	namespace ShaderGlobals
 	{
 		static const uint32	ShaderInfoLogSize			  = 2048u;
@@ -346,4 +364,48 @@ namespace gb
 	protected:
 		GHIHandle m_handle = 0u;
 	};
+
+	struct GAMBIT_GRAPHICS_API RasterizerState
+	{
+		EPolygonRasterMode rasterMode	= EPolygonRasterMode::Fill;
+		ECullMode		   cullMode		= ECullMode::Back;
+		EWindingOrder	   windingOrder = EWindingOrder::CounterClockwise;
+		//int32			   depthBias = 0;
+		//float			   depthBiasClamp = 0.f;
+
+		GB_FLAG(enableScissor, 0);
+		//GB_FLAG(enableMultisample, 0);
+
+		// Applies if doing line drawing and enableMultisample is false.
+		//GB_FLAG(enableLineAntialiasing, 0);
+	};
+
+	struct GAMBIT_GRAPHICS_API DepthStencilOp
+	{
+		EStencilOp		stencilFailOp = EStencilOp::Keep;		 // Stencil operation to perform when stencil testing fails.
+		EStencilOp		depthFailOp	  = EStencilOp::Keep;		 // Stencil operation to perform when stencil testing passes and depth testing fails.
+		EStencilOp		passOp		  = EStencilOp::Keep;		 // Stencil operation to perform when stencil testing and depth testing both pass.
+		EComparisonFunc stencilFunc	  = EComparisonFunc::Always; // Function to compare stencil data against existing stencil data.
+	};
+
+	struct GAMBIT_GRAPHICS_API DepthStencilState
+	{
+		// TODO: glStencilFunc + glStencilFuncSeparate
+		DepthStencilOp frontFaceOp;
+		DepthStencilOp backFaceOp;
+
+		GB_FLAG(enableDepth, 1);
+		EComparisonFunc depthFunc = EComparisonFunc::Less;
+		uint8 depthWriteMask = 0xFF;
+
+		GB_FLAG(enableStencil, 0);
+		uint8 stencilWriteMask = 0xFF;
+		uint8 stencilReadMask  = 0xFF;
+	};
 }
+
+/* TODO: 
+ - Clean up, split between diff. files
+ - Named mask values (ALL/DEFAULT/...)
+ - Consume Rasterizer/DepthStencil states in Renderer
+*/

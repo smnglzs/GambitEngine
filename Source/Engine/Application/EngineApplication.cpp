@@ -19,6 +19,7 @@ namespace gb
 
 	bool EngineApplication::LoadAssets()
 	{
+		// Asset-less applications are valid, so return true by default. 
 		return true;
 	}
 

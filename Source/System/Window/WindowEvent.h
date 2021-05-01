@@ -13,7 +13,7 @@ namespace gb
 		{
 		}
 
-		enum class Code : uint8
+		enum class ECode : uint8
 		{
 			FocusChanged,
 			NeedsRefresh,

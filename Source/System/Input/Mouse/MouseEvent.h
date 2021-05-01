@@ -8,7 +8,7 @@ namespace gb
 	{
 		MouseEvent() = default;
 
-		enum class Code : uint8
+		enum class ECode : uint8
 		{
 			EnterContentArea,
 			ButtonPress,
@@ -17,13 +17,13 @@ namespace gb
 			Count
 		};
 		
-		enum Button : uint8
+		enum EButton : uint8
 		{
 			Left,
 			Right,
 			Middle,
 			Count
-		} button = Button::Count;
+		} button = EButton::Count;
 
 		vec2d position;
 		bool enteredContentArea:1 = false;

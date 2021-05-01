@@ -1,24 +1,19 @@
 #pragma once
 #include "Base/GambitBasePCH.h"
 #include "Base/Singleton/Singleton.h"
-#include "System/Window/WindowManager.h"
+#include "Graphics/Common/Common.h"
 #include "Graphics/Export.h"
-#include "Graphics/GHI/Shader/ShaderManager.h"
-#include "Graphics/GHI/Texture/TextureManager.h"
-#include "Graphics/GHI/Buffer/VertexArrayManager.h"
 #include "Graphics/Rendering/Camera/Camera.h"
-#include "Graphics/Rendering/RenderScene.h"
 
 namespace gb
 {
 	struct DrawCallData
 	{
-		const MatrixVariant  transforms;
-		const VertexArray&   mesh;
-		const ShaderProgram& shader;
+		const		MatrixVariant  transforms;
+		const class	VertexArray&   mesh;
+		const class ShaderProgram& shader;
 	};
 
-	// TODO: Draw high-level meshes, not VAOs
 	class GAMBIT_GRAPHICS_API Renderer : public ISingleton
 	{
 	public:
@@ -27,7 +22,7 @@ namespace gb
 
 		virtual void Init() = 0;
 		virtual void Clear();
-		virtual void Render(const RenderScene& scene);
+		//virtual void Render(const RenderScene& scene);
 		virtual void Draw(const DrawCallData& drawData);
 
 		inline virtual Camera& GetCamera() { return *m_camera; }
@@ -38,13 +33,13 @@ namespace gb
 		virtual void EndFrame();
 
 	protected:
-		ShaderManager*		m_shaderManager;
-		TextureManager*		m_textureManager;
-		VertexArrayManager* m_vertexManager;
-		WindowManager*		m_windowManager;
-		Shared<Camera>		m_camera;	// TODO: support multiple cameras
-		int64				m_frameStart;
-		int64				m_frameEnd;
+		class ShaderManager*	  m_shaderManager;
+		class TextureManager*	  m_textureManager;
+		class VertexArrayManager* m_vertexManager;
+		class WindowManager*	  m_windowManager;
+		Shared<Camera>			  m_camera;	// TODO: support multiple cameras
+		int64					  m_frameStart;
+		int64					  m_frameEnd;
 	};
 }
 

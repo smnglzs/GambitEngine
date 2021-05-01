@@ -31,14 +31,14 @@ namespace gb
 	void Mouse::OnButtonEvent(GLFWwindow* window, int button, int action, int /*mods*/)
 	{
 		MouseEvent mouseEvent;
-		mouseEvent.code = action ? (uint8)MouseEvent::Code::ButtonPress : (uint8)MouseEvent::Code::ButtonRelease;
+		mouseEvent.code = action ? (uint8)MouseEvent::ECode::ButtonPress : (uint8)MouseEvent::ECode::ButtonRelease;
 		switch (button)
 		{
-		case GLFW_MOUSE_BUTTON_LEFT:   mouseEvent.button = MouseEvent::Button::Left;   break;
-		case GLFW_MOUSE_BUTTON_RIGHT:  mouseEvent.button = MouseEvent::Button::Right;  break;
-		case GLFW_MOUSE_BUTTON_MIDDLE: mouseEvent.button = MouseEvent::Button::Middle; break;
+		case GLFW_MOUSE_BUTTON_LEFT:   mouseEvent.button = MouseEvent::EButton::Left;   break;
+		case GLFW_MOUSE_BUTTON_RIGHT:  mouseEvent.button = MouseEvent::EButton::Right;  break;
+		case GLFW_MOUSE_BUTTON_MIDDLE: mouseEvent.button = MouseEvent::EButton::Middle; break;
 		default:
-			mouseEvent.button = MouseEvent::Button::Count;
+			mouseEvent.button = MouseEvent::EButton::Count;
 		}
 		gbMouse->DispatchEvent(mouseEvent);
 	}
@@ -46,7 +46,7 @@ namespace gb
 	void Mouse::OnEnterContentArea(GLFWwindow* window, int entered)
 	{
 		MouseEvent mouseEvent;
-		mouseEvent.code = (uint8)MouseEvent::Code::EnterContentArea;
+		mouseEvent.code = (uint8)MouseEvent::ECode::EnterContentArea;
 		mouseEvent.enteredContentArea = entered;
 		gbMouse->DispatchEvent(mouseEvent);
 	}
@@ -55,7 +55,7 @@ namespace gb
 	{
 		MouseEvent mouseEvent;
 		mouseEvent.position = { xpos, ypos };
-		mouseEvent.code = (uint8)MouseEvent::Code::Move;
+		mouseEvent.code = (uint8)MouseEvent::ECode::Move;
 		gbMouse->DispatchEvent(mouseEvent);
 	}
 }

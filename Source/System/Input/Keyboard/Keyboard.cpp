@@ -28,16 +28,16 @@ namespace gb
 		m_eventCaster[keyEvent.code].Broadcast(keyEvent);
 	}
 
-	void Keyboard::OnKeyEvent(GLFWwindow* window, int key, int scancode, int action, int mods)
+	void Keyboard::OnKeyEvent(GLFWwindow* window, int32 key, int32 scancode, int32 action, int32 mods)
 	{
 		KeyEvent keyEvent;
 		switch (action)
 		{
-		case GLFW_PRESS:   keyEvent.code = (uint8)KeyEvent::Code::Press;   break;
-		case GLFW_RELEASE: keyEvent.code = (uint8)KeyEvent::Code::Release; break;
-		case GLFW_REPEAT:  keyEvent.code = (uint8)KeyEvent::Code::Repeat;  break;
+		case GLFW_PRESS:   keyEvent.code = (uint8)KeyEvent::ECode::Press;   break;
+		case GLFW_RELEASE: keyEvent.code = (uint8)KeyEvent::ECode::Release; break;
+		case GLFW_REPEAT:  keyEvent.code = (uint8)KeyEvent::ECode::Repeat;  break;
 		default:
-			keyEvent.code = (uint8)KeyEvent::Code::Count;
+			keyEvent.code = (uint8)KeyEvent::ECode::Count;
 		}
 		gbKeyboard->DispatchEvent(keyEvent);
 	}

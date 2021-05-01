@@ -1,5 +1,5 @@
 #include "Tilemap.h"
-#include "Graphics/Rendering/2D/TIlesheet/Tilesheet.h"
+#include "Graphics/Rendering/2D/Tilesheet.h"
 
 namespace gb
 {

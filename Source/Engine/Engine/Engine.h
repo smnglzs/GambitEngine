@@ -16,6 +16,13 @@ namespace gb
 		Gameplay
 	};
 
+	enum class EApplicationExitCode : uint8
+	{
+		Success, // Must be first
+		// InitFailed,
+		LoadFailed
+	};
+
 	class Engine final
 	{
 	public:
@@ -30,7 +37,7 @@ namespace gb
 		/// <param name="indexPriority">The higher the priority the earlier it will be loaded.</param>
 		GAMBIT_ENGINE_API void AddModule(std::unique_ptr<IModule>& module, EModulePriority priority, int32 indexPriority);
 		GAMBIT_ENGINE_API void StartEngine();
-		GAMBIT_ENGINE_API void RunApplication(class EngineApplication& application);
+		GAMBIT_ENGINE_API EApplicationExitCode RunApplication(class EngineApplication& application);
 
 	private:
 		struct SModulePair

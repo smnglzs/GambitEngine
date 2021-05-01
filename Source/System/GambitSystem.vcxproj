@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -21,6 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input\Gamepad\Gamepad.h" />
+    <ClInclude Include="Input\Gamepad\GamepadEvent.h" />
     <ClInclude Include="Input\Keyboard\KeyEvent.h" />
     <ClInclude Include="Input\Mouse\MouseEvent.h" />
     <ClInclude Include="SystemModule.h" />

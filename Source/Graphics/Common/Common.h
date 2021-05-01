@@ -19,9 +19,9 @@ namespace gb
 			depth(clearDepth),
 			stencil(clearStencil) { }
 
-		uint8 color:1;
-		uint8 depth:1;
-		uint8 stencil:1;
+		GB_FLAG(color,	 1);
+		GB_FLAG(depth,	 1);
+		GB_FLAG(stencil, 1);
 	};
 
 	using MatrixVariant = std::variant<mat4f, std::vector<mat4f>*>;

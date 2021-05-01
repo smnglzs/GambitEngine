@@ -6,9 +6,7 @@ namespace gb
 {
 	struct GAMBIT_SYSTEM_API KeyEvent : public Event
 	{
-		KeyEvent() = default;
-
-		enum class Code : uint8
+		enum class ECode : uint8
 		{
 			Press,
 			Release,
@@ -16,10 +14,11 @@ namespace gb
 			Count
 		};
 
-		KeyEvent(const Code _code, const uint8 _charCode) :
+		KeyEvent() = default;
+		KeyEvent(const ECode _code, const uint8 _charCode) :
 			charCode(_charCode)
 		{ 
-			code = ToUnderlyingType<Code>(_code);
+			code = ToUnderlyingType<ECode>(_code);
 		}
 
 		uint8 charCode;

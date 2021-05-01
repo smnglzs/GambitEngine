@@ -2,26 +2,8 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="GraphicsModule.cpp" />
-    <ClCompile Include="Rendering\2D\Renderer2D.cpp">
-      <Filter>Rendering\2D</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\2D\TIlesheet\Tilesheet.cpp">
-      <Filter>Rendering\2D\Tilesheet</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\2D\Sprite\Sprite.cpp">
-      <Filter>Rendering\2D\Sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\2D\TIlesheet\Tilemap.cpp">
-      <Filter>Rendering\2D\Tilesheet</Filter>
-    </ClCompile>
     <ClCompile Include="Common\Color.cpp">
       <Filter>Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\3D\Renderer3D.cpp">
-      <Filter>Rendering\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Renderer.cpp">
-      <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="GHI\Buffer\Buffer.cpp">
       <Filter>GHI\Buffer</Filter>
@@ -65,42 +47,42 @@
     <ClCompile Include="GHI\Backend\OpenGL\GLGHI.cpp">
       <Filter>GHI\Backend\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Scene\SceneNode.cpp">
-      <Filter>Rendering\Scene</Filter>
+    <ClCompile Include="Geometry\Geometry.cpp">
+      <Filter>Geometry</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Camera\2D\Camera2D.cpp">
-      <Filter>Rendering\Camera\2D</Filter>
+    <ClCompile Include="Rendering\2D\Renderer2D.cpp">
+      <Filter>Rendering\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\2D\Sprite.cpp">
+      <Filter>Rendering\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\2D\Tilemap.cpp">
+      <Filter>Rendering\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\2D\Tilesheet.cpp">
+      <Filter>Rendering\2D</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Camera\Camera.cpp">
       <Filter>Rendering\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Geometry\Geometry.cpp">
-      <Filter>Geometry</Filter>
+    <ClCompile Include="Rendering\Camera\2D\Camera2D.cpp">
+      <Filter>Rendering\Camera\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Scene\SceneNode.cpp">
+      <Filter>Rendering\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Renderer.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Export.h" />
     <ClInclude Include="GraphicsModule.h" />
-    <ClInclude Include="Rendering\2D\Renderer2D.h">
-      <Filter>Rendering\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\2D\TIlesheet\Tilesheet.h">
-      <Filter>Rendering\2D\Tilesheet</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\2D\Sprite\Sprite.h">
-      <Filter>Rendering\2D\Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\2D\TIlesheet\Tilemap.h">
-      <Filter>Rendering\2D\Tilesheet</Filter>
-    </ClInclude>
     <ClInclude Include="Common\Common.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="Common\Color.h">
       <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\3D\Renderer3D.h">
-      <Filter>Rendering\3D</Filter>
     </ClInclude>
     <ClInclude Include="GHI\GHI.h">
       <Filter>GHI</Filter>
@@ -150,8 +132,29 @@
     <ClInclude Include="GHI\Query\QueryManager.h">
       <Filter>GHI\Query</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\RenderScene.h">
-      <Filter>Rendering</Filter>
+    <ClInclude Include="Geometry\Geometry.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry\MeshBuilder.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\2D\Renderer2D.h">
+      <Filter>Rendering\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\2D\Tilesheet.h">
+      <Filter>Rendering\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\2D\Tilemap.h">
+      <Filter>Rendering\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\2D\Sprite.h">
+      <Filter>Rendering\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Camera\Camera.h">
+      <Filter>Rendering\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Camera\2D\Camera2D.h">
+      <Filter>Rendering\Camera\2D</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Scene\SceneNode.h">
       <Filter>Rendering\Scene</Filter>
@@ -159,37 +162,13 @@
     <ClInclude Include="Rendering\Renderer.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Camera\2D\Camera2D.h">
-      <Filter>Rendering\Camera\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Camera\Camera.h">
-      <Filter>Rendering\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Geometry\Geometry.h">
-      <Filter>Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Geometry\MeshBuilder.h">
-      <Filter>Geometry</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Rendering">
       <UniqueIdentifier>{1f3ad7c9-99f2-44a3-a3f0-ce5941314b58}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rendering\2D">
-      <UniqueIdentifier>{aa47f2b2-0d26-4321-a135-f09ca4cc8ab9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\2D\Sprite">
-      <UniqueIdentifier>{0b120ec1-134e-45c4-9c58-6e67140afeed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\2D\Tilesheet">
-      <UniqueIdentifier>{d12cf5bc-3470-49a0-934b-8df54bbc87ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Common">
       <UniqueIdentifier>{2da46827-690d-48ff-a346-7b952756eff6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\3D">
-      <UniqueIdentifier>{a71a8aef-dc39-4c53-89d3-76f0ee700c61}</UniqueIdentifier>
     </Filter>
     <Filter Include="GHI">
       <UniqueIdentifier>{559cec36-82c8-44c4-99f5-6804043f3f35}</UniqueIdentifier>
@@ -212,17 +191,20 @@
     <Filter Include="GHI\Backend\OpenGL">
       <UniqueIdentifier>{18ee692f-bedc-44b4-bbf5-59368a162949}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rendering\Scene">
-      <UniqueIdentifier>{73aa671a-c444-471f-aca2-93e955d3de67}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Camera">
-      <UniqueIdentifier>{476739c4-d4bc-45c7-9c5c-9b951aa59e48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Camera\2D">
-      <UniqueIdentifier>{88b983c6-529c-498b-8309-700b4bc11968}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Geometry">
       <UniqueIdentifier>{9c06db6c-a989-48c8-bd01-5d365070d41e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\2D">
+      <UniqueIdentifier>{ecde186a-3711-47b8-90ac-0227da84c112}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Camera">
+      <UniqueIdentifier>{93e15059-4898-491c-9dcd-18ffc4a24d27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Camera\2D">
+      <UniqueIdentifier>{a40b4abc-ebb4-4e77-983e-54aa50d50c44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Scene">
+      <UniqueIdentifier>{b73d9866-3e46-4d6d-bcd9-68bfdc90f315}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

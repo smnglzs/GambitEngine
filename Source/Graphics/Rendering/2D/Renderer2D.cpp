@@ -5,7 +5,7 @@
 #include "Graphics/GHI/Buffer/VertexArrayManager.h"
 #include "Graphics/GHI/Shader/ShaderManager.h"
 #include "Graphics/GHI/Texture/TextureManager.h"
-#include "Graphics/Rendering/2D/Tilesheet/Tilesheet.h"
+#include "Graphics/Rendering/2D/Tilesheet.h"
 
 namespace gb
 {
@@ -34,10 +34,10 @@ namespace gb
 		m_camera->SetClearColor(Color::Cyan);
 	}
 
-	void Renderer2D::Render(const RenderScene& scene)
-	{
-		throw Exceptions::NotImplemented();
-	}
+	//void Renderer2D::Render(const RenderScene& scene)
+	//{
+	//	throw Exceptions::NotImplemented();
+	//}
 
 	void Renderer2D::DrawRect(const IntRect rect, const Color color, ShaderProgram& shader)
 	{
